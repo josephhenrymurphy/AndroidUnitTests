@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AdditionFragment">
+
+    <EditText
+        android:id="@+id/augend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/augend_hint"
+        android:inputType="numberDecimal"/>
+    <EditText
+        android:id="@+id/addend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/augend"
+        android:hint="@string/addend_hint"
+        android:inputType="numberDecimal"/>
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addend"
+        android:text="@string/add_button"/>
+</RelativeLayout>
