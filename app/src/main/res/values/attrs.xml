@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <declare-styleable name="GridLayout">
+        <attr name="max_columns" format="integer" />
+        <attr name="min_columns" format="integer" />
+        <attr name="divider_color" format="color" />
+    </declare-styleable>
+</resources>

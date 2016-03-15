@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.mob.android.test.helper.ReflectionUtil;
 import com.mobiquity.androidunittests.BuildConfig;
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.activity.MainActivity;
-import com.mobiquity.androidunittests.util.ReflectionUtil;
 
 import junit.framework.Assert;
 
@@ -32,19 +32,32 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21, packageName = "com.mobiquity.androidunittests")
 public class AdditionFragmentTest {
-    /** ActivityController for Activity. */
+    /**
+     * ActivityController for Activity.
+     */
     private ActivityController<MainActivity> controller;
-    /** AdditionFragment under test. */
+    /**
+     * AdditionFragment under test.
+     */
     private AdditionFragment unit;
 
-    /** Augend EditText from fragment. */
+    /**
+     * Augend EditText from fragment.
+     */
     private EditText augend;
-    /** Addend EditText from fragment. */
+    /**
+     * Addend EditText from fragment.
+     */
     private EditText addend;
-    /** Add Button from fragment. */
+    /**
+     * Add Button from fragment.
+     */
     private Button add;
-    /** Set of test data for the addition test. */
+    /**
+     * Set of test data for the addition test.
+     */
     private List<Pair<Float, Float>> additionTestData = new ArrayList<>();
+
     {
         additionTestData.add(new Pair<>(0f, 10f));
         additionTestData.add(new Pair<>(0f, Float.NaN));

@@ -1,7 +1,7 @@
 package com.mobiquity.androidunittests;
 
-import com.mobiquity.androidunittests.mock.MockExecutorService;
-import com.mobiquity.androidunittests.util.ReflectionUtil;
+import com.mob.android.test.helper.MockExecutorService;
+import com.mob.android.test.helper.ReflectionUtil;
 
 import junit.framework.Assert;
 
@@ -13,9 +13,13 @@ import org.junit.Test;
  * Test of the RunTasksOnExecutor class.
  */
 public class RunTasksOnExecutorTests {
-    /** RunTasksOnExecutor that is under test. */
+    /**
+     * RunTasksOnExecutor that is under test.
+     */
     private RunTasksOnExecutor unit;
-    /** Mock version of ExecutorService. */
+    /**
+     * Mock version of ExecutorService.
+     */
     private MockExecutorService mockExecutor;
 
     /*

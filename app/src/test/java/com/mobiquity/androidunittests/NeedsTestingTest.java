@@ -1,6 +1,7 @@
 package com.mobiquity.androidunittests;
 
-import com.mobiquity.androidunittests.util.ReflectionUtil;
+import com.mob.android.test.helper.ReflectionUtil;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,13 +14,21 @@ import java.util.List;
  * Test of {@link NeedsTesting}.
  */
 public class NeedsTestingTest {
-    /** Instance object under test. */
+    /**
+     * Instance object under test.
+     */
     private NeedsTesting instance;
-    /** Reference to internal list. */
+    /**
+     * Reference to internal list.
+     */
     private List<Integer> integerList;
-    /** Reference to internal class default .*/
+    /**
+     * Reference to internal class default .
+     */
     private int min;
-    /** Reference to internal class default .*/
+    /**
+     * Reference to internal class default .
+     */
     private int max;
 
     /*
@@ -68,8 +77,8 @@ public class NeedsTestingTest {
         Assert.assertNotNull(integerList);
         Assert.assertTrue(integerList.isEmpty());
 
-        Assert.assertEquals(0,  min);
-        Assert.assertEquals(100,  max);
+        Assert.assertEquals(0, min);
+        Assert.assertEquals(100, max);
 
         // Part Two: Configure test. Some of this may be done in the @Before but not every test will
         //           need the same set up. Here you want to prepare your data. You will notice in
@@ -133,13 +142,13 @@ public class NeedsTestingTest {
         Assert.assertEquals(7, integerList.size());
 
         // test the default version
-        final List<Integer> result =  instance.get();
+        final List<Integer> result = instance.get();
         Assert.assertNotNull(result);
         Assert.assertEquals(5, result.size());
         assertAllInRange(result, min, max);
 
         // test the parametrized version.
-        final List<Integer> rangeResult =  instance.get(3, 100);
+        final List<Integer> rangeResult = instance.get(3, 100);
         Assert.assertNotNull(rangeResult);
         Assert.assertEquals(4, rangeResult.size());
         assertAllInRange(rangeResult, 3, 100);
@@ -148,7 +157,7 @@ public class NeedsTestingTest {
         try {
             instance.get(11, 10);
             Assert.fail(
-                "NeedsTesting#get(int, int) should throw an IllegalArgumentException if min > max");
+                    "NeedsTesting#get(int, int) should throw an IllegalArgumentException if min > max");
         } catch (final IllegalArgumentException e) {
             Assert.assertEquals("Max(10) should not be less than Min(11)", e.getMessage());
         }
@@ -174,7 +183,7 @@ public class NeedsTestingTest {
     @Test
     public void testIsInRange() {
         final Method isInRange = ReflectionUtil.getMethod(
-            NeedsTesting.class, "isInRange", Integer.TYPE, Integer.TYPE, Integer.TYPE);
+                NeedsTesting.class, "isInRange", Integer.TYPE, Integer.TYPE, Integer.TYPE);
         Assert.assertNotNull(isInRange);
         Assert.assertTrue((boolean) ReflectionUtil.invokeMethod(isInRange, isInRange, 1, 0, 2));
         Assert.assertFalse((boolean) ReflectionUtil.invokeMethod(isInRange, isInRange, -1, 0, 2));
@@ -187,8 +196,8 @@ public class NeedsTestingTest {
      * Helper method for asserting that every value in the list is within the range.
      *
      * @param values list of values to test.
-     * @param min min value in range.
-     * @param max max value in range.
+     * @param min    min value in range.
+     * @param max    max value in range.
      */
     private void assertAllInRange(final List<Integer> values, final int min, final int max) {
         for (final int value : values) {
