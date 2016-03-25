@@ -11,7 +11,16 @@ ext.versions = [
         androidGradlePlugin: '2.1.0-alpha3',
         aptGradlePlugin: '1.8',
         retrolambdaGradlePlugin: '3.2.5',
-        androidDevMetricsGradlePlugin: '0.4'
+        androidDevMetricsGradlePlugin: '0.4',
+
+        // Libraries
+        timber: '4.1.1',
+        dagger: '2.1',
+        javaxAnnotations: '1.0'
+
+        // Testing libraries
+
+        // Dev libraries
 ]
 
 ext.gradlePlugins = [
@@ -22,7 +31,10 @@ ext.gradlePlugins = [
 ]
 
 ext.libraries = [
-
+        timber: "com.jakewharton.timber:timber:$versions.timber",
+        dagger: "com.google.dagger:dagger:$versions.dagger",
+        daggerCompiler: "com.google.dagger:dagger-compiler:$versions.dagger",
+        javaxAnnotations: "javax.annotation:jsr250-api:$versions.javaxAnnotations"
 ]
 
 ext.devLibraries = [
