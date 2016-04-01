@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#88000000">
 
     <LinearLayout
@@ -10,18 +10,50 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Title -->
         <TextView
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Developer Settings"
-            android:textColor="#eeeeee"
-            style="@style/TextAppearance.AppCompat.Title"/>
+            android:textColor="#eeeeee"/>
 
+        <!-- Build Info -->
         <TextView
             style="@style/DeveloperSettingsCategoryTitle"
             android:text="Build info"/>
 
         <View style="@style/DeveloperSettingsCategoryDivider"/>
+
+    <LinearLayout
+        android:id="@+id/build_info_container"
+        style="@style/DeveloperSettingsItemContainer">
+
+        </LinearLayout>
+
+
+        <!-- Inspection tools -->
+        <TextView
+            style="@style/DeveloperSettingsCategoryTitle"
+            android:text="Inspection tools"/>
+
+        <View style="@style/DeveloperSettingsCategoryDivider"/>
+
+        <LinearLayout
+            android:id="@+id/inspection_tools_container"
+            style="@style/DeveloperSettingsItemContainer">
+
+            <LinearLayout style="@style/DeveloperSettingsRowContainer">
+                <TextView style="@style/DeveloperSettingsItemTitle"
+                    android:text="Leak Canary"/>
+
+                <Switch android:id="@+id/leak_canary_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

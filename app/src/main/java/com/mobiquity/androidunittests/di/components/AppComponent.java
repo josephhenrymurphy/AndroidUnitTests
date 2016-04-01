@@ -1,5 +1,8 @@
 package com.mobiquity.androidunittests.di.components;
 
+import android.content.Context;
+
+import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.di.modules.AppModule;
 import com.mobiquity.androidunittests.di.modules.DevModule;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
@@ -14,6 +17,12 @@ import dagger.Component;
 })
 public interface AppComponent extends BaseComponent {
 
+    void inject(CalculatorApplication application);
+    DevSettingsComponent plusDevSettingsComponent();
+
+    Context context();
+
     // Provided by DevModule
     ViewWrapper viewWrapper();
+
 }

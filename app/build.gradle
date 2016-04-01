@@ -30,14 +30,21 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
 
+    compile libraries.butterKnife
     compile libraries.timber
     compile libraries.dagger
     provided libraries.javaxAnnotations
     apt libraries.daggerCompiler
 
     testCompile 'com.frogermcs.androiddevmetrics:androiddevmetrics-runtime-noop:0.4'
+    testCompile testLibraries.junit
+    testCompile testLibraries.truth
+    testCompile testLibraries.robolectric
+    testCompile testLibraries.mockito
 
+    debugCompile devLibraries.leakCanary
+    releaseCompile devLibraries.leakCanaryNoOp
+    testCompile devLibraries.leakCanaryNoOp
 }
