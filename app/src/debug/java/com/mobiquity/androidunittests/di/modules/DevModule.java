@@ -2,8 +2,8 @@ package com.mobiquity.androidunittests.di.modules;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.mobiquity.androidunittests.DevSettings;
-import com.mobiquity.androidunittests.DevSettingsWrapperImpl;
+import com.mobiquity.androidunittests.devsettings.DevSettings;
+import com.mobiquity.androidunittests.devsettings.DevSettingsWrapperImpl;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.devsettings.LeakCanaryProxy;
 import com.mobiquity.androidunittests.di.qualifiers.Debug;

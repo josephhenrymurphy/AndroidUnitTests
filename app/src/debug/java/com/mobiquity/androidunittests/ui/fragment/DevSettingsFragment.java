@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests.ui;
+package com.mobiquity.androidunittests.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobiquity.androidunittests.BuildConfig;
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
+import com.mobiquity.androidunittests.ui.presenter.DevSettingsPresenter;
 import com.mobiquity.androidunittests.ui.mvpview.DevView;
 
 import javax.inject.Inject;
@@ -21,7 +24,9 @@ import butterknife.OnCheckedChanged;
 
 public class DevSettingsFragment extends Fragment implements DevView {
 
-
+    @Bind(R.id.build_flavor) TextView buildFlavorText;
+    @Bind(R.id.build_version_code) TextView buildVersionCodeText;
+    @Bind(R.id.build_version_name) TextView buildVersionNameText;
     @Bind(R.id.leak_canary_switch) Switch leakCanarySwitch;
 
     @Inject DevSettingsPresenter presenter;
@@ -44,6 +49,10 @@ public class DevSettingsFragment extends Fragment implements DevView {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         presenter.bind(this);
+
+        buildFlavorText.setText(BuildConfig.);
+        buildVersionCodeText.setText(String.valueOf(BuildConfig.VERSION_CODE));
+        buildVersionNameText.setText(BuildConfig.VERSION_NAME);
     }
 
     @OnCheckedChanged(R.id.leak_canary_switch)

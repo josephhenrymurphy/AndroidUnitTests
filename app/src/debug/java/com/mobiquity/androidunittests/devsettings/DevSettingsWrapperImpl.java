@@ -1,7 +1,4 @@
-package com.mobiquity.androidunittests;
-
-import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
-import com.mobiquity.androidunittests.devsettings.LeakCanaryProxy;
+package com.mobiquity.androidunittests.devsettings;
 
 public class DevSettingsWrapperImpl implements DevSettingsWrapper {
 

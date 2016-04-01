@@ -1,9 +1,8 @@
-package com.mobiquity.androidunittests.ui;
+package com.mobiquity.androidunittests.ui.presenter;
 
-import com.mobiquity.androidunittests.DevSettingsWrapperImpl;
+import com.mobiquity.androidunittests.devsettings.DevSettingsWrapperImpl;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.mvpview.DevView;
-import com.mobiquity.androidunittests.ui.presenter.Presenter;
 
 import javax.inject.Inject;
 
@@ -23,7 +22,7 @@ public class DevSettingsPresenter extends Presenter<DevView> {
         view.changeLeakCanaryState(devSettingsWrapper.isLeakCanaryEnabled());
     }
 
-    void updateLeakCanaryState(boolean enabled) {
+    public void updateLeakCanaryState(boolean enabled) {
         if (devSettingsWrapper.isLeakCanaryEnabled() == enabled)
             return;
 

@@ -3,7 +3,7 @@ package com.mobiquity.androidunittests;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.common.truth.Truth;
+import com.mobiquity.androidunittests.devsettings.DevSettings;
 
 import org.junit.Before;
 import org.junit.Test;

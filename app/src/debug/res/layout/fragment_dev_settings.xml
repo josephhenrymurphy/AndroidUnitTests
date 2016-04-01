@@ -25,9 +25,45 @@
 
         <View style="@style/DeveloperSettingsCategoryDivider"/>
 
-    <LinearLayout
-        android:id="@+id/build_info_container"
-        style="@style/DeveloperSettingsItemContainer">
+        <LinearLayout
+            android:id="@+id/build_info_container"
+            style="@style/DeveloperSettingsItemContainer">
+
+            <LinearLayout style="@style/DeveloperSettingsRowContainer">
+
+                <TextView
+                    style="@style/DeveloperSettingsItemTitle"
+                    android:text="Build Flavor"/>
+
+                <TextView
+                    android:id="@+id/build_flavor"
+                    style="@style/DeveloperSettingsItemContent"/>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/DeveloperSettingsRowContainer">
+
+                <TextView
+                    style="@style/DeveloperSettingsItemTitle"
+                    android:text="Build version code"/>
+
+                <TextView
+                    android:id="@+id/build_version_code"
+                    style="@style/DeveloperSettingsItemContent"/>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/DeveloperSettingsRowContainer">
+
+                <TextView
+                    style="@style/DeveloperSettingsItemTitle"
+                    android:text="Build version name"/>
+
+                <TextView
+                    android:id="@+id/build_version_name"
+                    style="@style/DeveloperSettingsItemContent"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -44,10 +80,13 @@
             style="@style/DeveloperSettingsItemContainer">
 
             <LinearLayout style="@style/DeveloperSettingsRowContainer">
-                <TextView style="@style/DeveloperSettingsItemTitle"
+
+                <TextView
+                    style="@style/DeveloperSettingsItemTitle"
                     android:text="Leak Canary"/>
 
-                <Switch android:id="@+id/leak_canary_switch"
+                <Switch
+                    android:id="@+id/leak_canary_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

@@ -6,7 +6,7 @@
     
     <fragment
         android:id="@+id/fragment_dev_settings"
-        class="com.mobiquity.androidunittests.ui.DevSettingsFragment"
+        class="com.mobiquity.androidunittests.ui.fragment.DevSettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
