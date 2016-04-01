@@ -37,4 +37,7 @@ dependencies {
     compile libraries.dagger
     provided libraries.javaxAnnotations
     apt libraries.daggerCompiler
+
+    testCompile 'com.frogermcs.androiddevmetrics:androiddevmetrics-runtime-noop:0.4'
+
 }

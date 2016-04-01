@@ -8,7 +8,6 @@ ext.versions = [
         code: buildVersionCode(),
 
         // Gradle buildscript plugins
-        androidGradlePlugin: '2.1.0-alpha3',
         aptGradlePlugin: '1.8',
         retrolambdaGradlePlugin: '3.2.5',
         androidDevMetricsGradlePlugin: '0.4',
@@ -24,7 +23,6 @@ ext.versions = [
 ]
 
 ext.gradlePlugins = [
-        android: "com.android.tools.build:gradle:$versions.androidGradlePlugin",
         apt: "com.neenbedankt.gradle.plugins:android-apt:$versions.aptGradlePlugin",
         retrolambda: "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
         androidDevMetrics: "com.frogermcs.androiddevmetrics:androiddevmetrics-plugin:$versions.androidDevMetricsGradlePlugin"
