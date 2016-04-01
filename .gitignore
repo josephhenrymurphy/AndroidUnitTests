@@ -9,5 +9,7 @@
 *.idea/
 
 /local.properties
+/sign.properties
+*.jks
 .DS_Store
 /captures

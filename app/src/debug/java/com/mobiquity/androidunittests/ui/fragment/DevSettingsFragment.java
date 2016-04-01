@@ -50,7 +50,7 @@ public class DevSettingsFragment extends Fragment implements DevView {
         ButterKnife.bind(this, view);
         presenter.bind(this);
 
-        buildFlavorText.setText(BuildConfig.);
+        buildFlavorText.setText(BuildConfig.FLAVOR);
         buildVersionCodeText.setText(String.valueOf(BuildConfig.VERSION_CODE));
         buildVersionNameText.setText(BuildConfig.VERSION_NAME);
     }
