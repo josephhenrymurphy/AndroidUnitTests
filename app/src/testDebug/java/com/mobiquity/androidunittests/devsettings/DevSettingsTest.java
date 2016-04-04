@@ -1,8 +1,9 @@
-package com.mobiquity.androidunittests;
+package com.mobiquity.androidunittests.devsettings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.mobiquity.androidunittests.CustomGradleRunner;
 import com.mobiquity.androidunittests.devsettings.DevSettings;
 
 import org.junit.Before;
@@ -25,11 +26,15 @@ public class DevSettingsTest {
     }
 
     @Test
-    public void setLeakCanarySetting() {
+    public void testLeakCanary_DisabledByDefault() {
+        assertThat(devSettings.isLeakCanaryEnabled()).isFalse();
+    }
+
+    @Test
+    public void testSetLeakCanarySetting() {
         assertThat(devSettings.isLeakCanaryEnabled()).isFalse();
         devSettings.setLeakCanary(true);
         assertThat(devSettings.isLeakCanaryEnabled()).isTrue();
     }
-
 
 }

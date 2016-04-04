@@ -37,11 +37,13 @@ project.afterEvaluate {
                                    '**/*$ViewBinder*.*',
                                    '**/BuildConfig.*',
                                    '**/Manifest*.*',
-                                   '**/*$Lambda$*.*', // Jacoco can not handle several "$" in class name.
-                                   '**/*Module.*', // Modules for Dagger.
-                                   '**/*Dagger*.*', // Dagger auto-generated code.
-                                   '**/*MembersInjector*.*', // Dagger auto-generated code.
-                                   '**/*_Provide*Factory*.*'] // Dagger auto-generated code.
+                                   '**/*$Lambda$*.*',
+                                   '**/*Module*.*',
+                                   '**/*_MembersInjector*.*',
+                                   '**/Dagger*.class',
+                                   '**/*_Factory*.*',
+                                   '**/*_Provide*.*'
+                        ]
                 )
 
                 def coverageSourceDirs = [

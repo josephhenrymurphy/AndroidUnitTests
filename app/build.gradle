@@ -47,6 +47,8 @@ dependencies {
     testCompile testLibraries.truth
     testCompile testLibraries.robolectric
     testCompile testLibraries.mockito
+    testCompile testLibraries.powermockMockito
+    testCompile testLibraries.powermockJunit
 
     debugCompile devLibraries.leakCanary
     releaseCompile devLibraries.leakCanaryNoOp
