@@ -4,4 +4,24 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <include layout="@layout/display"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <com.mobiquity.androidunittests.ui.view.NumericPad
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"/>
+
+        <include layout="@layout/operator_pad"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>

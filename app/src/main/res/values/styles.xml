@@ -1,11 +1,30 @@
 <resources>
+    <style name="DisplayEditTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:gravity">bottom|end</item>
+    </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="DisplayEditTextStyle.Formula">
+        <item name="android:textSize">98sp</item>
+        <item name="android:textColor">@color/displayFormulaTextColor</item>
+    </style>
+
+    <style name="DisplayEditTextStyle.Result">
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">@color/displayResultTextColor</item>
+    </style>
+
+    <style name="PadButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/padButtonTextColor</item>
+        <item name="android:background">@drawable/pad_button_bg</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="layout_rowWeight">1</item>
+        <item name="layout_columnWeight">1</item>
     </style>
 
 </resources>

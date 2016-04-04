@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidUnitTests</string>
+    <string name="decimal_symbol">.</string>
+    <string name="equals_symbol">=</string>
+
+    <string name="add_op">+</string>
+    <string name="substract_op">-</string>
+    <string name="multiply_op">*</string>
+    <string name="divide_op">/</string>
+
 </resources>

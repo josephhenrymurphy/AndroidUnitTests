@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorAccent">#9575CD</color>
+
+    <color name="displayBackgroundColor">@android:color/white</color>
+    <color name="displayFormulaTextColor">#8A000000</color>
+    <color name="displayResultTextColor">#6C000000</color>
+
+    <color name="padNumericBackgroundColor">@color/colorPrimary</color>
+    <color name="padOperatorBackgroundColor">#ec809b</color>
+    <color name="padExtraBackgroundColor">#FF9800</color>
+
+    <color name="padButtonTextColor">#FFFFFF</color>
+    <color name="padButtonPressedColor">#33FFFFFF</color>
+    <color name="extraPadButtonTextColor">#FFFFFF</color>
+    <color name="handleColor">#3cffffff</color>
 </resources>
