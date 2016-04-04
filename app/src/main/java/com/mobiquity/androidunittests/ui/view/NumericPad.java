@@ -9,12 +9,19 @@ import android.widget.FrameLayout;
 
 import com.mobiquity.androidunittests.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class NumericPad extends FrameLayout {
+
+    public interface OnNumberClickedListener {
+        void onNumberClicked(int number);
+    }
+
+    List<OnNumberClickedListener> listeners;
 
     @Bind(value = {
             R.id.digit_0, R.id.digit_1, R.id.digit_2,
@@ -33,13 +40,27 @@ public class NumericPad extends FrameLayout {
 
     public NumericPad(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        listeners = new ArrayList<>();
         initView(context);
+    }
+
+    public void addOnNumberClickedListener(OnNumberClickedListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeOnNumberClickedListener(OnNumberClickedListener listener) {
+        listeners.remove(listener);
     }
 
     private void initView(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
         this.addView(inflater.inflate(R.layout.numeric_pad, null));
         ButterKnife.bind(this, this);
-        ButterKnife.apply(numericButtons, (button, index) -> button.setText(String.valueOf(index)));
+        ButterKnife.apply(numericButtons, (button, index) -> {
+            button.setText(String.valueOf(index));
+            for(OnNumberClickedListener listener : listeners) {
+                listener.onNumberClicked(index);
+            }
+        });
     }
 }

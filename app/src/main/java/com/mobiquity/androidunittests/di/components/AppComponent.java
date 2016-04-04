@@ -7,6 +7,7 @@ import com.mobiquity.androidunittests.di.modules.AppModule;
 import com.mobiquity.androidunittests.di.modules.DevModule;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.ViewWrapper;
+import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
 
 import dagger.Component;
 
@@ -21,6 +22,7 @@ public interface AppComponent extends BaseComponent {
     DevSettingsComponent plusDevSettingsComponent();
 
     Context context();
+    CalculatorPresenter calculatorPresenter();
 
     // Provided by DevModule
     ViewWrapper viewWrapper();
