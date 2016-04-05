@@ -2,6 +2,9 @@ package com.mobiquity.androidunittests.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
@@ -11,6 +14,8 @@ import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
 import com.mobiquity.androidunittests.ui.view.NumericPad;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,7 +29,16 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
     @Inject ViewWrapper viewWrapper;
     @Inject CalculatorPresenter presenter;
+
     @Bind(R.id.numeric_pad) NumericPad numericPad;
+    @Bind(R.id.display_input) EditText displayInput;
+
+    @Bind(value = {
+            R.id.add_op,
+            R.id.subtract_op,
+            R.id.multiply_op,
+            R.id.divide_op
+    }) List<Button> operatorButtons;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +47,12 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         calculatorComponent.inject(this);
         setContentView(viewWrapper.wrap(getLayoutInflater().inflate(R.layout.activity_calculator, null)));
         ButterKnife.bind(this);
+
+        numericPad.addOnNumberClickedListener(number -> presenter.handleNumber(number));
+        ButterKnife.apply(operatorButtons, (button, index) -> {
+            String symbol = button.getText().toString();
+            button.setOnClickListener(v -> presenter.handlerOperator(symbol));
+        });
     }
 
     @Override
@@ -54,4 +74,8 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         presenter.unbind();
     }
 
+    @Override
+    public void updateDisplayText(String displayText) {
+        displayInput.setText(displayText);
+    }
 }

@@ -3,6 +3,7 @@ package com.mobiquity.androidunittests.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -58,9 +59,13 @@ public class NumericPad extends FrameLayout {
         ButterKnife.bind(this, this);
         ButterKnife.apply(numericButtons, (button, index) -> {
             button.setText(String.valueOf(index));
-            for(OnNumberClickedListener listener : listeners) {
-                listener.onNumberClicked(index);
-            }
+            button.setOnClickListener(v -> handleNumericButtonClick(index));
         });
+    }
+
+    private void handleNumericButtonClick(int number) {
+        for(OnNumberClickedListener listener : listeners) {
+            listener.onNumberClicked(number);
+        }
     }
 }

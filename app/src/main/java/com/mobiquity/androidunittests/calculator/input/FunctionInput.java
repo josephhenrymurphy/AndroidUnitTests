@@ -2,7 +2,14 @@ package com.mobiquity.androidunittests.calculator.input;
 
 public class FunctionInput extends Input {
 
-    public FunctionInput(String functionName) {
+    private int numExpectedParams;
+
+    public FunctionInput(String functionName, int numExpectedParams) {
         super(functionName, InputType.FUNCTION);
+        this.numExpectedParams = numExpectedParams;
+    }
+
+    public int getNumExpectedParams() {
+        return numExpectedParams;
     }
 }

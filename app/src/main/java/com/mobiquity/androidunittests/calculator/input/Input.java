@@ -25,6 +25,10 @@ public abstract class Input {
         this.type = type;
     }
 
+    public String getDisplayString() {
+        return value;
+    }
+
     public InputType getType() {
         return type;
     }

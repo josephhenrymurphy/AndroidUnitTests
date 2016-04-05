@@ -8,10 +8,11 @@ import static com.google.common.truth.Truth.*;
 public class FunctionInputTest {
 
     private FunctionInput functionInput;
+    private static final int NUM_PARAMS = 2;
 
     @Before
     public void setUp() {
-        functionInput = new FunctionInput("dummyFunction");
+        functionInput = new FunctionInput("dummyFunction", NUM_PARAMS);
     }
 
     @Test
@@ -22,6 +23,11 @@ public class FunctionInputTest {
     @Test
     public void testFunction_Value() {
         assertThat(functionInput.value).isEqualTo("dummyFunction");
+    }
+
+    @Test
+    public void testFunction_ExpectedNumberOfParams() {
+        assertThat(functionInput.getNumExpectedParams()).isEqualTo(NUM_PARAMS);
     }
 
 }

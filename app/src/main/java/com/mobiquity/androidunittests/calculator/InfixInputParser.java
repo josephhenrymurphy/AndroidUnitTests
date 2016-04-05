@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import javax.inject.Inject;
+
 public class InfixInputParser {
 
     public class InputParserException extends RuntimeException {
@@ -17,6 +19,9 @@ public class InfixInputParser {
             super(message);
         }
     }
+
+    @Inject
+    public InfixInputParser(){}
 
     /**
      * Takes an infix expression and returns postfix

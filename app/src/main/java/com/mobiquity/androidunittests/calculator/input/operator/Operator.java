@@ -1,11 +1,18 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
-public interface Operator {
-    int execute(int param1, int param2);
-    int getPrecedence();
-    boolean isLeftAssociative();
+import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.InputType;
 
-    enum Precedence {
+public abstract class Operator extends Input {
+    public Operator(String value, InputType type) {
+        super(value, type);
+    }
+
+    public abstract int execute(int param1, int param2);
+    public abstract int getPrecedence();
+    public abstract boolean isLeftAssociative();
+
+    public enum Precedence {
         ADDITION_PRECEDENCE(2),
         SUBTRACTION_PRECEDENCE(2),
         MULTIPLICATION_PRECEDENCE(3),

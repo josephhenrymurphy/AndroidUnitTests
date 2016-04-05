@@ -9,18 +9,18 @@
     app:elevation="4dp">
 
     <EditText
-        android:id="@+id/formula"
+        android:id="@+id/display_input"
         style="@style/DisplayEditTextStyle.Formula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text|textNoSuggestions"/>
 
     <EditText
-        android:id="@+id/result"
+        android:id="@+id/display_result"
         style="@style/DisplayEditTextStyle.Result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/formula"
+        android:layout_below="@id/display_input"
         android:inputType="none"
         android:focusable="false"/>
 
