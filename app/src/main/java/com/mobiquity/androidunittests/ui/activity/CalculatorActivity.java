@@ -51,7 +51,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         numericPad.addOnNumberClickedListener(number -> presenter.handleNumber(number));
         ButterKnife.apply(operatorButtons, (button, index) -> {
             String symbol = button.getText().toString();
-            button.setOnClickListener(v -> presenter.handlerOperator(symbol));
+            button.setOnClickListener(v -> presenter.handleOperator(symbol));
         });
     }
 

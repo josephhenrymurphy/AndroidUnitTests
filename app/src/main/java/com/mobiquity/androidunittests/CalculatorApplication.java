@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
+import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.di.components.AppComponent;
 import com.mobiquity.androidunittests.di.components.DaggerAppComponent;
@@ -18,6 +19,7 @@ public class CalculatorApplication extends Application {
 
     private AppComponent appComponent;
     @Inject Lazy<DevSettingsWrapper> devSettingsWrapper;
+    @Inject Lazy<AndroidDevMetricsWrapper> androidDevMetricsWrapper;
 
     public static AppComponent getAppComponent(Context context) {
         return ((CalculatorApplication)context.getApplicationContext())
@@ -33,7 +35,7 @@ public class CalculatorApplication extends Application {
         if(BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
             devSettingsWrapper.get().apply();
-            AndroidDevMetrics.initWith(this);
+            androidDevMetricsWrapper.get().apply(this);
         }
     }
 

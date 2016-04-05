@@ -3,7 +3,9 @@ package com.mobiquity.androidunittests.di.modules;
 import android.app.Application;
 import android.content.Context;
 
+import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
 import com.mobiquity.androidunittests.CalculatorApplication;
+import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 
@@ -23,6 +25,12 @@ public class AppModule {
     @AppScope
     Context provideContext() {
         return application;
+    }
+
+    @Provides
+    @AppScope
+    protected AndroidDevMetricsWrapper provideAndroidDevMetricsWrapper() {
+        return AndroidDevMetrics::initWith;
     }
 
 }

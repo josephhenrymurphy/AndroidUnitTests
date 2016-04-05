@@ -43,4 +43,10 @@ public class InputTest {
     public void testSuperInputType_InvalidNumberValueForNonumericInput() {
         DummyInput dummyInput = new DummyInput(3, InputType.FUNCTION);
     }
+
+    @Test
+    public void testDisplayString_ReturnsCorrectValue() {
+        DummyInput dummyInput = new DummyInput("dummy", InputType.FUNCTION);
+        assertThat(dummyInput.getDisplayString()).isEqualTo("dummy");
+    }
 }

@@ -42,15 +42,13 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         view().updateDisplayText(inputsToDisplayString());
     }
 
-    public void handlerOperator(String symbol) {
+    public void handleOperator(String symbol) {
         if(!inputs.isEmpty() &&
                 inputs.get(inputs.size()-1) instanceof Operator) {
             inputs.remove(inputs.size()-1);
         }
         inputs.add(operatorConverter.convert(symbol));
         view().updateDisplayText(inputsToDisplayString());
-
-
     }
 
     private String inputsToDisplayString() {

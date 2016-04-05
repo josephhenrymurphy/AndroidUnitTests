@@ -28,7 +28,7 @@ public class CustomGradleRunner extends RobolectricGradleTestRunner {
                 defaultConfig.resourceDir(),
                 defaultConfig.assetDir(),
                 defaultConfig.shadows(),
-                defaultConfig.application(),
+                CalculatorUnitTestApplication.class,
                 defaultConfig.libraries(),
                 defaultConfig.constants() == Void.class ? BuildConfig.class : defaultConfig.constants()
         );
