@@ -1,8 +1,8 @@
-package com.mobiquity.androidunittests;
+package com.mobiquity.androidunittests.calculator;
 
-import com.mobiquity.androidunittests.input.Input;
-import com.mobiquity.androidunittests.input.NumericInput;
-import com.mobiquity.androidunittests.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.NumericInput;
+import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
 
 import org.junit.Before;
 import org.junit.Test;

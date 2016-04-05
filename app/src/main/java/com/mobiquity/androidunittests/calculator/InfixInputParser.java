@@ -1,10 +1,10 @@
-package com.mobiquity.androidunittests;
+package com.mobiquity.androidunittests.calculator;
 
-import com.mobiquity.androidunittests.input.FunctionInput;
-import com.mobiquity.androidunittests.input.Input;
-import com.mobiquity.androidunittests.input.InputType;
-import com.mobiquity.androidunittests.input.LeftParenInput;
-import com.mobiquity.androidunittests.input.operator.Operator;
+import com.mobiquity.androidunittests.calculator.input.FunctionInput;
+import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.InputType;
+import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
+import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 
 import java.util.LinkedList;
 import java.util.Queue;

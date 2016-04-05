@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests.input;
+package com.mobiquity.androidunittests.calculator.input;
 
 import java.security.InvalidParameterException;
 
@@ -8,13 +8,17 @@ public abstract class Input {
     protected String value;
 
     public Input(String value, InputType type) {
+        if(type == InputType.NUMBER) {
+            throw new InvalidParameterException("The value for a number cannot be a string");
+        }
+
         this.value = value;
         this.type = type;
     }
 
     public Input(int value, InputType type) {
-        if(type == InputType.OPERATOR) {
-            throw new InvalidParameterException("An operator cannot be a number");
+        if(type != InputType.NUMBER) {
+            throw new InvalidParameterException("Input type must be a number");
         }
 
         this.value = String.valueOf(value);

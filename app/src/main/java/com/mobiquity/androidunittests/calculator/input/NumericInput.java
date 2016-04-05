@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests.input;
+package com.mobiquity.androidunittests.calculator.input;
 
 public class NumericInput extends Input {
 

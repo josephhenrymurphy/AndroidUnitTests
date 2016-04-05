@@ -1,7 +1,7 @@
-package com.mobiquity.androidunittests.input.operator;
+package com.mobiquity.androidunittests.calculator.input.operator;
 
-import com.mobiquity.androidunittests.input.Input;
-import com.mobiquity.androidunittests.input.InputType;
+import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.InputType;
 
 public class AdditionOperator extends Input implements Operator {
 
