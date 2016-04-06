@@ -8,14 +8,15 @@
     android:background="@color/displayBackgroundColor"
     app:elevation="4dp">
 
-    <EditText
+    <com.mobiquity.androidunittests.ui.view.CalculatorEditText
         android:id="@+id/display_input"
         style="@style/DisplayEditTextStyle.Formula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text|textNoSuggestions"/>
+        android:inputType="text|textNoSuggestions"
+        app:minTextSize="48sp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/display_result"
         style="@style/DisplayEditTextStyle.Result"
         android:layout_width="match_parent"

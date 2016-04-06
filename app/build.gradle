@@ -14,6 +14,8 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.code
         versionName versions.name
+
+        testInstrumentationRunner "com.mobiquity.androidunittests.functionaltests.CalculatorFunctionalTestRunner"
     }
 
 
@@ -22,7 +24,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             apply from: "signing.gradle"
-
         }
     }
 
@@ -30,6 +31,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -50,7 +52,22 @@ dependencies {
     testCompile testLibraries.powermockMockito
     testCompile testLibraries.powermockJunit
 
+    androidTestCompile androidTestLibraries.supportTestRunner
+    androidTestCompile androidTestLibraries.supportTestRules
+    androidTestCompile androidTestLibraries.espressoCore
+    androidTestCompile (androidTestLibraries.espressoContrib) {
+        exclude module: 'support-annotations'
+        exclude module: 'gridlayout-v7'
+        exclude module: 'support-v4'
+    }
+
     debugCompile devLibraries.leakCanary
     releaseCompile devLibraries.leakCanaryNoOp
     testCompile devLibraries.leakCanaryNoOp
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:support-annotations:$versions.androidSupport"
+    }
 }

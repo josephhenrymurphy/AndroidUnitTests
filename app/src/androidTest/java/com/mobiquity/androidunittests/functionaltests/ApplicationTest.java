@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests;
+package com.mobiquity.androidunittests.functionaltests;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

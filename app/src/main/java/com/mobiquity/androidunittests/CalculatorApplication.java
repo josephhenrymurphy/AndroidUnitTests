@@ -3,7 +3,6 @@ package com.mobiquity.androidunittests;
 import android.app.Application;
 import android.content.Context;
 
-import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.di.components.AppComponent;
@@ -17,7 +16,7 @@ import timber.log.Timber;
 
 public class CalculatorApplication extends Application {
 
-    private AppComponent appComponent;
+    protected AppComponent appComponent;
     @Inject Lazy<DevSettingsWrapper> devSettingsWrapper;
     @Inject Lazy<AndroidDevMetricsWrapper> androidDevMetricsWrapper;
 

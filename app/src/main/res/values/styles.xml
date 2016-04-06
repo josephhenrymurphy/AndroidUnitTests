@@ -1,7 +1,6 @@
 <resources>
     <style name="DisplayEditTextStyle" parent="@style/Widget.AppCompat.EditText">
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:cursorVisible">false</item>
         <item name="android:gravity">bottom|end</item>
     </style>
 

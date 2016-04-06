@@ -7,7 +7,6 @@ import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
-import com.mobiquity.androidunittests.ui.mvpview.MvpView;
 
 import java.util.ArrayList;
 import java.util.List;

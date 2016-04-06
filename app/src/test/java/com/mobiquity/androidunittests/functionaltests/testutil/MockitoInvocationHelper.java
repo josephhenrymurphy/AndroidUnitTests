@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests.testutil;
+package com.mobiquity.androidunittests.functionaltests.testutil;
 
 import org.mockito.exceptions.base.MockitoException;
 import org.mockito.internal.invocation.InvocationMatcher;

@@ -2,8 +2,7 @@ package com.mobiquity.androidunittests.devsettings;
 
 import android.app.Application;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
-import com.mobiquity.androidunittests.testutil.ReflectionUtil;
+import com.mobiquity.androidunittests.functionaltests.testutil.ReflectionUtil;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -16,8 +15,6 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.robolectric.RuntimeEnvironment;
 
 import static com.google.common.truth.Truth.*;
 

@@ -1,4 +1,4 @@
-package com.mobiquity.androidunittests.testutil;
+package com.mobiquity.androidunittests.functionaltests.testutil;
 
 import android.annotation.SuppressLint;
 

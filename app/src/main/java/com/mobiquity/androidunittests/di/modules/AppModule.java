@@ -6,7 +6,6 @@ import android.content.Context;
 import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
-import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 
 import dagger.Module;

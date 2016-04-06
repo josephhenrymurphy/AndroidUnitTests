@@ -4,7 +4,7 @@ import com.mobiquity.androidunittests.calculator.Calculator;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
-import com.mobiquity.androidunittests.testutil.MockitoInvocationHelper;
+import com.mobiquity.androidunittests.functionaltests.testutil.MockitoInvocationHelper;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import org.junit.Before;
@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static com.mobiquity.androidunittests.testutil.MockitoInvocationHelper.onlyLastInvocation;
+import static com.mobiquity.androidunittests.functionaltests.testutil.MockitoInvocationHelper.onlyLastInvocation;
 
 public class CalculatorPresenterTest {
 
