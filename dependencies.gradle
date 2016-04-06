@@ -40,7 +40,7 @@ ext.gradlePlugins = [
 
 ext.libraries = [
         ui: [
-            autoFitTextView: "me.grantland:autofittextview:0.2.+"
+            slidingUpPanel: "com.sothree.slidinguppanel:library:3.3.0"
         ],
         timber: "com.jakewharton.timber:timber:$versions.timber",
         dagger: "com.google.dagger:dagger:$versions.dagger",

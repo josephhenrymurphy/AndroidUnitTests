@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <include layout="@layout/display"/>
 
-    <LinearLayout
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:gravity="top"
+        app:umanoPanelHeight="24dp">
 
-        <com.mobiquity.androidunittests.ui.view.NumericPad
-            android:id="@+id/numeric_pad"
-            android:layout_width="0dp"
+        <!-- Content -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.75"/>
+            android:weightSum="1">
 
-        <include layout="@layout/operator_pad"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"/>
+            <com.mobiquity.androidunittests.ui.view.NumericPad
+                android:id="@+id/numeric_pad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75"/>
 
-    </LinearLayout>
+            <include
+                layout="@layout/operator_pad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"/>
 
+        </LinearLayout>
+
+        <!-- Extra buttons -->
+        <include layout="@layout/extra_buttons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"/>
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 </LinearLayout>

@@ -8,4 +8,6 @@
     <string name="multiply_op">*</string>
     <string name="divide_op">/</string>
 
+    <string name="wolfram_alpha">Wolfram Alpha</string>
+    <string name="wolfram_abbrev">Wolf.</string>
 </resources>

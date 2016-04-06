@@ -81,6 +81,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         presenter.evaluate();
     }
 
+    @OnClick(R.id.extra_button_wolfram)
+    void onClickWolframButton() {
+
+    }
+
     @Override
     public void updateDisplayText(String displayText) {
         displayInput.setText(displayText);
