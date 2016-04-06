@@ -50,6 +50,11 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         view().updateDisplayText(inputsToDisplayString());
     }
 
+    public void evaluate() {
+        int result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
+        view().showSuccessfulCalculation(Integer.toString(result));
+    }
+
     private String inputsToDisplayString() {
         String displayString = "";
 

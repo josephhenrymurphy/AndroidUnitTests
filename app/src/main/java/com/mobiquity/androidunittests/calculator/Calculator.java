@@ -43,8 +43,8 @@ public class Calculator {
                 case OPERATOR:
                     try {
                         Operator operator = (Operator) input;
-                        int firstOperand = stack.pop();
                         int secondOperand = stack.pop();
+                        int firstOperand = stack.pop();
 
                         int result = operator.isLeftAssociative() ?
                                 operator.execute(firstOperand, secondOperand) :

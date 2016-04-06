@@ -25,4 +25,21 @@ public class NumericInputTest {
         assertThat(numericInput.getValue()).isEqualTo(3);
     }
 
+    @Test
+    public void testEquals_Symmetric() {
+        NumericInput first = new NumericInput(1);
+        NumericInput second = new NumericInput(1);
+
+        assertThat(first).isEqualTo(first);
+        assertThat(first).isEqualTo(second);
+        assertThat(first.hashCode()).isEqualTo(second.hashCode());
+    }
+
+    @Test
+    public void testNotEquals() {
+        NumericInput input = new NumericInput(3);
+        assertThat(input).isNotEqualTo(null);
+        assertThat(input).isNotEqualTo(new Object());
+    }
+
 }

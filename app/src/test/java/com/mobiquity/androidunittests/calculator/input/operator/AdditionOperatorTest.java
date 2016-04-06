@@ -17,7 +17,23 @@ public class AdditionOperatorTest {
     }
 
     @Test
-    public void testAdditionOperator_ShouldImplementOperator() {
+    public void testEquals_Symmetric() {
+        AdditionOperator operator1 = new AdditionOperator();
+        AdditionOperator operator2 = new AdditionOperator();
+        assertThat(operator1).isEqualTo(operator1);
+        assertThat(operator1).isEqualTo(operator2);
+        assertThat(operator1.hashCode()).isEqualTo(operator2.hashCode());
+    }
+
+    @Test
+    public void testNotEquals() {
+        AdditionOperator operator = new AdditionOperator();
+        assertThat(operator).isNotEqualTo(null);
+        assertThat(operator).isNotEqualTo(new Object());
+    }
+
+    @Test
+    public void testAdditionOperator_ShouldExtendOperator() {
         assertThat(additionOperator).isInstanceOf(Operator.class);
     }
 

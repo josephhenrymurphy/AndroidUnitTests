@@ -2,6 +2,7 @@ package com.mobiquity.androidunittests.calculator.input.operator;
 
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
+import com.mobiquity.androidunittests.util.HashCodeBuilder;
 
 public abstract class Operator extends Input {
     public Operator(String value, InputType type) {
@@ -28,5 +29,15 @@ public abstract class Operator extends Input {
         public int getValue() {
             return value;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(this.value)
+                .append(this.isLeftAssociative())
+                .append(this.getPrecedence())
+                .append(this.getType())
+                .getHash();
     }
 }

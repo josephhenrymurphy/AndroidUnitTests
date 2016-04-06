@@ -37,4 +37,24 @@ public class InfixInputParserTest {
         assertThat(postfixOutput).containsExactly(threeInput, fourInput, additionOperator).inOrder();
     }
 
+    @Test
+    public void testToPostfix_MultipleAdd() {
+        NumericInput threeInput = new NumericInput(3);
+        NumericInput fourInput = new NumericInput(4);
+        NumericInput fiveInput = new NumericInput(5);
+        AdditionOperator additionOperator = new AdditionOperator();
+
+
+        Input[] inputs = new Input[] {
+                threeInput,
+                additionOperator,
+                fourInput,
+                additionOperator,
+                fiveInput
+        };
+
+        Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
+        assertThat(postfixOutput).containsExactly(threeInput, fourInput, additionOperator, fiveInput, additionOperator);
+    }
+
 }

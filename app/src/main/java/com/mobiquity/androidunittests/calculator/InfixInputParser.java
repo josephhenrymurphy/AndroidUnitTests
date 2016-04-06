@@ -53,7 +53,7 @@ public class InfixInputParser {
                 case OPERATOR:
                     Operator currentOperator = (Operator) currentInput;
                     if(!operatorStack.empty()) {
-                        while (operatorStack.peek() instanceof Operator) {
+                        while (!operatorStack.empty() && operatorStack.peek() instanceof Operator) {
                             Operator stackOperator = (Operator) operatorStack.peek();
                             boolean leftAssociativeCheck = currentOperator.isLeftAssociative() && currentOperator.getPrecedence() <= stackOperator.getPrecedence();
                             boolean rightAssociativeCheck = !currentOperator.isLeftAssociative() && currentOperator.getPrecedence() < stackOperator.getPrecedence();

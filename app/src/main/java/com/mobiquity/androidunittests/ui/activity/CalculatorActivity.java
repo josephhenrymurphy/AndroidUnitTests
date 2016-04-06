@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
@@ -20,6 +21,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         implements CalculatorView {
@@ -31,6 +33,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
     @Bind(R.id.numeric_pad) NumericPad numericPad;
     @Bind(R.id.display_input) EditText displayInput;
+    @Bind(R.id.display_result) TextView resultText;
 
     @Bind(value = {
             R.id.add_op,
@@ -73,8 +76,18 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         presenter.unbind();
     }
 
+    @OnClick(R.id.eq)
+    void onClickEqualsButton() {
+        presenter.evaluate();
+    }
+
     @Override
     public void updateDisplayText(String displayText) {
         displayInput.setText(displayText);
+    }
+
+    @Override
+    public void showSuccessfulCalculation(String result) {
+        resultText.setText(result);
     }
 }

@@ -2,7 +2,7 @@ package com.mobiquity.androidunittests.devsettings;
 
 import android.app.Application;
 
-import com.mobiquity.androidunittests.functionaltests.testutil.ReflectionUtil;
+import com.mobiquity.androidunittests.testutil.ReflectionUtil;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
