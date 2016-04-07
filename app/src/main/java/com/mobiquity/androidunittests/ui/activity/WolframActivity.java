@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
@@ -25,6 +30,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,7 +42,7 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     private WolframComponent wolframComponent;
 
     @Bind(R.id.wolfram_input) EditText queryInput;
-    @Bind(R.id.wolfram_submit) Button wolframSubmitButton;
+    @Bind(R.id.wolfram_submit) ImageButton wolframSubmitButton;
     @Bind(R.id.wolfram_pod_list) RecyclerView podList;
 
     @Inject WolframPresenter wolframPresenter;
@@ -74,14 +80,24 @@ public class WolframActivity extends BaseActivity<WolframComponent>
         wolframPresenter.unbind();
     }
 
+    @OnEditorAction(R.id.wolfram_input)
+    boolean onQueryDoneClicked() {
+        startQuery();
+        return false;
+    }
+
     @OnClick(R.id.wolfram_submit)
     void onClickWolframSubmitButon() {
-        String query = queryInput.getText().toString();
-        wolframPresenter.startQuery(query);
+        startQuery();
     }
 
     @Override
     public void updatePods(List<WolframResponse.Pod> pods) {
         wolframAdapter.setData(pods);
+    }
+
+    public void startQuery() {
+        String query = queryInput.getText().toString();
+        wolframPresenter.startQuery(query);
     }
 }
