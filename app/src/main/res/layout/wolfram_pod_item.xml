@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/wolframSubpodBackground"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginTop="8dp"
@@ -22,7 +21,9 @@
             android:id="@+id/pod_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/wolframSubpodTitleBackground"
+            android:background="@color/colorAccent"
+            android:textColor="@color/wolframSubpodTitleText"
+            style="@style/TextAppearance.AppCompat.Subhead"
             android:padding="4dp"/>
 
         <LinearLayout
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@id/pod_title"
+            android:background="@android:color/transparent"
             android:padding="4dp"/>
 
     </RelativeLayout>

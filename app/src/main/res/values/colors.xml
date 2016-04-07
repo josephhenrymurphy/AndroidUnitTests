@@ -18,8 +18,9 @@
     <color name="handleColor">#3cffffff</color>
 
     <!-- Wolfram colors -->
-    <color name="wolframSubpodBackground">#FFFFFF</color>
-    <color name="wolframSubpodTitleBackground">#DDDDDD</color>
+    <color name="wolframSubpodBackground">#2a009688</color>
+    <color name="wolframSubpodTitleBackground">@color/colorPrimary</color>
+    <color name="wolframSubpodTitleText">#FFFFFF</color>
 
 
 </resources>
