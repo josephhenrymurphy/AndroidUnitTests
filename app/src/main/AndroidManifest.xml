@@ -10,6 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.activity.CalculatorActivity"/>
+        <activity android:name=".ui.activity.WolframActivity"/>
 
         <activity-alias
             android:name=".Launcher"

@@ -1,11 +1,14 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
+import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
+import com.mobiquity.androidunittests.testutil.InputSubject;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.*;
+import static com.mobiquity.androidunittests.testutil.InputSubject.*;
 
 public class SubtractionOperatorTest {
 
@@ -18,19 +21,18 @@ public class SubtractionOperatorTest {
 
 
     @Test
-    public void testEquals_Symmetric() {
+    public void testEquals() {
         SubtractionOperator operator1 = new SubtractionOperator();
         SubtractionOperator operator2 = new SubtractionOperator();
-        assertThat(operator1).isEqualTo(operator1);
-        assertThat(operator1).isEqualTo(operator2);
-        assertThat(operator1.hashCode()).isEqualTo(operator2.hashCode());
+        assertAbout(input()).that(operator1).valueEqualTo(operator1);
+        assertAbout(input()).that(operator1).valueEqualTo(operator2);
     }
 
     @Test
     public void testNotEquals() {
-        SubtractionOperator operator = new SubtractionOperator();
-        assertThat(operator).isNotEqualTo(null);
-        assertThat(operator).isNotEqualTo(new Object());
+        SubtractionOperator operator1 = new SubtractionOperator();
+        assertAbout(input()).that(operator1).valueNotEqualTo(null);
+        assertAbout(input()).that(operator1).valueNotEqualTo(new Input("dummy", InputType.FUNCTION){});
     }
 
     @Test

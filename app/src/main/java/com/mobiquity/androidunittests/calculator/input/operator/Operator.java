@@ -30,14 +30,4 @@ public abstract class Operator extends Input {
             return value;
         }
     }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(this.value)
-                .append(this.isLeftAssociative())
-                .append(this.getPrecedence())
-                .append(this.getType())
-                .getHash();
-    }
 }

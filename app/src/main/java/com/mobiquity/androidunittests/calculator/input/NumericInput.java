@@ -15,24 +15,8 @@ public class NumericInput extends Input {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if(object == this) {
-            return  true;
-        } else if(object == null || !(object instanceof NumericInput)) {
-            return false;
-        } else {
-            NumericInput numericInput = (NumericInput) object;
-            return numericInput.getValue() == this.getValue() &&
-                    numericInput.getType() == this.getType();
-        }
+    public boolean valueEquals(Input input) {
+        return super.valueEquals(input) &&
+                ((NumericInput) input).getValue() == getValue();
     }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(getValue())
-                .append(getType())
-                .getHash();
-    }
-
 }

@@ -40,6 +40,13 @@ dependencies {
     compile "com.android.support:gridlayout-v7:$versions.androidSupport"
     compile libraries.ui.slidingUpPanel
 
+    compile libraries.retrofit2
+    compile (libraries.retrofit2_XmlConverter) {
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+        exclude module: 'xpp3'
+    }
+    compile libraries.okhttp3_LoggingInterceptor
     compile libraries.butterKnife
     compile libraries.timber
     compile libraries.dagger
@@ -56,6 +63,7 @@ dependencies {
     androidTestCompile androidTestLibraries.supportTestRunner
     androidTestCompile androidTestLibraries.supportTestRules
     androidTestCompile androidTestLibraries.espressoCore
+    androidTestCompile androidTestLibraries.espressoIntents
     androidTestCompile (androidTestLibraries.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'gridlayout-v7'

@@ -32,4 +32,9 @@ public abstract class Input {
     public InputType getType() {
         return type;
     }
+
+    public boolean valueEquals(Input input) {
+        Class clazz = getClass();
+        return clazz.isInstance(input);
+    }
 }

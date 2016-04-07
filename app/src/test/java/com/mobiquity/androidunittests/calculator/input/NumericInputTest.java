@@ -3,7 +3,9 @@ package com.mobiquity.androidunittests.calculator.input;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.common.truth.Truth.assertAbout;
 import static com.google.common.truth.Truth.assertThat;
+import static com.mobiquity.androidunittests.testutil.InputSubject.*;
 
 public class NumericInputTest {
 
@@ -26,20 +28,24 @@ public class NumericInputTest {
     }
 
     @Test
-    public void testEquals_Symmetric() {
+    public void testEqual() {
         NumericInput first = new NumericInput(1);
         NumericInput second = new NumericInput(1);
 
-        assertThat(first).isEqualTo(first);
-        assertThat(first).isEqualTo(second);
-        assertThat(first.hashCode()).isEqualTo(second.hashCode());
+        assertAbout(input()).that(first).valueEqualTo(first);
+        assertAbout(input()).that(first).valueEqualTo(second);
     }
 
     @Test
-    public void testNotEquals() {
-        NumericInput input = new NumericInput(3);
-        assertThat(input).isNotEqualTo(null);
-        assertThat(input).isNotEqualTo(new Object());
+    public void testNotEqual() {
+        NumericInput first = new NumericInput(1);
+        NumericInput second = new NumericInput(2);
+        Input dummyInput = new Input("dummy", InputType.FUNCTION){};
+
+        assertAbout(input()).that(first).valueNotEqualTo(null);
+        assertAbout(input()).that(first).valueNotEqualTo(second);
+        assertAbout(input()).that(first).valueNotEqualTo(dummyInput);
     }
+
 
 }

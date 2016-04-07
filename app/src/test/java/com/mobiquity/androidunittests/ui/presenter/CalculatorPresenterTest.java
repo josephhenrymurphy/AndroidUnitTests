@@ -6,6 +6,7 @@ import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
+import com.mobiquity.androidunittests.testutil.InputSubject;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import org.junit.Before;
@@ -17,6 +18,7 @@ import org.mockito.MockitoAnnotations;
 
 import static com.google.common.truth.Truth.*;
 
+import static com.mobiquity.androidunittests.testutil.InputSubject.*;
 import static com.mobiquity.androidunittests.testutil.MockitoInvocationHelper.onlyLastInvocation;
 
 public class CalculatorPresenterTest {
@@ -96,9 +98,9 @@ public class CalculatorPresenterTest {
 
         Input[] calculatorInput = argumentCaptor.getValue();
         assertThat(calculatorInput).hasLength(3);
-        assertThat(calculatorInput[0]).isEqualTo(new NumericInput(3));
-        assertThat(calculatorInput[1]).isEqualTo(new AdditionOperator());
-        assertThat(calculatorInput[2]).isEqualTo(new NumericInput(4));
+        assertAbout(input()).that(calculatorInput[0]).valueEqualTo(new NumericInput(3));
+        assertAbout(input()).that(calculatorInput[1]).valueEqualTo(new AdditionOperator());
+        assertAbout(input()).that(calculatorInput[2]).valueEqualTo(new NumericInput(4));
     }
 
     @Test

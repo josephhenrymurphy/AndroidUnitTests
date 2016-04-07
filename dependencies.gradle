@@ -18,6 +18,8 @@ ext.versions = [
         dagger: '2.1',
         javaxAnnotations: '1.0',
         butterKnife: '7.0.1',
+        retrofit2: '2.0.1',
+        okhttp3: '3.2.0',
 
         // Testing libraries
         junit: '4.12',
@@ -46,7 +48,10 @@ ext.libraries = [
         dagger: "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler: "com.google.dagger:dagger-compiler:$versions.dagger",
         javaxAnnotations: "javax.annotation:jsr250-api:$versions.javaxAnnotations",
-        butterKnife: "com.jakewharton:butterknife:$versions.butterKnife"
+        butterKnife: "com.jakewharton:butterknife:$versions.butterKnife",
+        retrofit2: "com.squareup.retrofit2:retrofit:$versions.retrofit2",
+        retrofit2_XmlConverter: "com.squareup.retrofit2:converter-simplexml:$versions.retrofit2",
+        okhttp3_LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
 ]
 
 ext.testLibraries = [
@@ -61,6 +66,7 @@ ext.testLibraries = [
 ext.androidTestLibraries = [
         espressoCore: "com.android.support.test.espresso:espresso-core:$versions.espresso",
         espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+        espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
         supportTestRunner : "com.android.support.test:runner:$versions.supportTestRunner",
         supportTestRules : "com.android.support.test:rules:$versions.supportTestRunner"
 ]

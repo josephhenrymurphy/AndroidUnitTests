@@ -1,5 +1,6 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
+import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
 
 /**
@@ -24,4 +25,5 @@ public class NoOpOperator extends Operator {
     public boolean isLeftAssociative() {
         return true;
     }
+
 }

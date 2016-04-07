@@ -1,7 +1,9 @@
 package com.mobiquity.androidunittests.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
 import com.mobiquity.androidunittests.ui.view.NumericPad;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
@@ -34,6 +37,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Bind(R.id.numeric_pad) NumericPad numericPad;
     @Bind(R.id.display_input) EditText displayInput;
     @Bind(R.id.display_result) TextView resultText;
+    @Bind(R.id.sliding_panel) SlidingUpPanelLayout slidingPanel;
 
     @Bind(value = {
             R.id.add_op,
@@ -83,7 +87,20 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
     @OnClick(R.id.extra_button_wolfram)
     void onClickWolframButton() {
+        slidingPanel.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {}
 
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                if(newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    slidingPanel.removePanelSlideListener(this);
+                    Intent intent = new Intent(CalculatorActivity.this, WolframActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        slidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
     }
 
     @Override
