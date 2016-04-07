@@ -16,4 +16,10 @@
     <color name="padButtonPressedColor">#33FFFFFF</color>
     <color name="extraPadButtonTextColor">#FFFFFF</color>
     <color name="handleColor">#3cffffff</color>
+
+    <!-- Wolfram colors -->
+    <color name="wolframSubpodBackground">#FFFFFF</color>
+    <color name="wolframSubpodTitleBackground">#DDDDDD</color>
+
+
 </resources>

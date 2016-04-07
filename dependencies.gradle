@@ -13,7 +13,7 @@ ext.versions = [
         androidDevMetricsGradlePlugin: '0.4',
 
         // Libraries
-        androidSupport: '23.2.1',
+        androidSupport: '23.3.0',
         timber: '4.1.2',
         dagger: '2.1',
         javaxAnnotations: '1.0',

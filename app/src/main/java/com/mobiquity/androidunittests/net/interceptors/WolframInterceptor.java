@@ -21,6 +21,7 @@ public class WolframInterceptor implements Interceptor {
 
         HttpUrl url = request.url().newBuilder()
                 .addQueryParameter("appid", appId)
+                .addQueryParameter("format", "plaintext")
                 .build();
 
         request = request.newBuilder()

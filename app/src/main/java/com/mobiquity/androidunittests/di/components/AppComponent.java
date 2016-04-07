@@ -10,6 +10,7 @@ import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.net.services.WolframService;
 import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
+import com.mobiquity.androidunittests.ui.presenter.WolframPresenter;
 
 import dagger.Component;
 
@@ -26,7 +27,7 @@ public interface AppComponent extends BaseComponent {
 
     Context context();
     CalculatorPresenter calculatorPresenter();
-    WolframService wolframservice();
+    WolframPresenter wolframPresenter();
 
     ViewWrapper viewWrapper();
 
