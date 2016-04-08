@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wolfram_api_url">http://api.wolframalpha.com/v2/</string>
+</resources>

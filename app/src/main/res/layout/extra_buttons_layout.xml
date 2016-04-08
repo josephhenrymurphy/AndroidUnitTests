@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/padExtraBackgroundColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/extra_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/extra_button_wolfram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PadButtonStyle"
+            android:drawableBottom="@drawable/wolfram_icon"
+            android:gravity="center_horizontal|top"
+            android:text="@string/wolfram_abbrev"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dp"
+            android:background="@color/handleColor"/>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@color/handleColor"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

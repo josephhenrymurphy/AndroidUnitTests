@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">AndroidUnitTests</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="augend_hint">augend</string>
-    <string name="addend_hint">addend</string>
-    <string name="add_button">Add</string>
+    <string name="decimal_symbol">.</string>
+    <string name="left_paren">(</string>
+    <string name="right_paren">)</string>
+    <string name="function_arg_separator">,</string>
+    <string name="equals_symbol">=</string>
+
+    <string name="add_op">+</string>
+    <string name="substract_op">-</string>
+    <string name="multiply_op">*</string>
+    <string name="divide_op">/</string>
+
+    <string name="wolfram_alpha">Wolfram Alpha</string>
+    <string name="wolfram_abbrev">Wolf.</string>
 </resources>
