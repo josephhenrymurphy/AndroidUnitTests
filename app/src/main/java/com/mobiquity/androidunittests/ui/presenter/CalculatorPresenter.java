@@ -4,6 +4,7 @@ import com.mobiquity.androidunittests.calculator.Calculator;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
+import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
@@ -28,7 +29,11 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     public void handleNumber(int number) {
-        if(!inputs.isEmpty() &&
+        if(inputs.size() == 1 && inputs.get(0) instanceof SubtractionOperator) {
+            inputs.clear();
+            String numberString = "-" + number;
+            inputs.add(new NumericInput(Integer.parseInt(numberString)));
+        } else if(!inputs.isEmpty() &&
                 inputs.get(inputs.size()-1) instanceof NumericInput) {
             NumericInput lastNumber = (NumericInput) inputs.get(inputs.size()-1);
             String numberString = String.valueOf(lastNumber.getValue());
@@ -42,11 +47,21 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     public void handleOperator(String symbol) {
+        Operator operator = operatorConverter.convert(symbol);
+
+        // Ignore input if any operation other than subtraction is the very first input
+        if((inputs.isEmpty() && !(operator instanceof SubtractionOperator))
+                || (inputs.size() == 1 && inputs.get(0) instanceof SubtractionOperator)) {
+            return;
+        }
+
+        // Remove and replace former operation
         if(!inputs.isEmpty() &&
                 inputs.get(inputs.size()-1) instanceof Operator) {
             inputs.remove(inputs.size()-1);
         }
-        inputs.add(operatorConverter.convert(symbol));
+        inputs.add(operator);
+
         view().updateDisplayText(inputsToDisplayString());
     }
 
