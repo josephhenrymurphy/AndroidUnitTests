@@ -7,7 +7,7 @@ public abstract class Input {
     private InputType type;
     protected String value;
 
-    public Input(String value, InputType type) {
+    protected Input(String value, InputType type) {
         if(type == InputType.NUMBER) {
             throw new InvalidParameterException("The value for a number cannot be a string");
         }
@@ -16,7 +16,7 @@ public abstract class Input {
         this.type = type;
     }
 
-    public Input(int value, InputType type) {
+    protected Input(int value, InputType type) {
         if(type != InputType.NUMBER) {
             throw new InvalidParameterException("Input type must be a number");
         }

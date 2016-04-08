@@ -2,7 +2,6 @@ package com.mobiquity.androidunittests.calculator.input.operator;
 
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
-import com.mobiquity.androidunittests.util.HashCodeBuilder;
 
 public abstract class Operator extends Input {
     public Operator(String value, InputType type) {

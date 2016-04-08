@@ -12,4 +12,11 @@ public class FunctionInput extends Input {
     public int getNumExpectedParams() {
         return numExpectedParams;
     }
+
+    @Override
+    public boolean valueEquals(Input input) {
+        return super.valueEquals(input) &&
+                ((FunctionInput)input).value.equals(this.value) &&
+                ((FunctionInput)input).numExpectedParams == numExpectedParams;
+    }
 }

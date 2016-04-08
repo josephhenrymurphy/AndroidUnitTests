@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.*;
+import static com.mobiquity.androidunittests.testutil.InputSubject.input;
 
 public class FunctionInputTest {
 
@@ -28,6 +29,22 @@ public class FunctionInputTest {
     @Test
     public void testFunction_ExpectedNumberOfParams() {
         assertThat(functionInput.getNumExpectedParams()).isEqualTo(NUM_PARAMS);
+    }
+
+
+    @Test
+    public void testEqual() {
+        assertAbout(input()).that(functionInput)
+                .valueEqualTo(new FunctionInput("dummyFunction", NUM_PARAMS));
+    }
+
+    @Test
+    public void testNotEqual() {
+        final int wrongParams = 4;
+        assertAbout(input()).that(functionInput)
+                .valueNotEqualTo(new FunctionInput("bad", NUM_PARAMS));
+        assertAbout(input()).that(functionInput)
+                .valueNotEqualTo(new FunctionInput("dummyFunction", wrongParams));
     }
 
 }
