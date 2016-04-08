@@ -14,6 +14,8 @@
 
         <Button
             android:id="@+id/extra_button_wolfram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/PadButtonStyle"
             android:drawableBottom="@drawable/wolfram_icon"
             android:gravity="center_horizontal|top"

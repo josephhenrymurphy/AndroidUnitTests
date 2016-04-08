@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">AndroidUnitTests</string>
+
     <string name="decimal_symbol">.</string>
+    <string name="left_paren">(</string>
+    <string name="right_paren">)</string>
+    <string name="function_arg_separator">,</string>
     <string name="equals_symbol">=</string>
 
     <string name="add_op">+</string>

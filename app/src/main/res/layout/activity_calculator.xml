@@ -16,24 +16,24 @@
         app:umanoPanelHeight="24dp">
 
         <!-- Content -->
-        <LinearLayout
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
             <com.mobiquity.androidunittests.ui.view.NumericPad
                 android:id="@+id/numeric_pad"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.75"/>
+                app:layout_widthPercent="75%"/>
 
             <include
                 layout="@layout/operator_pad"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"/>
+                android:layout_toRightOf="@id/numeric_pad"
+                app:layout_widthPercent="25%"/>
 
-        </LinearLayout>
+        </android.support.percent.PercentRelativeLayout>
 
         <!-- Extra buttons -->
         <include layout="@layout/extra_buttons_layout"

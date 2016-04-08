@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.mobiquity.androidunittests.R;
 
@@ -14,7 +15,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NumericPad extends FrameLayout {
+public class NumericPad extends RelativeLayout {
 
     public interface OnNumberClickedListener {
         void onNumberClicked(int number);
@@ -52,8 +53,7 @@ public class NumericPad extends FrameLayout {
     }
 
     private void initView(Context context) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        this.addView(inflater.inflate(R.layout.numeric_pad, null));
+        inflate(context, R.layout.numeric_pad, this);
         ButterKnife.bind(this, this);
         ButterKnife.apply(numericButtons, (button, index) -> {
             button.setText(String.valueOf(index));

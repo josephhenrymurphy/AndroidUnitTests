@@ -8,19 +8,49 @@
     app:columnCount="1"
     app:orientation="vertical">
 
-    <ImageButton android:id="@+id/delete_op" style="@style/PadButtonStyle"
-                 android:src="@drawable/ic_backspace"/>
+    <ImageButton
+        android:id="@+id/delete_op"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        style="@style/PadButtonStyle"
+        android:src="@drawable/ic_backspace"/>
 
-    <Button android:id="@+id/divide_op" style="@style/PadButtonStyle"
-            android:text="@string/divide_op"/>
+    <Button
+        android:id="@+id/divide_op"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        style="@style/PadButtonStyle"
+        android:text="@string/divide_op"/>
 
-    <Button android:id="@+id/multiply_op" style="@style/PadButtonStyle"
-            android:text="@string/multiply_op"/>
+    <Button
+        android:id="@+id/multiply_op"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        style="@style/PadButtonStyle"
+        android:text="@string/multiply_op"/>
 
-    <Button android:id="@+id/subtract_op" style="@style/PadButtonStyle"
-            android:text="@string/substract_op"/>
+    <Button
+        android:id="@+id/subtract_op"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        style="@style/PadButtonStyle"
+        android:text="@string/substract_op"/>
 
-    <Button android:id="@+id/add_op" style="@style/PadButtonStyle"
-            android:text="@string/add_op"/>
+    <Button
+        android:id="@+id/add_op"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"
+        style="@style/PadButtonStyle"
+        android:text="@string/add_op"/>
 
 </android.support.v7.widget.GridLayout>

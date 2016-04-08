@@ -1,64 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.GridLayout
+
+<android.support.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
     android:background="@color/padNumericBackgroundColor"
-    app:columnCount="3"
-    app:elevation="2dp"
-    app:orientation="horizontal"
-    app:rowCount="4">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/digit_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="1"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_1"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="2"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_2"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="3"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/digit_1"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="4"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_4"
+        android:layout_alignBottom="@id/digit_4"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="5"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_5"
+        android:layout_alignBottom="@id/digit_4"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="6"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/digit_4"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="7"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_7"
+        android:layout_alignBottom="@id/digit_7"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="8"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/digit_9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_8"
+        android:layout_alignBottom="@id/digit_7"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="9"
         style="@style/PadButtonStyle"/>
 
     <Button
-        android:id="@+id/decimal"
-        style="@style/PadButtonStyle"
-        android:text="@string/decimal_symbol"/>
-
-    <Button
         android:id="@+id/digit_0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/digit_8"
+        android:layout_alignLeft="@id/digit_8"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="0"
         style="@style/PadButtonStyle"/>
 
     <Button
         android:id="@+id/eq"
-        style="@style/PadButtonStyle"
-        android:text="@string/equals_symbol"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/digit_8"
+        android:layout_alignBottom="@id/digit_0"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:text="@string/equals_symbol"
+        style="@style/PadButtonStyle"/>
 
-</android.support.v7.widget.GridLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="34%"
+        app:layout_heightPercent="25%"
+        android:layout_toLeftOf="@id/digit_0"
+        android:layout_alignBottom="@id/digit_0">
+
+        <Button
+            android:id="@+id/left_paren"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            style="@style/PadButtonStyle.Small"
+            android:text="@string/left_paren"/>
+
+        <Button
+            android:id="@+id/right_paren"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            android:layout_toRightOf="@id/left_paren"
+            style="@style/PadButtonStyle.Small"
+            android:text="@string/right_paren"/>
+
+        <Button
+            android:id="@+id/decimal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            android:layout_below="@id/left_paren"
+            style="@style/PadButtonStyle"
+            android:text="@string/decimal_symbol"/>
+
+        <Button
+            android:id="@+id/function_arg_separator"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            android:layout_toRightOf="@id/decimal"
+            android:layout_alignBottom="@id/decimal"
+            style="@style/PadButtonStyle"
+            android:text="@string/function_arg_separator"/>
+
+    </android.support.percent.PercentRelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>
+
 

@@ -15,15 +15,16 @@
     </style>
 
     <style name="PadButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/padButtonTextColor</item>
         <item name="android:background">@drawable/pad_button_bg</item>
         <item name="android:textSize">32sp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
-        <item name="layout_rowWeight">1</item>
-        <item name="layout_columnWeight">1</item>
+        <item name="android:gravity">center</item>
     </style>
+
+    <style name="PadButtonStyle.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
 
 </resources>
