@@ -33,6 +33,15 @@ public class CalculatorPresenterTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         presenter = new CalculatorPresenter(calculator, operatorConverter);
+
+        Mockito.when(operatorConverter.convert("+"))
+                .thenReturn(new AdditionOperator());
+        Mockito.when(operatorConverter.convert("-"))
+                .thenReturn(new SubtractionOperator());
+        Mockito.when(operatorConverter.convert("*"))
+                .thenReturn(new AdditionOperator());
+        Mockito.when(operatorConverter.convert("/"))
+                .thenReturn(new AdditionOperator());
     }
 
     @Test
@@ -53,26 +62,35 @@ public class CalculatorPresenterTest {
     }
 
     @Test
-    public void testHandleOperator_NoPriorOperator_UpdatesDisplayWithCorrectText() {
-        Mockito.when(operatorConverter.convert(Mockito.anyString()))
-                .thenReturn(new AdditionOperator());
+    public void testHandleNumber_EnterNegativeNumberFirst() {
+        presenter.bind(mockView);
+        presenter.handleOperator("-");
+        presenter.handleNumber(3);
 
+        Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("-3"));
+    }
+
+    @Test
+    public void testHandleOperator_DoesNotAllowEnteringOperatorWithoutNumber_ExceptSubtraction() {
+        presenter.bind(mockView);
+        presenter.handleOperator("+");
+        Mockito.verify(mockView, Mockito.never()).updateDisplayText(Mockito.anyString());
+
+        presenter.handleOperator("-");
+        Mockito.verify(mockView).updateDisplayText(Mockito.eq("-"));
+    }
+
+    @Test
+    public void testHandleOperator_NoPriorOperator_UpdatesDisplayWithCorrectText() {
         presenter.bind(mockView);
         presenter.handleNumber(3);
-        presenter.handleOperator(Mockito.anyString());
+        presenter.handleOperator("+");
 
         Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("3+"));
     }
 
     @Test
     public void testHandleOperator_WithPriorOperator_UpdatesDisplayTextWithCorrectText() {
-        Mockito.when(operatorConverter.convert("+"))
-                .thenReturn(new AdditionOperator());
-
-        Mockito.when(operatorConverter.convert("-"))
-                .thenReturn(new SubtractionOperator());
-
-
         presenter.bind(mockView);
         presenter.handleNumber(3);
         presenter.handleOperator("+");
@@ -84,9 +102,6 @@ public class CalculatorPresenterTest {
 
     @Test
     public void testEvaluate_GivesCorrectInputToCalculator() {
-        Mockito.when(operatorConverter.convert("+"))
-                .thenReturn(new AdditionOperator());
-
         presenter.bind(mockView);
         presenter.handleNumber(3);
         presenter.handleOperator("+");
@@ -107,6 +122,7 @@ public class CalculatorPresenterTest {
     public void testEvaluate_OnEvaluateSuccess() {
         Mockito.when(calculator.evaluate(Mockito.any()))
                 .thenReturn(3);
+
         presenter.bind(mockView);
         presenter.evaluate();
         Mockito.verify(mockView).showSuccessfulCalculation(Mockito.eq("3"));
