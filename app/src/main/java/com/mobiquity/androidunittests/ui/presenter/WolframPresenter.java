@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 @AppScope
 public class WolframPresenter extends Presenter<WolframView> {
@@ -30,6 +31,8 @@ public class WolframPresenter extends Presenter<WolframView> {
 
             @Override
             public void onFailure(Call<WolframResponse> call, Throwable t) {
+                Timber.e(t, t.getMessage());
+                view().showWolframFailure();
 
             }
         });

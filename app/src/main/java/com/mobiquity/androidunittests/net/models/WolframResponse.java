@@ -57,7 +57,4 @@ public class WolframResponse {
         }
     }
 
-    public int getNumpods() {
-        return numpods;
-    }
 }

@@ -30,5 +30,4 @@ public interface AppComponent extends BaseComponent {
     WolframPresenter wolframPresenter();
 
     ViewWrapper viewWrapper();
-
 }
