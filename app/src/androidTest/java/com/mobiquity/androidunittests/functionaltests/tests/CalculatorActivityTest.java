@@ -1,12 +1,6 @@
 package com.mobiquity.androidunittests.functionaltests.tests;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.intent.Intents;
-import android.support.test.espresso.intent.matcher.IntentMatchers;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.EditText;
@@ -17,11 +11,8 @@ import com.mobiquity.androidunittests.functionaltests.rules.DisableAnimationsRul
 import com.mobiquity.androidunittests.ui.activity.CalculatorActivity;
 import com.mobiquity.androidunittests.ui.activity.WolframActivity;
 
-import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -88,6 +79,15 @@ public class CalculatorActivityTest {
 
         onView(withId(R.id.subtract_op)).perform(click());
         onView(withId(R.id.display_input)).check(matches(withText("1-")));
+    }
+
+    @Test
+    public void testClickWolframButton_ShouldStartWolframActivity() {
+        Intents.init();
+        onView(withId(R.id.handle)).perform(click());
+        onView(withId(R.id.extra_button_wolfram)).perform(click());
+        intended(hasComponent(WolframActivity.class.getName()));
+        Intents.release();
     }
 
     @After
