@@ -42,8 +42,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Bind(value = {
             R.id.add_op,
             R.id.subtract_op,
-            R.id.multiply_op,
-            R.id.divide_op
+            R.id.multiply_op
     }) List<Button> operatorButtons;
 
     @Override
