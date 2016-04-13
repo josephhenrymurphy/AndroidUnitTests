@@ -1,11 +1,10 @@
 package com.mobiquity.androidunittests.calculator.input;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertThat;
 
 public class InputTest {
 

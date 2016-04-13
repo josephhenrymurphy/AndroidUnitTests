@@ -4,11 +4,7 @@ import com.mobiquity.androidunittests.calculator.Calculator;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
-import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 import com.mobiquity.androidunittests.converter.ExpressionConverter;
-import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
-import com.mobiquity.androidunittests.testutil.MockitoInvocationHelper;
-import com.mobiquity.androidunittests.testutil.ReflectionUtil;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import org.junit.Before;
@@ -18,14 +14,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import static com.google.common.truth.Truth.*;
-
-import static com.mobiquity.androidunittests.testutil.InputSubject.*;
-import static com.mobiquity.androidunittests.testutil.MockitoInvocationHelper.*;
+import static com.google.common.truth.Truth.assertAbout;
+import static com.google.common.truth.Truth.assertThat;
+import static com.mobiquity.androidunittests.testutil.InputSubject.input;
 import static com.mobiquity.androidunittests.testutil.MockitoInvocationHelper.onlyLastInvocation;
 
 public class CalculatorPresenterTest {

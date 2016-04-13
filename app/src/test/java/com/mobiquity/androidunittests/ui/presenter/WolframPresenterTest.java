@@ -17,9 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static org.mockito.Answers.*;
-
-import static org.junit.Assert.*;
+import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 
 public class WolframPresenterTest {
 

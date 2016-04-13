@@ -1,14 +1,12 @@
 package com.mobiquity.androidunittests.net.models;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
 import com.mobiquity.androidunittests.testutil.TestFileUtil;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.simpleframework.xml.core.Persister;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertThat;
 
 public class WolframResponseTest {
 

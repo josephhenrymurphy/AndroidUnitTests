@@ -6,7 +6,6 @@ import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator
 import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.NoOpOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
-import com.mobiquity.androidunittests.testutil.InputListSubject;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +16,8 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertAbout;
+import static com.google.common.truth.Truth.assertThat;
 import static com.mobiquity.androidunittests.testutil.InputListSubject.inputList;
 
 public class ExpressionConverterTest {

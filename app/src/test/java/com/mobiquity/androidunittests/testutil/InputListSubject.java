@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.google.common.truth.FailureStrategy;
 import com.google.common.truth.IterableSubject;
 import com.google.common.truth.Ordered;
-import com.google.common.truth.Subject;
 import com.google.common.truth.SubjectFactory;
 import com.mobiquity.androidunittests.calculator.input.Input;
 

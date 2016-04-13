@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertAbout;
 import static com.google.common.truth.Truth.assertThat;
-import static com.mobiquity.androidunittests.testutil.InputSubject.*;
+import static com.mobiquity.androidunittests.testutil.InputSubject.input;
 
 public class NumericInputTest {
 

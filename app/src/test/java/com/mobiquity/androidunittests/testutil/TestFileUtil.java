@@ -1,7 +1,5 @@
 package com.mobiquity.androidunittests.testutil;
 
-import com.mobiquity.androidunittests.net.models.WolframResponse;
-
 import org.simpleframework.xml.core.Persister;
 
 import java.io.IOException;
