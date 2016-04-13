@@ -28,7 +28,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testEvaluate_SimpleAdd() {
+    public void testEvaluate_SimpleAdd() throws Exception{
         // Test: 3 + 4 = 7
         Input input[] = new Input[]{
                 new NumericInput(3),
@@ -50,7 +50,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testEvaluate_MultipleAddSubtract() {
+    public void testEvaluate_MultipleAddSubtract() throws Exception{
         //Test: 1 + 1 - 5 = -3
         Input input[] = new Input[]{
                 new NumericInput(1),

@@ -19,13 +19,20 @@ public class Calculator {
     private InfixInputParser infixInputParser;
     private int currentResult;
 
+    public static class CalculatorEvaluationException extends Exception {
+        public CalculatorEvaluationException(String message) {
+            super(message);
+        }
+    }
+
+
     @Inject
     public Calculator(InfixInputParser infixInputParser) {
         this.infixInputParser = infixInputParser;
         currentResult = 0;
     }
 
-    public int evaluate(Input[] inputs) {
+    public int evaluate(Input[] inputs) throws CalculatorEvaluationException {
         Queue<Input> postfixInputs = infixInputParser.toPostfix(inputs);
 
         // Return current result if there are no inputs to evaluate
@@ -53,7 +60,7 @@ public class Calculator {
                         stack.push(result);
                         break;
                     } catch (EmptyStackException e) {
-                        Timber.e(e, e.getMessage());
+                        throw new CalculatorEvaluationException("Invalid expression");
                     }
             }
         }

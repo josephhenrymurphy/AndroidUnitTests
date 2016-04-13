@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 @AppScope
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
@@ -28,22 +30,50 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         expression = new ArrayList<>();
     }
 
+    @Override
+    public void bind(CalculatorView view) {
+        super.bind(view);
+        view().updateDisplayText(getDisplayString());
+        evaluate(false);
+    }
+
     public void handleNumber(int number) {
         expression.add(Integer.toString(number));
         expression = expressionConverter.normalize(expression);
         view().updateDisplayText(getDisplayString());
+        evaluate(false);
     }
 
     public void handleOperator(String symbol) {
         expression.add(symbol);
         expression = expressionConverter.normalize(expression);
         view().updateDisplayText(getDisplayString());
+        evaluate(false);
     }
 
-    public void evaluate() {
-        List<Input> inputs = expressionConverter.convert(expression);
-        int result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
-        view().showSuccessfulCalculation(Integer.toString(result));
+    public void handleEvaluate() {
+        evaluate(true);
+    }
+
+    private void evaluate(boolean isResult) {
+        try {
+            List<Input> inputs = expressionConverter.convert(expression);
+            int result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
+            if (isResult) {
+                expression.clear();
+                expression.add(Integer.toString(result));
+                view().showResult(Integer.toString(result));
+            } else {
+                if(inputs.size() > 1) {
+                    view().showSuccessfulCalculation(Integer.toString(result));
+                }
+            }
+        } catch (Calculator.CalculatorEvaluationException e) {
+            Timber.e(e, e.getMessage());
+            if(isResult) {
+                view().showResultError();
+            }
+        }
     }
 
     private String getDisplayString() {
