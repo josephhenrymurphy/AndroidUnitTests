@@ -3,10 +3,13 @@ package com.mobiquity.androidunittests.testutil;
 import android.annotation.SuppressLint;
 
 import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Collection of Reflection Utils.
@@ -24,13 +27,13 @@ public final class ReflectionUtil {
     /**
      * Gets the value of the named field from the class.
      *
-     * @param c Class definition that field is declared in.
-     * @param name name of field.
-     * @param <T> expected value type.
+     * @param clazz Class definition that field is declared in.
+     * @param name  name of field.
+     * @param <T>   expected value type.
      * @return the value of the field in the class.
      */
-    public static <T> T getStaticField(final Class<?> c, final String name) {
-        return getField(c, null, name);
+    public static <T> T getStaticField(final Class<?> clazz, final String name) {
+        return getField(clazz, null, name);
     }
 
     /**
@@ -38,8 +41,8 @@ public final class ReflectionUtil {
      * NOTE: use this only when the instance class had the field declared there.
      *
      * @param instance instance to get value from.
-     * @param name name of field.
-     * @param <T> expected value type.
+     * @param name     name of field.
+     * @param <T>      expected value type.
      * @return the value of the field in the instance.
      */
     public static <T> T getField(final Object instance, final String name) {
@@ -49,16 +52,16 @@ public final class ReflectionUtil {
     /**
      * Gets the value of the named field from the instance.
      *
-     * @param c Class definition that field is declared in.
+     * @param clazz    Class definition that field is declared in.
      * @param instance instance to get value from.
-     * @param name name of field.
-     * @param <T> expected value type.
+     * @param name     name of field.
+     * @param <T>      expected value type.
      * @return the value of the field in the instance.
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getField(final Class<?> c, final Object instance, final String name) {
+    public static <T> T getField(final Class<?> clazz, final Object instance, final String name) {
         try {
-            final Field f = c.getDeclaredField(name);
+            final Field f = clazz.getDeclaredField(name);
             final boolean accessibility = setAccessible(f, true);
             final Object value = f.get(instance);
             setAccessible(f, accessibility);
@@ -71,23 +74,23 @@ public final class ReflectionUtil {
     /**
      * Set a static field value.
      *
-     * @param c class the field is defined in.
-     * @param name name of field.
+     * @param clazz class the field is defined in.
+     * @param name  name of field.
      * @param value value to set field on.
-     * @param <T> expected type of field.
+     * @param <T>   expected type of field.
      * @return the old value of the field.
      */
-    public static <T> T setStaticField(final Class<?> c, final String name, final Object value) {
-        return setField(c, null, name, value);
+    public static <T> T setStaticField(final Class<?> clazz, final String name, final Object value) {
+        return setField(clazz, null, name, value);
     }
 
     /**
      * Set a field value.
      *
      * @param instance instance to set field on and has the field declared in.
-     * @param name name of field.
-     * @param value value to set field on.
-     * @param <T> expected type of field.
+     * @param name     name of field.
+     * @param value    value to set field on.
+     * @param <T>      expected type of field.
      * @return the old value of the field.
      */
     public static <T> T setField(final Object instance, final String name, final Object value) {
@@ -97,19 +100,19 @@ public final class ReflectionUtil {
     /**
      * Set a field value.
      *
-     * @param c class the field is defined in.
+     * @param clazz    class the field is defined in.
      * @param instance instance to set field on.
-     * @param name name of field.
-     * @param value value to set field on.
-     * @param <T> expected type of field.
+     * @param name     name of field.
+     * @param value    value to set field on.
+     * @param <T>      expected type of field.
      * @return the old value of the field.
      */
     @SuppressWarnings("unchecked")
     public static <T> T setField(
-            final Class<?> c, final Object instance, final String name, final Object value) {
+            final Class<?> clazz, final Object instance, final String name, final Object value) {
 
         try {
-            final Field f = c.getDeclaredField(name);
+            final Field f = clazz.getDeclaredField(name);
             final boolean accessibility = setAccessible(f, true);
             final boolean finality = setFinal(f, false);
             final Object old = f.get(instance);
@@ -125,16 +128,16 @@ public final class ReflectionUtil {
     /**
      * Gets a method definition from the declaring class.
      *
-     * @param c class that declares the method.
-     * @param name name of the method.
+     * @param clazz          class that declares the method.
+     * @param name           name of the method.
      * @param parameterTypes parameter types.
      * @return the method that was found.
      */
     public static Method getMethod(
-            final Class<?> c, final String name, final Class<?>... parameterTypes) {
+            final Class<?> clazz, final String name, final Class<?>... parameterTypes) {
 
         try {
-            return c.getDeclaredMethod(name, parameterTypes);
+            return clazz.getDeclaredMethod(name, parameterTypes);
         } catch (final NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
@@ -143,9 +146,9 @@ public final class ReflectionUtil {
     /**
      * Invokes a static method.
      *
-     * @param method method to invoke.
+     * @param method     method to invoke.
      * @param parameters parameters to invoke with.
-     * @param <T> the expected return type.
+     * @param <T>        the expected return type.
      * @return the returned value.
      */
     public static <T> T invokeStaticMethod(final Method method, final Object... parameters) {
@@ -155,10 +158,10 @@ public final class ReflectionUtil {
     /**
      * Invokes a method.
      *
-     * @param method method to invoke.
-     * @param instance instance to invoke method on.
+     * @param method     method to invoke.
+     * @param instance   instance to invoke method on.
      * @param parameters parameters to invoke with.
-     * @param <T> the expected return type.
+     * @param <T>        the expected return type.
      * @return the returned value.
      */
     @SuppressWarnings("unchecked")
@@ -178,7 +181,7 @@ public final class ReflectionUtil {
     /**
      * Change the accessibility of a field.
      *
-     * @param accessObject accessObject to change accessibility of.
+     * @param accessObject  accessObject to change accessibility of.
      * @param accessibility value to change accessibility of.
      * @return the old accessibility value.
      */
@@ -193,7 +196,7 @@ public final class ReflectionUtil {
     /**
      * Changes the finality of a field.
      *
-     * @param f field to change the finality on.
+     * @param f         field to change the finality on.
      * @param makeFinal true to make final, false to make non-final.
      * @return the old value of the final modifier for the field.
      */
@@ -211,4 +214,49 @@ public final class ReflectionUtil {
         }
         return isFinal;
     }
+
+    /**
+     * This is the helper method to create a private object that has no arguments
+     *
+     * @param clazz class for which private constructor needs to be invoked.
+     * @param <T>   the expected return type.
+     * @return the returned value.
+     */
+    public static <T> T invokePrivateConstructor(Class<T> clazz) {
+        return invokePrivateConstructor(clazz, new Class[]{});
+    }
+
+    /**
+     * This is the helper method to create a private object
+     *
+     * @param clazz          class for which private constructor needs to be invoked.
+     * @param parameterTypes the parameter types of the requested constructor.
+     * @param args           the arguments to the method
+     * @param <T>            the returned value.
+     * @return
+     */
+    public static <T> T invokePrivateConstructor(Class<T> clazz, Class[] parameterTypes, Object... args) {
+        try {
+            Constructor<T> constructor = clazz.getDeclaredConstructor(parameterTypes);
+            constructor.setAccessible(true);
+            return constructor.newInstance(args);
+        } catch (final IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Used to cover methods that are generated for enums by the compiler
+     *
+     * @param enumClass The enum class
+     */
+    public static void verifyEnumStatics(Class enumClass) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method valuesMethod = enumClass.getMethod("values");
+        valuesMethod.setAccessible(true);
+        Object[] values = (Object[]) valuesMethod.invoke(null);
+        Method valueOfMethod = enumClass.getMethod("valueOf", String.class);
+        valueOfMethod.setAccessible(true);
+        assertEquals(values[0], valueOfMethod.invoke(null, ((Enum) values[0]).name()));
+    }
+
 }
