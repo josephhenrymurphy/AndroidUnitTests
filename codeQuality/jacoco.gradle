@@ -51,10 +51,11 @@ project.afterEvaluate {
                         "src/$productFlavorName/java",
                         "src/$buildTypeName/java"
                 ]
+                def jacocoFiles = ["${project.buildDir}/jacoco/${testTaskName}.exec"]
 
                 additionalSourceDirs = files(coverageSourceDirs)
                 sourceDirectories = files(coverageSourceDirs)
-                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+                executionData = files(jacocoFiles)
 
                 reports {
                     xml.enabled = true
