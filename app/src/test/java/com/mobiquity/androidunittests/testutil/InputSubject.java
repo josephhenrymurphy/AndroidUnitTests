@@ -8,6 +8,10 @@ import com.mobiquity.androidunittests.calculator.input.Input;
 
 public class InputSubject extends Subject<InputSubject, Input> {
 
+    public InputSubject(FailureStrategy failureStrategy, Input subject) {
+        super(failureStrategy, subject);
+    }
+
     private static final SubjectFactory<InputSubject, Input> FACTORY = new SubjectFactory<InputSubject, Input>() {
         @Override
         public InputSubject getSubject(FailureStrategy fs, Input target) {
@@ -19,9 +23,6 @@ public class InputSubject extends Subject<InputSubject, Input> {
         return FACTORY;
     }
 
-    public InputSubject(FailureStrategy failureStrategy, Input subject) {
-        super(failureStrategy, subject);
-    }
 
     public InputSubject valueEqualTo(Input input) {
         if(!getSubject().valueEquals(input)) {

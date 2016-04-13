@@ -36,7 +36,7 @@ public class SubtractionOperatorTest {
     }
 
     @Test
-    public void testAdditionOperator_ShouldExtendOperator() {
+    public void testSubtractionOperator_ShouldExtendOperator() {
         assertThat(subtractionOperator).isInstanceOf(Operator.class);
     }
 
@@ -45,7 +45,7 @@ public class SubtractionOperatorTest {
         assertThat(subtractionOperator.getType()).isEqualTo(InputType.OPERATOR);
     }
     @Test
-    public void testGetPrecedence_IsEqualToAdditionPrecedence() {
+    public void testGetPrecedence_IsEqualToSubtractionPrecedence() {
         assertThat(subtractionOperator.getPrecedence())
                 .isEqualTo(Operator.Precedence.SUBTRACTION_PRECEDENCE.getValue());
     }

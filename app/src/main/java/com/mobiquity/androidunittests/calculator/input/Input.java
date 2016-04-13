@@ -37,4 +37,9 @@ public abstract class Input {
         Class clazz = getClass();
         return clazz.isInstance(input);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": " + value;
+    }
 }

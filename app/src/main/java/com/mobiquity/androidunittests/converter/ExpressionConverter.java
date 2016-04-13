@@ -17,12 +17,10 @@ import javax.inject.Inject;
 
 public class ExpressionConverter {
 
-    private Context context;
     private SymbolToOperatorConverter operatorConverter;
 
     @Inject
-    public ExpressionConverter(Context context, SymbolToOperatorConverter operatorConverter) {
-        this.context = context;
+    public ExpressionConverter(SymbolToOperatorConverter operatorConverter) {
         this.operatorConverter = operatorConverter;
     }
 
@@ -119,8 +117,6 @@ public class ExpressionConverter {
         } else {
             return false;
         }
-
     }
-
 
 }

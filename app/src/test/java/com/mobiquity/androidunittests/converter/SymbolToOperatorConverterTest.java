@@ -3,6 +3,7 @@ package com.mobiquity.androidunittests.converter;
 import com.mobiquity.androidunittests.CustomGradleRunner;
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.NoOpOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
@@ -38,6 +39,14 @@ public class SymbolToOperatorConverterTest {
         Operator operator = converter.convert(subtractSymbol);
 
         assertThat(operator).isInstanceOf(SubtractionOperator.class);
+    }
+
+    @Test
+    public void testConverter_ConvertStarToMultiplyOperation() {
+        String multiplySymbol = RuntimeEnvironment.application.getString(R.string.multiply_op);
+        Operator operator = converter.convert(multiplySymbol);
+
+        assertThat(operator).isInstanceOf(MultiplicationOperator.class);
     }
 
     @Test
