@@ -20,6 +20,9 @@ android {
 
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -58,6 +61,7 @@ dependencies {
     testCompile testLibraries.junit
     testCompile testLibraries.truth
     testCompile testLibraries.robolectric
+    testCompile testLibraries.robolectricV4Shadows
     testCompile testLibraries.mockito
     testCompile testLibraries.powermockMockito
     testCompile testLibraries.powermockJunit
@@ -69,6 +73,7 @@ dependencies {
     androidTestCompile (androidTestLibraries.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'gridlayout-v7'
+        exclude module: 'recyclerview-v7'
         exclude module: 'support-v4'
     }
 
@@ -76,6 +81,8 @@ dependencies {
     releaseCompile devLibraries.leakCanaryNoOp
     testCompile devLibraries.leakCanaryNoOp
 }
+
+apply from: '../codeQuality/espresso.gradle'
 
 configurations.all {
     resolutionStrategy {

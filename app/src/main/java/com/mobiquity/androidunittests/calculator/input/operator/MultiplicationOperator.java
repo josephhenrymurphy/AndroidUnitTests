@@ -2,20 +2,20 @@ package com.mobiquity.androidunittests.calculator.input.operator;
 
 import com.mobiquity.androidunittests.calculator.input.InputType;
 
-public class AdditionOperator extends Operator {
+public class MultiplicationOperator extends Operator {
 
-    public AdditionOperator() {
-        super("+", InputType.OPERATOR);
+    public MultiplicationOperator() {
+        super("*", InputType.OPERATOR);
     }
 
     @Override
     public int execute(int param1, int param2) {
-        return add(param1, param2);
+        return multiply(param1, param2);
     }
 
     @Override
     public int getPrecedence() {
-        return Precedence.ADDITION_PRECEDENCE.getValue();
+        return Precedence.MULTIPLICATION_PRECEDENCE.getValue();
     }
 
     @Override
@@ -23,8 +23,8 @@ public class AdditionOperator extends Operator {
         return true;
     }
 
-    private int add(int firstAddend, int secondAddend) {
-        return firstAddend + secondAddend;
-    }
 
+    private int multiply(int param1, int param2) {
+        return param1 * param2;
+    }
 }

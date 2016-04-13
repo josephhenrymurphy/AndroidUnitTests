@@ -60,6 +60,8 @@ public class InfixInputParser {
 
                             if (leftAssociativeCheck || rightAssociativeCheck) {
                                 outputQueue.add(operatorStack.pop());
+                            } else {
+                                break;
                             }
                         }
                     }

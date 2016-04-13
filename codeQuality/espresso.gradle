@@ -1,0 +1,13 @@
+// Disable animations for functional tests with espresso
+
+def adb = android.getAdbExe().toString()
+afterEvaluate {
+    task grantAnimationPermission(type: Exec, dependsOn: 'installDebug') {
+        commandLine "$adb shell pm grant $android.defaultConfig.applicationId android.permission.SET_ANIMATION_SCALE".split(' ')
+    }
+    tasks.each { task ->
+        if (task.name.startsWith('assembleDebugAndroidTest')) {
+            task.dependsOn grantAnimationPermission
+        }
+    }
+}

@@ -1,9 +1,5 @@
 package com.mobiquity.androidunittests.calculator.input;
 
-import com.mobiquity.androidunittests.util.HashCodeBuilder;
-
-import java.util.Objects;
-
 public class NumericInput extends Input {
 
     public NumericInput(int value) {

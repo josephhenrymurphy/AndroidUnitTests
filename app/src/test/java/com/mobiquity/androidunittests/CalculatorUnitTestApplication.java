@@ -1,7 +1,5 @@
 package com.mobiquity.androidunittests;
 
-import android.content.Context;
-
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.di.components.DaggerAppComponent;
 import com.mobiquity.androidunittests.di.modules.AppModule;

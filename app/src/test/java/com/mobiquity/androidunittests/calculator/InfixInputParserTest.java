@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Queue;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertThat;
 
 public class InfixInputParserTest {
 

@@ -57,6 +57,7 @@ ext.libraries = [
 ext.testLibraries = [
         junit: "junit:junit:$versions.junit",
         robolectric: "org.robolectric:robolectric:$versions.robolectric",
+        robolectricV4Shadows: "org.robolectric:shadows-support-v4:$versions.robolectric",
         mockito: "org.mockito:mockito-core:$versions.mockito",
         truth: "com.google.truth:truth:$versions.truth",
         powermockMockito: "org.powermock:powermock-api-mockito:$versions.powermock",

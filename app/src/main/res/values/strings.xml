@@ -12,6 +12,9 @@
     <string name="multiply_op">*</string>
     <string name="divide_op">/</string>
 
+    <string name="invalid_expression">Invalid Expression</string>
+
     <string name="wolfram_alpha">Wolfram Alpha</string>
     <string name="wolfram_abbrev">Wolf.</string>
+    <string name="wolfram_failure">Wolfram failed to run the query.</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
@@ -96,7 +97,12 @@ public class WolframActivity extends BaseActivity<WolframComponent>
         wolframAdapter.setData(pods);
     }
 
-    public void startQuery() {
+    @Override
+    public void showWolframFailure() {
+        Toast.makeText(this, getString(R.string.wolfram_failure), Toast.LENGTH_SHORT).show();
+    }
+
+    private void startQuery() {
         String query = queryInput.getText().toString();
         wolframPresenter.startQuery(query);
     }

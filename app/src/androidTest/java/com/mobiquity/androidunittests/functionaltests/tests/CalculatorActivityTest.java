@@ -1,18 +1,16 @@
 package com.mobiquity.androidunittests.functionaltests.tests;
 
 import android.support.test.espresso.intent.Intents;
-import android.support.test.espresso.intent.matcher.IntentMatchers;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.EditText;
 
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.functionaltests.CalculatorFunctionalTestApplication;
+import com.mobiquity.androidunittests.functionaltests.rules.DisableAnimationsRule;
 import com.mobiquity.androidunittests.ui.activity.CalculatorActivity;
 import com.mobiquity.androidunittests.ui.activity.WolframActivity;
 
-import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -32,7 +30,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.*;
 public class CalculatorActivityTest {
 
     @Rule
-    public IntentsTestRule<CalculatorActivity> activityRule = new IntentsTestRule<>(CalculatorActivity.class);
+    public ActivityTestRule<CalculatorActivity> activityRule = new ActivityTestRule<>(CalculatorActivity.class);
+
+    @Rule
+    public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
 
     @Test
     public void shouldDisplayTypedNumbers() {
@@ -81,11 +82,12 @@ public class CalculatorActivityTest {
     }
 
     @Test
-    public void onClickWolfram_ShouldGoToWolframActivity() {
+    public void testClickWolframButton_ShouldStartWolframActivity() {
+        Intents.init();
         onView(withId(R.id.handle)).perform(click());
         onView(withId(R.id.extra_button_wolfram)).perform(click());
-
-        intending(hasComponent(WolframActivity.class.getName()));
+        intended(hasComponent(WolframActivity.class.getName()));
+        Intents.release();
     }
 
     @After

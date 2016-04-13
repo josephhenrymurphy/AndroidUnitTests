@@ -2,7 +2,7 @@ package com.mobiquity.androidunittests.calculator.input.operator;
 
 import org.junit.Test;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertThat;
 
 public class OperatorPrecedenceTest {
 

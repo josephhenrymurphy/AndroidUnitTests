@@ -1,19 +1,17 @@
 package com.mobiquity.androidunittests.calculator.input;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
 
-import static com.google.common.truth.Truth.*;
+import static com.google.common.truth.Truth.assertThat;
 
 public class InputTest {
 
-    public static class DummyInput extends Input {
+    private static class DummyInput extends Input {
         public DummyInput(String value, InputType type) {
             super(value, type);
         }
-
         public DummyInput(int value, InputType type) {
             super(value, type);
         }
@@ -28,7 +26,7 @@ public class InputTest {
 
     @Test(expected = InvalidParameterException.class)
     public void testSuperInputType_InvalidStringValueForNumericInput() {
-        DummyInput dummyInput = new DummyInput("dummy", InputType.NUMBER);
+        new DummyInput("dummy", InputType.NUMBER);
     }
 
     @Test
@@ -41,7 +39,7 @@ public class InputTest {
 
     @Test(expected = InvalidParameterException.class)
     public void testSuperInputType_InvalidNumberValueForNonumericInput() {
-        DummyInput dummyInput = new DummyInput(3, InputType.FUNCTION);
+        new DummyInput(3, InputType.FUNCTION);
     }
 
     @Test
