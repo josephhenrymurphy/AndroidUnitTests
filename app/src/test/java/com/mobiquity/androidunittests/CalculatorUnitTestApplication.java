@@ -1,5 +1,6 @@
 package com.mobiquity.androidunittests;
 
+import com.frogermcs.androiddevmetrics.aspect.ActivityLifecycleAnalyzer;
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.di.components.DaggerAppComponent;
 import com.mobiquity.androidunittests.di.modules.AppModule;
@@ -13,6 +14,7 @@ public class CalculatorUnitTestApplication extends CalculatorApplication {
                 .appModule(new AppModule(this) {
                     @Override
                     protected AndroidDevMetricsWrapper provideAndroidDevMetricsWrapper() {
+                        ActivityLifecycleAnalyzer.setEnabled(false);
                         return context -> {};
                     }
                 });

@@ -33,7 +33,6 @@ public class WolframPresenter extends Presenter<WolframView> {
             public void onFailure(Call<WolframResponse> call, Throwable t) {
                 Timber.e(t, t.getMessage());
                 view().showWolframFailure();
-
             }
         });
     }

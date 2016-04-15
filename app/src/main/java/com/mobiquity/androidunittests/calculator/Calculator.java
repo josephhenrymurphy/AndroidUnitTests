@@ -68,7 +68,4 @@ public class Calculator {
         currentResult = stack.pop();
         return currentResult;
     }
-
-
-
 }
