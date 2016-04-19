@@ -67,7 +67,7 @@ project.afterEvaluate {
             }
 
             if(buildType.isTestCoverageEnabled()) {
-                task "testFull${testTaskName.capitalize()}Coverage"(type: JacocoReport, dependsOn: ["$functionTestTaskName", "$testTaskName"]) {
+                task "full${testTaskName.capitalize()}Coverage"(type: JacocoReport, dependsOn: ["$functionTestTaskName", "$testTaskName"]) {
                     group = 'Reporting'
                     description = "Generate full Jacoco coverage reports for the ${sourceName.capitalize()} build for both instrumented and unit tests."
                     classDirectories = taskClassDirectories

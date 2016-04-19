@@ -3,6 +3,7 @@ package com.mobiquity.androidunittests.calculator;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 
 import org.junit.Before;
@@ -68,6 +69,33 @@ public class CalculatorTest {
                 new AdditionOperator(),
                 new NumericInput(5),
                 new SubtractionOperator()
+        };
+        mockPostFix(input, postfixInput);
+
+        int result = calculator.evaluate(input);
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @Test
+    public void testEvaluate_AdditionMultiply() throws Exception {
+        //Test: 1 + 2 * 3 = 7
+
+        Input input[] = new Input[]{
+                new NumericInput(1),
+                new AdditionOperator(),
+                new NumericInput(2),
+                new MultiplicationOperator(),
+                new NumericInput(3)
+        };
+        int expectedResult = 7;
+
+        // Assume the infix input parser works and provide the correct postfix for the input
+        Input[] postfixInput = new Input[] {
+                new NumericInput(1),
+                new NumericInput(2),
+                new NumericInput(3),
+                new MultiplicationOperator(),
+                new AdditionOperator()
         };
         mockPostFix(input, postfixInput);
 
