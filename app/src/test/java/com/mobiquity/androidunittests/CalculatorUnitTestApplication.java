@@ -5,8 +5,10 @@ import com.mobiquity.androidunittests.converter.ExpressionConverter;
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.di.components.DaggerAppComponent;
 import com.mobiquity.androidunittests.di.modules.AppModule;
+import com.mobiquity.androidunittests.net.services.WolframService;
 import com.mobiquity.androidunittests.testutil.MockAndroidDevMetrics;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
+import com.mobiquity.androidunittests.ui.presenter.WolframPresenter;
 
 import org.mockito.Mockito;
 
@@ -27,7 +29,11 @@ public class CalculatorUnitTestApplication extends CalculatorApplication {
                     protected CalculatorPresenter provideCalculatorPresenter(Calculator calculator, ExpressionConverter converter) {
                         return Mockito.mock(CalculatorPresenter.class);
                     }
+
+                    @Override
+                    protected WolframPresenter provideWolframPresenter(WolframService wolframService) {
+                        return Mockito.mock(WolframPresenter.class);
+                    }
                 });
     }
-
 }

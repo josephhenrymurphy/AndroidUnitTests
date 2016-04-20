@@ -60,12 +60,13 @@ dependencies {
 
     testCompile testLibraries.junit
     testCompile testLibraries.truth
+    testCompile testLibraries.assertjAndroid
     testCompile testLibraries.robolectric
     testCompile testLibraries.robolectricV4Shadows
     testCompile testLibraries.mockito
     testCompile testLibraries.powermockMockito
     testCompile testLibraries.powermockJunit
-    testCompile testLibraries.assertjAndroid
+    testCompile testLibraries.okhttp3_MockWebServer
 
     androidTestCompile androidTestLibraries.supportTestRunner
     androidTestCompile androidTestLibraries.supportTestRules

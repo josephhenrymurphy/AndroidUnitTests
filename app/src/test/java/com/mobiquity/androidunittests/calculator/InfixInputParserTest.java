@@ -3,6 +3,7 @@ package com.mobiquity.androidunittests.calculator;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,6 +56,46 @@ public class InfixInputParserTest {
 
         Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
         assertThat(postfixOutput).containsExactly(threeInput, fourInput, additionOperator, fiveInput, additionOperator);
+    }
+
+    @Test
+    public void testToPostfix_AdditionMultiplication() {
+        NumericInput three = new NumericInput(3);
+        NumericInput four = new NumericInput(4);
+        NumericInput five = new NumericInput(5);
+        AdditionOperator plus = new AdditionOperator();
+        MultiplicationOperator times = new MultiplicationOperator();
+
+        Input[] inputs = new Input[] {
+                three,
+                plus,
+                four,
+                times,
+                five
+        };
+
+        Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
+        assertThat(postfixOutput).containsExactly(three, four, five, times, plus);
+    }
+
+    @Test
+    public void testToPostfix_MultiplicationAddition() {
+        NumericInput three = new NumericInput(3);
+        NumericInput four = new NumericInput(4);
+        NumericInput five = new NumericInput(5);
+        AdditionOperator plus = new AdditionOperator();
+        MultiplicationOperator times = new MultiplicationOperator();
+
+        Input[] inputs = new Input[] {
+                three,
+                times,
+                four,
+                plus,
+                five
+        };
+
+        Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
+        assertThat(postfixOutput).containsExactly(three, four, five, plus, times);
     }
 
 }

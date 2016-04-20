@@ -63,7 +63,8 @@ ext.testLibraries = [
         truth: "com.google.truth:truth:$versions.truth",
         powermockMockito: "org.powermock:powermock-api-mockito:$versions.powermock",
         powermockJunit: "org.powermock:powermock-module-junit4:$versions.powermock",
-        assertjAndroid: "com.squareup.assertj:assertj-android:$versions.assertjAndroid"
+        assertjAndroid: "com.squareup.assertj:assertj-android:$versions.assertjAndroid",
+        okhttp3_MockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
 ]
 
 ext.androidTestLibraries = [

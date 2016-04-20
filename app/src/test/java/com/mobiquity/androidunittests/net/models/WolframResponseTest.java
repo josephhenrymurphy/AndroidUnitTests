@@ -31,11 +31,19 @@ public class WolframResponseTest {
     }
 
     @Test
-    public void getPodsCompareTo() {
+    public void testPods_GetTitle() {
+        WolframResponse.Pod firstPod = response.getPods().get(0);
+        assertThat(firstPod.getTitle()).isEqualTo("Input");
+    }
+
+    @Test
+    public void testPods_CompareTo() {
         WolframResponse.Pod firstPod = response.getPods().get(0);
         WolframResponse.Pod secondPod = response.getPods().get(1);
+        WolframResponse.Pod thirdPod = response.getPods().get(2);
 
         assertThat(firstPod).isLessThan(secondPod);
+        assertThat(thirdPod).isGreaterThan(secondPod);
     }
 
 

@@ -28,7 +28,7 @@ public class WolframPodAdapter extends RecyclerView.Adapter<WolframPodAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.wolfram_pod_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, inflater);
     }
 
     @Override
@@ -53,9 +53,9 @@ public class WolframPodAdapter extends RecyclerView.Adapter<WolframPodAdapter.Vi
         @Bind(R.id.pod_title) TextView podTitle;
         @Bind(R.id.pod_content) LinearLayout podContent;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, LayoutInflater inflater) {
             super(itemView);
-            inflater = LayoutInflater.from(itemView.getContext());
+            this.inflater = inflater;
             ButterKnife.bind(this, itemView);
         }
 

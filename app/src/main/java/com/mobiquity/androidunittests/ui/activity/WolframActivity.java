@@ -4,22 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
-import com.mobiquity.androidunittests.di.components.BaseComponent;
 import com.mobiquity.androidunittests.di.components.DaggerWolframComponent;
 import com.mobiquity.androidunittests.di.components.WolframComponent;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
-import com.mobiquity.androidunittests.net.services.WolframService;
 import com.mobiquity.androidunittests.ui.adapter.WolframPodAdapter;
 import com.mobiquity.androidunittests.ui.mvpview.WolframView;
 import com.mobiquity.androidunittests.ui.presenter.WolframPresenter;
@@ -32,10 +25,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 public class WolframActivity extends BaseActivity<WolframComponent>
     implements WolframView {
@@ -46,7 +35,7 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     @Bind(R.id.wolfram_submit) ImageButton wolframSubmitButton;
     @Bind(R.id.wolfram_pod_list) RecyclerView podList;
 
-    @Inject WolframPresenter wolframPresenter;
+    @Inject WolframPresenter presenter;
     WolframPodAdapter wolframAdapter;
 
     @Override
@@ -72,13 +61,13 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     @Override
     protected void onResume() {
         super.onResume();
-        wolframPresenter.bind(this);
+        presenter.bind(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        wolframPresenter.unbind();
+        presenter.unbind();
     }
 
     @OnEditorAction(R.id.wolfram_input)
@@ -104,6 +93,6 @@ public class WolframActivity extends BaseActivity<WolframComponent>
 
     private void startQuery() {
         String query = queryInput.getText().toString();
-        wolframPresenter.startQuery(query);
+        presenter.startQuery(query);
     }
 }

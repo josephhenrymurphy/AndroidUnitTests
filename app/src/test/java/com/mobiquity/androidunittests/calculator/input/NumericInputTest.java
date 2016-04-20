@@ -24,7 +24,7 @@ public class NumericInputTest {
 
     @Test
     public void testNumeric_Value() {
-        assertThat(numericInput.getValue()).isEqualTo(3);
+        assertThat(numericInput.getValue()).isEqualTo(NUMERIC_INPUT_VALUE);
     }
 
     @Test
