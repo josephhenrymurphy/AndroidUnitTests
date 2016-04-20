@@ -6,6 +6,8 @@ import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.net.interceptors.WolframInterceptor;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -18,13 +20,18 @@ import timber.log.Timber;
 @Module(includes = ApiModule.class)
 public class NetModule {
 
+    @AppScope
+    @Provides
+    @Named("wolfram")
+    protected String baseUrl(Context context) {
+        return context.getString(R.string.wolfram_api_url);
+    }
+
     @Provides
     @AppScope
-    Retrofit provideRetrofit(Context context, OkHttpClient client) {
-        String defaultUrl = context.getString(R.string.wolfram_api_url);
-
+    Retrofit provideRetrofit(@Named("wolfram") String baseUrl, OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl(defaultUrl)
+                .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();

@@ -103,6 +103,22 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
+    @Test(expected = Calculator.CalculatorEvaluationException.class)
+    public void testEvaluate_InvalidExpression() throws Exception {
+        Input[] input = new Input[] {
+            new NumericInput(1),
+                new AdditionOperator()
+        };
+
+        Input[] postfixInpnut = new Input[] {
+                new NumericInput(1),
+                new AdditionOperator()
+        };
+
+        mockPostFix(input, postfixInpnut);
+        calculator.evaluate(input);
+    }
+
     private void mockPostFix(Input[] input, Input[] postfixInput) {
         Mockito.when(infixInputParser.toPostfix(input)).thenReturn(
                 new LinkedList<>(Arrays.asList(postfixInput))

@@ -1,0 +1,10 @@
+<pod title='Property'
+     scanner='Numeric'
+     id='Property'
+     position='300'
+     error='false'
+     numsubpods='1'>
+    <subpod title=''>
+        <plaintext>π is a transcendental number</plaintext>
+    </subpod>
+</pod>

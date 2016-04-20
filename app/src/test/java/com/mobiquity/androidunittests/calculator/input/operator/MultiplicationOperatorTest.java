@@ -56,7 +56,7 @@ public class MultiplicationOperatorTest {
     }
 
     @Test
-    public void testExecute_ShouldSubtractOperands() {
+    public void testExecute_ShouldMultiplyOperands() {
         assertThat(multiplicationOperator.execute(2,3)).isEqualTo(6);
         assertThat(multiplicationOperator.execute(0,10)).isEqualTo(0);
         assertThat(multiplicationOperator.execute(10,-10)).isEqualTo(-100);
