@@ -16,14 +16,12 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-@AppScope
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     private Calculator calculator;
     private ExpressionConverter expressionConverter;
     private List<String> expression;
 
-    @Inject
     public CalculatorPresenter(Calculator calculator, ExpressionConverter inputsConverter) {
         this.calculator = calculator;
         this.expressionConverter = inputsConverter;

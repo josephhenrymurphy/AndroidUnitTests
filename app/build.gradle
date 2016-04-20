@@ -65,6 +65,7 @@ dependencies {
     testCompile testLibraries.mockito
     testCompile testLibraries.powermockMockito
     testCompile testLibraries.powermockJunit
+    testCompile testLibraries.assertjAndroid
 
     androidTestCompile androidTestLibraries.supportTestRunner
     androidTestCompile androidTestLibraries.supportTestRules
