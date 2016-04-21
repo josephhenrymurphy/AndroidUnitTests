@@ -34,12 +34,6 @@ public class AppModule {
 
     @Provides
     @AppScope
-    protected AndroidDevMetricsWrapper provideAndroidDevMetricsWrapper() {
-        return AndroidDevMetrics::initWith;
-    }
-
-    @Provides
-    @AppScope
     protected CalculatorPresenter provideCalculatorPresenter(Calculator calculator, ExpressionConverter converter) {
         return new CalculatorPresenter(calculator, converter);
     }

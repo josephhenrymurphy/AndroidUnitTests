@@ -1,5 +1,8 @@
 package com.mobiquity.androidunittests.di.modules;
 
+import android.content.Context;
+
+import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.ViewWrapper;
@@ -20,5 +23,11 @@ public class DevModule {
     @AppScope
     DevSettingsWrapper provideDevSettingsWrapper() {
         return () -> {};
+    }
+
+    @Provides
+    @AppScope
+    protected AndroidDevMetricsWrapper provideDevMetricsWrapper() {
+        return context -> {};
     }
 }

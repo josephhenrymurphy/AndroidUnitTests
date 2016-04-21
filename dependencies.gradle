@@ -3,7 +3,7 @@ ext.versions = [
         minSdk: 16,
         targetSdk: 23,
         compileSdk: 23,
-        buildTools: "23.0.2",
+        buildTools: "23.0.3",
         name: buildVersionName,
         code: buildVersionCode(),
 
@@ -15,10 +15,10 @@ ext.versions = [
         // Libraries
         androidSupport: '23.3.0',
         timber: '4.1.2',
-        dagger: '2.1',
+        dagger: '2.2',
         javaxAnnotations: '1.0',
         butterKnife: '7.0.1',
-        retrofit2: '2.0.1',
+        retrofit2: '2.0.2',
         okhttp3: '3.2.0',
 
         // Testing libraries

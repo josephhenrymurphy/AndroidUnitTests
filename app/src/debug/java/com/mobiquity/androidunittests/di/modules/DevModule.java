@@ -2,6 +2,8 @@ package com.mobiquity.androidunittests.di.modules;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
+import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettings;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapperImpl;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
@@ -22,6 +24,12 @@ public class DevModule {
     @Debug
     SharedPreferences provideDebugSharedPreferences(Context context) {
         return context.getSharedPreferences("dev_settings", Context.MODE_PRIVATE);
+    }
+
+    @AppScope
+    @Provides
+    protected AndroidDevMetricsWrapper provideAndroidDevMetrics() {
+        return AndroidDevMetrics::initWith;
     }
 
     @Provides
