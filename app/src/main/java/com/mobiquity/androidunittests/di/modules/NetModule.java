@@ -20,16 +20,10 @@ import timber.log.Timber;
 @Module(includes = ApiModule.class)
 public class NetModule {
 
-    @AppScope
-    @Provides
-    @Named("wolfram")
-    protected String baseUrl(Context context) {
-        return context.getString(R.string.wolfram_api_url);
-    }
-
     @Provides
     @AppScope
-    Retrofit provideRetrofit(@Named("wolfram") String baseUrl, OkHttpClient client) {
+    Retrofit provideRetrofit(Context context, OkHttpClient client) {
+        String baseUrl = context.getString(R.string.wolfram_api_url);
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
@@ -40,7 +34,7 @@ public class NetModule {
 
     @Provides
     @AppScope
-    OkHttpClient provideClient(Context context) {
+    protected OkHttpClient provideClient(Context context) {
         Interceptor wolframInterceptor = new WolframInterceptor(
                 context.getString(R.string.wolfram_app_id)
         );
