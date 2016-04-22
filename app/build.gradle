@@ -66,8 +66,8 @@ dependencies {
     testCompile testLibraries.mockito
     testCompile testLibraries.powermockMockito
     testCompile testLibraries.powermockJunit
-    testCompile testLibraries.okhttp3_MockWebServer
 
+    androidTestCompile testLibraries.okhttp3_MockWebServer
     androidTestCompile androidTestLibraries.supportTestRunner
     androidTestCompile androidTestLibraries.supportTestRules
     androidTestCompile androidTestLibraries.espressoCore

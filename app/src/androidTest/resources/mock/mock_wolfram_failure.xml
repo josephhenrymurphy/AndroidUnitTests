@@ -1,0 +1,20 @@
+<queryresult success='false'
+             error='false'
+             numpods='0'
+             datatypes=''
+             timedout=''
+             timedoutpods=''
+             timing='0.633'
+             parsetiming='0.071'
+             parsetimedout='false'
+             recalculate=''
+             id=''
+             host='http://www4c.wolframalpha.com'
+             server='40'
+             related=''
+             version='2.6'
+             profile='EnterDoQuery:0.,StartWrap:0.633027'>
+    <tips count='1'>
+        <tip text='Check your spelling, and use English' />
+    </tips>
+</queryresult>
