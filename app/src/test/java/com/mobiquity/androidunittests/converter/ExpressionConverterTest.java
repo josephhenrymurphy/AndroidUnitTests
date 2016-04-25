@@ -213,12 +213,12 @@ public class ExpressionConverterTest {
 
     @Test
     public void testConvert_InsertMultiplyBeforeParens() {
-        List<String> normalizedInput = Arrays.asList("5", "(", "3", "-", "4" , ")");
+        List<String> normalizedInput = Arrays.asList("5", "(", "-", "3", "-", "4" , ")");
         List<Input> expectedConvertedInput = Arrays.asList(
                 new NumericInput(5),
                 new MultiplicationOperator(),
                 new LeftParenInput(),
-                new NumericInput(3),
+                new NumericInput(-3),
                 new SubtractionOperator(),
                 new NumericInput(4),
                 new RightParenInput()

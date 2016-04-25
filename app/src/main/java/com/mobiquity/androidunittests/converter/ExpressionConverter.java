@@ -151,9 +151,9 @@ public class ExpressionConverter {
             return false;
         } else if(inputs.size() == 1 && inputs.get(0) instanceof SubtractionOperator) {
             return true;
-        } else if(inputs.size() > 2 &&
+        } else if(inputs.size() > 1 &&
                 inputs.get(inputs.size()-1) instanceof SubtractionOperator &&
-                inputs.get(inputs.size()-2) instanceof Operator) {
+                !(inputs.get(inputs.size()-2) instanceof NumericInput)) {
             return true;
         } else {
             return false;
