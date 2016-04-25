@@ -29,6 +29,7 @@ public class Calculator {
     @Inject
     public Calculator(InfixInputParser infixInputParser) {
         this.infixInputParser = infixInputParser;
+        currentResult = 0;
     }
 
     public int evaluate(Input[] inputs) throws CalculatorEvaluationException {
