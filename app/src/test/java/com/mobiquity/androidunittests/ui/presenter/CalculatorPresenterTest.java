@@ -58,6 +58,17 @@ public class CalculatorPresenterTest {
     }
 
     @Test
+    public void testHandleSymbol_UpdatesDisplay() {
+        Mockito.when(expressionConverter.normalize(Mockito.anyList())).thenReturn(
+                Arrays.asList("(")
+        );
+        presenter.bind(mockView);
+        presenter.handleSymbol("(");
+
+        Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("("));
+    }
+
+    @Test
     public void testHandleEvaluate_GivesCorrectInputToCalculator() throws Exception{
         Mockito.when(expressionConverter.convert(Mockito.anyList())).thenReturn(
                 Arrays.asList(new NumericInput(3),

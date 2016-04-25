@@ -42,9 +42,15 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         evaluate(false);
     }
 
-    public void handleOperator(String symbol) {
-        expression.add(symbol);
+    public void handleOperator(String operator) {
+        expression.add(operator);
         expression = expressionConverter.normalize(expression);
+        view().updateDisplayText(getDisplayString());
+        evaluate(false);
+    }
+
+    public void handleSymbol(String symbol) {
+        expression.add(symbol);
         view().updateDisplayText(getDisplayString());
         evaluate(false);
     }
@@ -67,7 +73,7 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
                 }
             }
         } catch (Calculator.CalculatorEvaluationException e) {
-            Timber.e(e, e.getMessage());
+            Timber.e(e, "%s: %s", e.getMessage(), expression);
             if(isResult) {
                 view().showResultError();
             }

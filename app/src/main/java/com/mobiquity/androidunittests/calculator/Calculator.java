@@ -29,26 +29,25 @@ public class Calculator {
     @Inject
     public Calculator(InfixInputParser infixInputParser) {
         this.infixInputParser = infixInputParser;
-        currentResult = 0;
     }
 
     public int evaluate(Input[] inputs) throws CalculatorEvaluationException {
-        Queue<Input> postfixInputs = infixInputParser.toPostfix(inputs);
+        try {
+            Queue<Input> postfixInputs = infixInputParser.toPostfix(inputs);
 
-        // Return current result if there are no inputs to evaluate
-        if(postfixInputs.isEmpty()) {
-            return currentResult;
-        }
+            // Return current result if there are no inputs to evaluate
+            if (postfixInputs.isEmpty()) {
+                return currentResult;
+            }
 
-        Stack<Integer> stack = new Stack<>();
-        for(Input input : postfixInputs) {
-            switch (input.getType()) {
-                case NUMBER:
-                    NumericInput numericInput = (NumericInput) input;
-                    stack.push(numericInput.getValue());
-                    break;
-                case OPERATOR:
-                    try {
+            Stack<Integer> stack = new Stack<>();
+            for (Input input : postfixInputs) {
+                switch (input.getType()) {
+                    case NUMBER:
+                        NumericInput numericInput = (NumericInput) input;
+                        stack.push(numericInput.getValue());
+                        break;
+                    case OPERATOR:
                         Operator operator = (Operator) input;
                         int secondOperand = stack.pop();
                         int firstOperand = stack.pop();
@@ -59,13 +58,15 @@ public class Calculator {
 
                         stack.push(result);
                         break;
-                    } catch (EmptyStackException e) {
-                        throw new CalculatorEvaluationException("Invalid expression");
-                    }
-            }
-        }
 
-        currentResult = stack.pop();
-        return currentResult;
+                }
+            }
+
+            currentResult = stack.pop();
+
+            return currentResult;
+        } catch (EmptyStackException | InfixInputParser.InputParserException e) {
+            throw new CalculatorEvaluationException("Invalid Expression");
+        }
     }
 }

@@ -2,8 +2,11 @@ package com.mobiquity.androidunittests.converter;
 
 import android.content.Context;
 
+import com.mobiquity.androidunittests.calculator.input.FunctionInput;
 import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
+import com.mobiquity.androidunittests.calculator.input.RightParenInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.NoOpOperator;
@@ -18,10 +21,12 @@ import javax.inject.Inject;
 public class ExpressionConverter {
 
     private SymbolToOperatorConverter operatorConverter;
+    private SymbolToInputConverter inputConverter;
 
     @Inject
-    public ExpressionConverter(SymbolToOperatorConverter operatorConverter) {
+    public ExpressionConverter(SymbolToOperatorConverter operatorConverter, SymbolToInputConverter inputConverter) {
         this.operatorConverter = operatorConverter;
+        this.inputConverter = inputConverter;
     }
 
     public List<String> normalize(List<String> expression) {
@@ -41,7 +46,11 @@ public class ExpressionConverter {
                             isOperator(normalizedExpression.get(normalizedExpression.size()-1))) {
                         normalizedExpression.remove(normalizedExpression.size()-1);
                     }
-                    normalizedExpression.add(item);
+
+                    // Don't allow (+ or (*
+                    if(!isLeftParen(normalizedExpression.get(normalizedExpression.size()-1))) {
+                        normalizedExpression.add(item);
+                    }
                 } else if(operator instanceof SubtractionOperator) {
                     // Don't allow -- or +-
                     while (!normalizedExpression.isEmpty() &&
@@ -66,6 +75,12 @@ public class ExpressionConverter {
     public List<Input> convert(List<String> expression) {
         List<Input> inputs = new ArrayList<>();
         for(String input : expression) {
+            if(!isOperator(input)) {
+                if(!inputs.isEmpty() && inputs.get(inputs.size()-1) instanceof RightParenInput) {
+                    inputs.add(new MultiplicationOperator());
+                }
+            }
+
             if(isNumeric(input)) {
                 if(isLastItemNumeric(inputs)) {
                     NumericInput lastNumber = (NumericInput) inputs.get(inputs.size()-1);
@@ -81,6 +96,20 @@ public class ExpressionConverter {
                 }
             } else if(isOperator(input)) {
                 inputs.add(operatorConverter.convert(input));
+            } else if(isLeftParen(input)) {
+
+                // Add a multiplication operator for items preceding '(' that are not '(' or a function/operator
+                if(!inputs.isEmpty() && !(
+                        inputs.get(inputs.size()-1) instanceof LeftParenInput ||
+                                inputs.get(inputs.size()-1) instanceof FunctionInput ||
+                                inputs.get(inputs.size()-1) instanceof Operator
+                    )
+                ) {
+                    inputs.add(new MultiplicationOperator());
+                }
+                inputs.add(inputConverter.convert(input));
+            } else if(isInput(input)) {
+                inputs.add(inputConverter.convert(input));
             }
         }
 
@@ -100,9 +129,21 @@ public class ExpressionConverter {
         return !(operatorConverter.convert(input) instanceof NoOpOperator);
     }
 
+    private boolean isInput(String input) {
+        return inputConverter.convert(input) != null;
+    }
+
+    private boolean isLeftParen(String input) {
+        return inputConverter.convert(input) instanceof LeftParenInput;
+    }
+
+    private boolean isRightParen(String input) {
+        return inputConverter.convert(input) instanceof RightParenInput;
+    }
+
     private boolean isLastItemNumeric(List<Input> inputs) {
         return !inputs.isEmpty() &&
-                inputs.get(inputs.size()-1) instanceof NumericInput;
+                inputs.get(inputs.size() - 1) instanceof NumericInput;
     }
 
     private boolean isInputtingNegativeNumber(List<Input> inputs) {
