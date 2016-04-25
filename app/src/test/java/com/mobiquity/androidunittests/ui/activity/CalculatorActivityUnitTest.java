@@ -106,6 +106,18 @@ public class CalculatorActivityUnitTest {
     }
 
     @Test
+    public void testOnClickSymbolButtons_StartsHandlingSymbols() {
+        for(Button button : calculatorActivity.symbolButtons) {
+            ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+            String expectedSymbol = button.getText().toString();
+            button.performClick();
+            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleSymbol(captor.capture());
+
+            assertThat(expectedSymbol).isEqualTo(captor.getValue());
+        }
+    }
+
+    @Test
     public void testOnClickEqualsButton_StartsExpressionEvaluation() {
         ButterKnife.findById(calculatorActivity, R.id.eq).performClick();
         Mockito.verify(calculatorActivity.presenter).handleEvaluate();

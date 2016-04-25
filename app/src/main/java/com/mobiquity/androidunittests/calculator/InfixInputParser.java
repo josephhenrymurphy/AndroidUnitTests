@@ -4,8 +4,10 @@ import com.mobiquity.androidunittests.calculator.input.FunctionInput;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
 import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
+import com.mobiquity.androidunittests.calculator.input.RightParenInput;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -71,14 +73,18 @@ public class InfixInputParser {
                     operatorStack.push(currentInput);
                     break;
                 case RIGHT_PAREN:
-                    while(!(operatorStack.peek() instanceof LeftParenInput)) {
-                        outputQueue.add(operatorStack.pop());
+                    try {
+                        while (!(operatorStack.peek() instanceof LeftParenInput)) {
+                            outputQueue.add(operatorStack.pop());
+                        }
+                        LeftParenInput leftParen = (LeftParenInput) operatorStack.pop();
+                        if (!operatorStack.empty() && operatorStack.peek() instanceof FunctionInput) {
+                            outputQueue.add(operatorStack.pop());
+                        }
+                        break;
+                    } catch (EmptyStackException e) {
+                        throw new InputParserException("Mismatched Parenthesis");
                     }
-                    LeftParenInput leftParen = (LeftParenInput) operatorStack.pop();
-                    if(operatorStack.peek() instanceof FunctionInput) {
-                        outputQueue.add(operatorStack.pop());
-                    }
-                    break;
             }
         }
 

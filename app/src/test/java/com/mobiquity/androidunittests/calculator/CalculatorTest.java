@@ -106,7 +106,7 @@ public class CalculatorTest {
     @Test(expected = Calculator.CalculatorEvaluationException.class)
     public void testEvaluate_InvalidExpression() throws Exception {
         Input[] input = new Input[] {
-            new NumericInput(1),
+                new NumericInput(1),
                 new AdditionOperator()
         };
 

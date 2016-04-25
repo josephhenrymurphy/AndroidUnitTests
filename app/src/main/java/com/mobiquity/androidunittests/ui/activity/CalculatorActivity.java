@@ -55,6 +55,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
             R.id.multiply_op
     }) List<Button> operatorButtons;
 
+    @Bind(value = {
+            R.id.left_paren,
+            R.id.right_paren
+    }) List<Button> symbolButtons;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +70,13 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
         numericPad.addOnNumberClickedListener(number -> presenter.handleNumber(number));
         ButterKnife.apply(operatorButtons, (button, index) -> {
+            String operator = button.getText().toString();
+            button.setOnClickListener(v -> presenter.handleOperator(operator));
+        });
+
+        ButterKnife.apply(symbolButtons, (button, index) -> {
             String symbol = button.getText().toString();
-            button.setOnClickListener(v -> presenter.handleOperator(symbol));
+            button.setOnClickListener(v -> presenter.handleSymbol(symbol));
         });
     }
 
