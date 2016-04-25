@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AndroidUnitTests</string>
+    <string name="not_implemented">Not yet implemented</string>
 
     <string name="decimal_symbol">.</string>
     <string name="left_paren">(</string>

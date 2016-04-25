@@ -60,6 +60,13 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
             R.id.right_paren
     }) List<Button> symbolButtons;
 
+    @Bind(value = {
+            R.id.decimal,
+            R.id.function_arg_separator,
+            R.id.divide_op,
+            R.id.delete_op
+    }) List<View> notImplementedButtons;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +84,10 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         ButterKnife.apply(symbolButtons, (button, index) -> {
             String symbol = button.getText().toString();
             button.setOnClickListener(v -> presenter.handleSymbol(symbol));
+        });
+
+        ButterKnife.apply(notImplementedButtons, (button, index) -> {
+            button.setOnClickListener(v -> Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show());
         });
     }
 
