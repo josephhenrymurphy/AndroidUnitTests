@@ -75,6 +75,8 @@ public class ExpressionConverter {
     public List<Input> convert(List<String> expression) {
         List<Input> inputs = new ArrayList<>();
         for(String input : expression) {
+            // Add * after ) if input is not an operator
+            // Ex: (5+3)2 -> (5+3)*2
             if(!isOperator(input)) {
                 if(!inputs.isEmpty() && inputs.get(inputs.size()-1) instanceof RightParenInput) {
                     inputs.add(new MultiplicationOperator());
@@ -82,12 +84,17 @@ public class ExpressionConverter {
             }
 
             if(isNumeric(input)) {
+
+                //Handle multi-digit numbers
                 if(isLastItemNumeric(inputs)) {
                     NumericInput lastNumber = (NumericInput) inputs.get(inputs.size()-1);
                     inputs.remove(lastNumber);
                     String numberString = lastNumber.getValue() + input;
                     inputs.add(new NumericInput(Integer.parseInt(numberString)));
-                } else if(isInputtingNegativeNumber(inputs)){
+                }
+
+                //Handle negative numbers
+                else if(isInputtingNegativeNumber(inputs)){
                     inputs.remove(inputs.get(inputs.size()-1));
                     String numberString = "-" + input;
                     inputs.add(new NumericInput(Integer.parseInt(numberString)));
@@ -98,7 +105,8 @@ public class ExpressionConverter {
                 inputs.add(operatorConverter.convert(input));
             } else if(isLeftParen(input)) {
 
-                // Add a multiplication operator for items preceding '(' that are not '(' or a function/operator
+                // Add * before ( if preceding input is not a function/operator
+                // Ex: 2(5+3) -> 2*(5+3)
                 if(!inputs.isEmpty() && !(
                         inputs.get(inputs.size()-1) instanceof LeftParenInput ||
                                 inputs.get(inputs.size()-1) instanceof FunctionInput ||
