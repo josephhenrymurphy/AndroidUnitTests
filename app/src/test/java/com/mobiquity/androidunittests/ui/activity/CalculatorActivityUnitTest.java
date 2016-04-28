@@ -54,7 +54,7 @@ public class CalculatorActivityUnitTest {
     @Test
     public void testShowSuccessfulCalculation_ChangesResultText() {
         String expectedResultText = "12";
-        calculatorActivity.showSuccessfulCalculation(expectedResultText);
+        calculatorActivity.showPassiveCalculation(expectedResultText);
 
         Assertions.assertThat(calculatorActivity.resultText)
                 .hasText(expectedResultText);

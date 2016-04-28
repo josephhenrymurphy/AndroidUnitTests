@@ -5,6 +5,7 @@ import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
 import com.mobiquity.androidunittests.converter.ExpressionConverter;
+import com.mobiquity.androidunittests.testutil.ReflectionUtil;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import org.junit.Before;
@@ -15,6 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.google.common.truth.Truth.assertAbout;
 import static com.google.common.truth.Truth.assertThat;
@@ -99,7 +101,7 @@ public class CalculatorPresenterTest {
     }
 
     @Test
-    public void testHandleInput_ShowSuccessfulCalculation() throws Exception{
+    public void testHandleEvaluatePassive_ShowPassiveCalculation() throws Exception{
         // Have the calculator throw exception until a successful calculation
         Mockito.when(calculator.evaluate(Mockito.any())).thenThrow(
                 new Calculator.CalculatorEvaluationException("Invalid Expression"));
@@ -120,7 +122,26 @@ public class CalculatorPresenterTest {
                 Arrays.asList(new NumericInput(3), new AdditionOperator(), new NumericInput(4)));
         presenter.handleNumber(4);
 
-        Mockito.verify(mockView).showSuccessfulCalculation(Mockito.eq("7"));
+        Mockito.verify(mockView).showPassiveCalculation(Mockito.eq("7"));
+    }
+
+    @Test
+    public void testHandleEvaluateExplicit_ShowsResult() throws Exception{
+        presenter.bind(mockView);
+        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100);
+        presenter.handleEvaluate();
+
+        Mockito.verify(mockView).showResult(Mockito.eq("100"));
+    }
+
+    @Test
+    public void testHandleEvaluateExplicit_UpdatesExpression() throws Exception {
+        presenter.bind(mockView);
+        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100);
+        presenter.handleEvaluate();
+
+        List<String> expression = ReflectionUtil.getField(presenter, "expression");
+        assertThat(expression).containsExactly("1", "0", "0").inOrder();
     }
 
     private void configureExpressionConverterNormalization() {

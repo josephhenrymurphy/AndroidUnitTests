@@ -151,7 +151,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     }
 
     @Override
-    public void showSuccessfulCalculation(String result) {
+    public void showPassiveCalculation(String result) {
         resultText.setText(result);
     }
 

@@ -2,17 +2,12 @@ package com.mobiquity.androidunittests.ui.presenter;
 
 import com.mobiquity.androidunittests.calculator.Calculator;
 import com.mobiquity.androidunittests.calculator.input.Input;
-import com.mobiquity.androidunittests.calculator.input.operator.Operator;
-import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 import com.mobiquity.androidunittests.converter.ExpressionConverter;
-import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
-import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -72,12 +67,12 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
             List<Input> inputs = expressionConverter.convert(expression);
             int result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
             if (isResult) {
-                expression.clear();
-                expression.add(Integer.toString(result));
+                expression = new ArrayList<>(Arrays.asList(Integer.toString(result).split("")));
+                expression.remove("");
                 view().showResult(Integer.toString(result));
             } else {
                 if(inputs.size() > 1) {
-                    view().showSuccessfulCalculation(Integer.toString(result));
+                    view().showPassiveCalculation(Integer.toString(result));
                 }
             }
         } catch (Calculator.CalculatorEvaluationException e) {
