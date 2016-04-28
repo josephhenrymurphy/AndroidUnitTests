@@ -82,13 +82,36 @@ public class CalculatorActivityTest {
     }
 
     @Test
-    public void testClickWolframButton_ShouldStartWolframActivity() {
+    public void shouldEvaluateExpressionsWhileTyping() {
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.add_op)).perform(click());
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.display_result)).check(matches(withText("2")));
+
+        onView(withId(R.id.add_op)).perform(click());
+        onView(withId(R.id.digit_2)).perform(click());
+        onView(withId(R.id.display_result)).check(matches(withText("4")));
+    }
+
+    @Test
+    public void testClickDeleteButton_shouldDeleteItemsInDisplay() {
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.display_input)).check(matches(withText("11")));
+
+        onView(withId(R.id.delete_op)).perform(click());
+        onView(withId(R.id.display_input)).check(matches(withText("1")));
+    }
+
+    @Test
+    public void testClickWolframButton_ShouldStartWolframMode() {
         Intents.init();
         onView(withId(R.id.handle)).perform(click());
         onView(withId(R.id.extra_button_wolfram)).perform(click());
         intended(hasComponent(WolframActivity.class.getName()));
         Intents.release();
     }
+
 
     @After
     public void tearDown() {

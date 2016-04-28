@@ -37,20 +37,16 @@ public class CalculatorPresenterTest {
 
     @Test
     public void testHandleNumber_UpdatesDisplay() {
-        Mockito.when(expressionConverter.normalize(Mockito.anyList())).thenReturn(
-                Arrays.asList("3")
-        );
+        configureExpressionConverterNormalization();
         presenter.bind(mockView);
         presenter.handleNumber(3);
 
-        Mockito.verify(mockView).updateDisplayText(Mockito.eq("3"));
+        Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("3"));
     }
 
     @Test
     public void testHandleOperator_UpdatesDisplay() {
-        Mockito.when(expressionConverter.normalize(Mockito.anyList())).thenReturn(
-                Arrays.asList("-")
-        );
+        configureExpressionConverterNormalization();
         presenter.bind(mockView);
         presenter.handleOperator("-");
 
@@ -59,9 +55,7 @@ public class CalculatorPresenterTest {
 
     @Test
     public void testHandleSymbol_UpdatesDisplay() {
-        Mockito.when(expressionConverter.normalize(Mockito.anyList())).thenReturn(
-                Arrays.asList("(")
-        );
+        configureExpressionConverterNormalization();
         presenter.bind(mockView);
         presenter.handleSymbol("(");
 
@@ -69,13 +63,29 @@ public class CalculatorPresenterTest {
     }
 
     @Test
-    public void testHandleEvaluate_GivesCorrectInputToCalculator() throws Exception{
+    public void testHandleDelete_UpdatesDisplay() {
+        configureExpressionConverterNormalization();
+
+        presenter.bind(mockView);
+        presenter.handleNumber(3);
+        presenter.handleNumber(4);
+        Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("34"));
+
+        presenter.handleDelete();
+        Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("3"));
+    }
+
+    @Test
+    public void testHandleEvaluate_GivesCorrectInputToCalculator() throws Exception {
+        // Mock that the user has entered 3 + 4 already in the calculator
         Mockito.when(expressionConverter.convert(Mockito.anyList())).thenReturn(
-                Arrays.asList(new NumericInput(3),
+                Arrays.asList(
+                        new NumericInput(3),
                         new AdditionOperator(),
                         new NumericInput(4)
                 )
         );
+
         presenter.bind(mockView);
         presenter.handleEvaluate();
         ArgumentCaptor<Input[]> argumentCaptor = ArgumentCaptor.forClass(Input[].class);
@@ -93,8 +103,8 @@ public class CalculatorPresenterTest {
         // Have the calculator throw exception until a successful calculation
         Mockito.when(calculator.evaluate(Mockito.any())).thenThrow(
                 new Calculator.CalculatorEvaluationException("Invalid Expression"));
-        presenter.bind(mockView);
 
+        presenter.bind(mockView);
         Mockito.when(expressionConverter.convert(Mockito.any())).thenReturn(
                 Arrays.asList(new NumericInput(3)));
         presenter.handleNumber(3);
@@ -113,5 +123,10 @@ public class CalculatorPresenterTest {
         Mockito.verify(mockView).showSuccessfulCalculation(Mockito.eq("7"));
     }
 
+    private void configureExpressionConverterNormalization() {
+        Mockito.when(expressionConverter.normalize(Mockito.anyList())).thenAnswer(
+                invocation -> invocation.getArguments()[0]
+        );
+    }
 
 }

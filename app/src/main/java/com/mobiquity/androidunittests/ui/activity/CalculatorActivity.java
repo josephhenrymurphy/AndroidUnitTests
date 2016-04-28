@@ -63,8 +63,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Bind(value = {
             R.id.decimal,
             R.id.function_arg_separator,
-            R.id.divide_op,
-            R.id.delete_op
+            R.id.divide_op
     }) List<View> notImplementedButtons;
 
     @Override
@@ -116,6 +115,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         if(resultAnimator != null) {
             resultAnimator.end();
         }
+    }
+
+    @OnClick(R.id.delete_op)
+    void onClickDeleteButton() {
+        presenter.handleDelete();
     }
 
     @OnClick(R.id.eq)
