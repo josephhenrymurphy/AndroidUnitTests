@@ -123,4 +123,10 @@ public class CalculatorActivityUnitTest {
         Mockito.verify(calculatorActivity.presenter).handleEvaluate();
     }
 
+    @Test
+    public void testOnClickDeleteButton_StartsHandlingDelete() {
+        ButterKnife.findById(calculatorActivity, R.id.delete_op).performClick();
+        Mockito.verify(calculatorActivity.presenter).handleDelete();
+    }
+
 }
