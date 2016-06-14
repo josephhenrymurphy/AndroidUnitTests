@@ -127,6 +127,17 @@ public class CalculatorTest {
         assertThat(result).isWithin(0.0);
     }
 
+    @Test
+    public void testEvaluate_ReturnsNonNegativeZero() throws Exception {
+        Input[] input = new Input[] {
+                new NumericInput(-0.0)
+        };
+        mockPostFix(input, input);
+        double result = calculator.evaluate(input);
+        assertThat(result).isGreaterThan(-0.0);
+
+    }
+
     private void mockPostFix(Input[] input, Input[] postfixInput) {
         Mockito.when(infixInputParser.toPostfix(input)).thenReturn(
                 new LinkedList<>(Arrays.asList(postfixInput))

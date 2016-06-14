@@ -61,7 +61,7 @@ public class Calculator {
                 }
             }
 
-            return stack.pop();
+            return stack.pop() + 0.0;
         } catch (EmptyStackException | InfixInputParser.InputParserException e) {
             throw new CalculatorEvaluationException("Invalid Expression");
         }
