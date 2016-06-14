@@ -119,6 +119,14 @@ public class CalculatorTest {
         calculator.evaluate(input);
     }
 
+    @Test
+    public void testEvaluate_EmptyExpressionReturnsZero() throws Exception {
+        Input[] input = new Input[]{};
+        mockPostFix(input, input);
+        int result = calculator.evaluate(input);
+        assertThat(result).isEqualTo(0);
+    }
+
     private void mockPostFix(Input[] input, Input[] postfixInput) {
         Mockito.when(infixInputParser.toPostfix(input)).thenReturn(
                 new LinkedList<>(Arrays.asList(postfixInput))

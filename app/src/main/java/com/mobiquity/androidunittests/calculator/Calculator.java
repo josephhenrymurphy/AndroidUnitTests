@@ -17,7 +17,6 @@ import timber.log.Timber;
 public class Calculator {
 
     private InfixInputParser infixInputParser;
-    private int currentResult;
 
     public static class CalculatorEvaluationException extends Exception {
         public CalculatorEvaluationException(String message) {
@@ -29,7 +28,6 @@ public class Calculator {
     @Inject
     public Calculator(InfixInputParser infixInputParser) {
         this.infixInputParser = infixInputParser;
-        currentResult = 0;
     }
 
     public int evaluate(Input[] inputs) throws CalculatorEvaluationException {
@@ -38,7 +36,7 @@ public class Calculator {
 
             // Return current result if there are no inputs to evaluate
             if (postfixInputs.isEmpty()) {
-                return currentResult;
+                return 0;
             }
 
             Stack<Integer> stack = new Stack<>();
@@ -63,9 +61,7 @@ public class Calculator {
                 }
             }
 
-            currentResult = stack.pop();
-
-            return currentResult;
+            return stack.pop();
         } catch (EmptyStackException | InfixInputParser.InputParserException e) {
             throw new CalculatorEvaluationException("Invalid Expression");
         }
