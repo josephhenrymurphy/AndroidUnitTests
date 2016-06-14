@@ -56,10 +56,10 @@ public class AdditionOperatorTest {
 
     @Test
     public void testExecute_ShouldAddOperands() {
-        assertThat(additionOperator.execute(2,3)).isEqualTo(5);
-        assertThat(additionOperator.execute(0,10)).isEqualTo(10);
-        assertThat(additionOperator.execute(10,-10)).isEqualTo(0);
-        assertThat(additionOperator.execute(-2,-3)).isEqualTo(-5);
+        assertThat(additionOperator.execute(2,3)).isWithin(5);
+        assertThat(additionOperator.execute(0,10)).isWithin(10);
+        assertThat(additionOperator.execute(10,-10)).isWithin(0);
+        assertThat(additionOperator.execute(-2,-3)).isWithin(-5);
     }
 
 }

@@ -13,6 +13,7 @@ import com.mobiquity.androidunittests.calculator.input.operator.NoOpOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,17 +95,17 @@ public class ExpressionConverter {
                 if(isLastItemNumeric(inputs)) {
                     NumericInput lastNumber = (NumericInput) inputs.get(inputs.size()-1);
                     inputs.remove(lastNumber);
-                    String numberString = lastNumber.getValue() + input;
-                    inputs.add(new NumericInput(Integer.parseInt(numberString)));
+                    String numberString = lastNumber.getDisplayString() + input;
+                    inputs.add(new NumericInput(Double.parseDouble(numberString)));
                 }
 
                 //Handle negative numbers
                 else if(isInputtingNegativeNumber(inputs)){
                     inputs.remove(inputs.get(inputs.size()-1));
                     String numberString = "-" + input;
-                    inputs.add(new NumericInput(Integer.parseInt(numberString)));
+                    inputs.add(new NumericInput(Double.parseDouble(numberString)));
                 } else {
-                    inputs.add(new NumericInput(Integer.parseInt(input)));
+                    inputs.add(new NumericInput(Double.parseDouble(input)));
                 }
             } else if(isOperator(input)) {
                 inputs.add(operatorConverter.convert(input));

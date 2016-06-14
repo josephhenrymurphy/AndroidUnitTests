@@ -36,7 +36,7 @@ public class CalculatorTest {
                 new AdditionOperator(),
                 new NumericInput(4)
         };
-        int expectedResult = 7;
+        double expectedResult = 7;
 
         // Assume the infix input parser works and provide the correct postfix for the input
         Input[] postfixInput = new Input[] {
@@ -46,8 +46,8 @@ public class CalculatorTest {
         };
         mockPostFix(input, postfixInput);
 
-        int result = calculator.evaluate(input);
-        assertThat(result).isEqualTo(expectedResult);
+        double result = calculator.evaluate(input);
+        assertThat(result).isWithin(expectedResult);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class CalculatorTest {
                 new SubtractionOperator(),
                 new NumericInput(5)
         };
-        int expectedResult = -3;
+        double expectedResult = -3;
 
         // Assume the infix input parser works and provide the correct postfix for the input
         Input[] postfixInput = new Input[] {
@@ -72,8 +72,8 @@ public class CalculatorTest {
         };
         mockPostFix(input, postfixInput);
 
-        int result = calculator.evaluate(input);
-        assertThat(result).isEqualTo(expectedResult);
+        double result = calculator.evaluate(input);
+        assertThat(result).isWithin(expectedResult);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class CalculatorTest {
                 new MultiplicationOperator(),
                 new NumericInput(3)
         };
-        int expectedResult = 7;
+        double expectedResult = 7;
 
         // Assume the infix input parser works and provide the correct postfix for the input
         Input[] postfixInput = new Input[] {
@@ -99,8 +99,8 @@ public class CalculatorTest {
         };
         mockPostFix(input, postfixInput);
 
-        int result = calculator.evaluate(input);
-        assertThat(result).isEqualTo(expectedResult);
+        double result = calculator.evaluate(input);
+        assertThat(result).isWithin(expectedResult);
     }
 
     @Test(expected = Calculator.CalculatorEvaluationException.class)
@@ -123,8 +123,8 @@ public class CalculatorTest {
     public void testEvaluate_EmptyExpressionReturnsZero() throws Exception {
         Input[] input = new Input[]{};
         mockPostFix(input, input);
-        int result = calculator.evaluate(input);
-        assertThat(result).isEqualTo(0);
+        double result = calculator.evaluate(input);
+        assertThat(result).isWithin(0.0);
     }
 
     private void mockPostFix(Input[] input, Input[] postfixInput) {

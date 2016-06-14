@@ -9,7 +9,7 @@ public class MultiplicationOperator extends Operator {
     }
 
     @Override
-    public int execute(int param1, int param2) {
+    public double execute(double param1, double param2) {
         return multiply(param1, param2);
     }
 
@@ -24,7 +24,7 @@ public class MultiplicationOperator extends Operator {
     }
 
 
-    private int multiply(int param1, int param2) {
+    private double multiply(double param1, double param2) {
         return param1 * param2;
     }
 }

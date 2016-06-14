@@ -117,7 +117,7 @@ public class CalculatorPresenterTest {
 
         // Setup the calculator to return a valid result
         Mockito.reset(calculator);
-        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(7);
+        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(7.0);
         Mockito.when(expressionConverter.convert(Mockito.any())).thenReturn(
                 Arrays.asList(new NumericInput(3), new AdditionOperator(), new NumericInput(4)));
         presenter.handleNumber(4);
@@ -128,7 +128,7 @@ public class CalculatorPresenterTest {
     @Test
     public void testHandleEvaluateExplicit_ShowsResult() throws Exception{
         presenter.bind(mockView);
-        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100);
+        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100.0);
         presenter.handleEvaluate();
 
         Mockito.verify(mockView).showResult(Mockito.eq("100"));
@@ -137,7 +137,7 @@ public class CalculatorPresenterTest {
     @Test
     public void testHandleEvaluateExplicit_UpdatesExpression() throws Exception {
         presenter.bind(mockView);
-        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100);
+        Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(100.0);
         presenter.handleEvaluate();
 
         List<String> expression = ReflectionUtil.getField(presenter, "expression");

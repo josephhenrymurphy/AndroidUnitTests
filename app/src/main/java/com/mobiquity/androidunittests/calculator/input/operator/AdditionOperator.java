@@ -9,7 +9,7 @@ public class AdditionOperator extends Operator {
     }
 
     @Override
-    public int execute(int param1, int param2) {
+    public double execute(double param1, double param2) {
         return add(param1, param2);
     }
 
@@ -23,7 +23,7 @@ public class AdditionOperator extends Operator {
         return true;
     }
 
-    private int add(int firstAddend, int secondAddend) {
+    private double add(double firstAddend, double secondAddend) {
         return firstAddend + secondAddend;
     }
 
