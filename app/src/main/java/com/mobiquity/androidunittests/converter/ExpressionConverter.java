@@ -18,6 +18,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/**
+ * Class responsible for normalizing calculator expression input
+ * as well as converting a string expression to a list of inputs
+ * for the calculator
+ */
 public class ExpressionConverter {
 
     private SymbolToOperatorConverter operatorConverter;
