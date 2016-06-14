@@ -30,7 +30,7 @@ public class Calculator {
         this.infixInputParser = infixInputParser;
     }
 
-    public int evaluate(Input[] inputs) throws CalculatorEvaluationException {
+    public double evaluate(Input[] inputs) throws CalculatorEvaluationException {
         try {
             Queue<Input> postfixInputs = infixInputParser.toPostfix(inputs);
 
@@ -39,7 +39,7 @@ public class Calculator {
                 return 0;
             }
 
-            Stack<Integer> stack = new Stack<>();
+            Stack<Double> stack = new Stack<>();
             for (Input input : postfixInputs) {
                 switch (input.getType()) {
                     case NUMBER:
@@ -48,10 +48,10 @@ public class Calculator {
                         break;
                     case OPERATOR:
                         Operator operator = (Operator) input;
-                        int secondOperand = stack.pop();
-                        int firstOperand = stack.pop();
+                        double secondOperand = stack.pop();
+                        double firstOperand = stack.pop();
 
-                        int result = operator.isLeftAssociative() ?
+                        double result = operator.isLeftAssociative() ?
                                 operator.execute(firstOperand, secondOperand) :
                                 operator.execute(secondOperand, firstOperand);
 
@@ -61,7 +61,7 @@ public class Calculator {
                 }
             }
 
-            return stack.pop();
+            return stack.pop() + 0.0;
         } catch (EmptyStackException | InfixInputParser.InputParserException e) {
             throw new CalculatorEvaluationException("Invalid Expression");
         }

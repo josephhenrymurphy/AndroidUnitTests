@@ -8,7 +8,7 @@ public abstract class Operator extends Input {
         super(value, type);
     }
 
-    public abstract int execute(int param1, int param2);
+    public abstract double execute(double param1, double param2);
     public abstract int getPrecedence();
     public abstract boolean isLeftAssociative();
 

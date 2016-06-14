@@ -1,10 +1,12 @@
 package com.mobiquity.androidunittests.ui.presenter;
 
 import com.mobiquity.androidunittests.calculator.Calculator;
+import com.mobiquity.androidunittests.calculator.CalculatorConstants;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.converter.ExpressionConverter;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,16 +65,17 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     private void evaluate(boolean isResult) {
+        DecimalFormat decimalFormat = CalculatorConstants.DECIMAL_FORMAT;
         try {
             List<Input> inputs = expressionConverter.convert(expression);
-            int result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
+            double result = calculator.evaluate(inputs.toArray(new Input[inputs.size()]));
             if (isResult) {
-                expression = new ArrayList<>(Arrays.asList(Integer.toString(result).split("")));
+                expression = new ArrayList<>(Arrays.asList(decimalFormat.format(result).split("")));
                 expression.remove("");
-                view().showResult(Integer.toString(result));
+                view().showResult(decimalFormat.format(result));
             } else {
                 if(inputs.size() > 1) {
-                    view().showPassiveCalculation(Integer.toString(result));
+                    view().showPassiveCalculation(decimalFormat.format(result));
                 }
             }
         } catch (Calculator.CalculatorEvaluationException e) {

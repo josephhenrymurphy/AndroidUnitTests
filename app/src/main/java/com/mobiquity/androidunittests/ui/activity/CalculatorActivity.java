@@ -57,11 +57,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
     @Bind(value = {
             R.id.left_paren,
-            R.id.right_paren
+            R.id.right_paren,
+            R.id.decimal
     }) List<Button> symbolButtons;
 
     @Bind(value = {
-            R.id.decimal,
             R.id.function_arg_separator,
             R.id.divide_op
     }) List<View> notImplementedButtons;

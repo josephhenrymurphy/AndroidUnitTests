@@ -1,13 +1,18 @@
 package com.mobiquity.androidunittests.calculator.input;
 
-public class NumericInput extends Input {
+import com.mobiquity.androidunittests.calculator.CalculatorConstants;
 
-    public NumericInput(int value) {
+public class NumericInput extends Input {
+    public NumericInput(String value) {
         super(value, InputType.NUMBER);
     }
 
-    public int getValue() {
-        return Integer.parseInt(value);
+    public NumericInput(double value) {
+        super(CalculatorConstants.DECIMAL_FORMAT.format(value), InputType.NUMBER);
+    }
+
+    public double getValue() {
+        return Double.parseDouble(value);
     }
 
     @Override

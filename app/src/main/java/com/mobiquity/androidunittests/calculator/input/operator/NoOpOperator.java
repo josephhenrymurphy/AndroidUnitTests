@@ -1,6 +1,5 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
-import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.InputType;
 
 /**
@@ -12,7 +11,7 @@ public class NoOpOperator extends Operator {
     }
 
     @Override
-    public int execute(int param1, int param2) {
+    public double execute(double param1, double param2) {
         return param1;
     }
 

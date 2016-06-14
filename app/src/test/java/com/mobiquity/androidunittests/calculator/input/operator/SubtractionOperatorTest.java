@@ -57,10 +57,10 @@ public class SubtractionOperatorTest {
 
     @Test
     public void testExecute_ShouldSubtractOperands() {
-        assertThat(subtractionOperator.execute(2,3)).isEqualTo(-1);
-        assertThat(subtractionOperator.execute(0,10)).isEqualTo(-10);
-        assertThat(subtractionOperator.execute(10,-10)).isEqualTo(20);
-        assertThat(subtractionOperator.execute(-2,-3)).isEqualTo(1);
+        assertThat(subtractionOperator.execute(2,3)).isWithin(-1);
+        assertThat(subtractionOperator.execute(0,10)).isWithin(-10);
+        assertThat(subtractionOperator.execute(10,-10)).isWithin(20);
+        assertThat(subtractionOperator.execute(-2,-3)).isWithin(1);
     }
 
 }
