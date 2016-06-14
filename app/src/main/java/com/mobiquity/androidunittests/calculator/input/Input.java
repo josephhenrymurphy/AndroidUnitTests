@@ -10,6 +10,10 @@ public abstract class Input {
         this.type = type;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     public String getDisplayString() {
         return value;
     }

@@ -1,6 +1,7 @@
 package com.mobiquity.androidunittests.converter;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.mobiquity.androidunittests.calculator.input.FunctionInput;
 import com.mobiquity.androidunittests.calculator.input.Input;
@@ -39,7 +40,14 @@ public class ExpressionConverter {
         List<String> normalizedExpression = new ArrayList<>();
         for(int i = 0; i < expression.size(); i++) {
             String item = expression.get(i);
-            if(isOperator(item)) {
+            if(isDecimal(item)) {
+                // Don't allow multiple decimals per number
+                final int lastDecimalIndex = normalizedExpression.lastIndexOf(".");
+                if(lastDecimalIndex != -1 &&  containsDigitsOrDecimalOnly(normalizedExpression, lastDecimalIndex)) {
+                    continue;
+                }
+                normalizedExpression.add(item);
+            } else if(isOperator(item)) {
                 Operator operator = operatorConverter.convert(item);
                 if(operator instanceof AdditionOperator || operator instanceof MultiplicationOperator) {
                     // Don't allow leading operator
@@ -96,7 +104,8 @@ public class ExpressionConverter {
                     NumericInput lastNumber = (NumericInput) inputs.get(inputs.size()-1);
                     inputs.remove(lastNumber);
                     String numberString = lastNumber.getDisplayString() + input;
-                    inputs.add(new NumericInput(Double.parseDouble(numberString)));
+                    lastNumber.setValue(numberString);
+                    inputs.add(lastNumber);
                 }
 
                 //Handle negative numbers
@@ -122,12 +131,35 @@ public class ExpressionConverter {
                     inputs.add(new MultiplicationOperator());
                 }
                 inputs.add(inputConverter.convert(input));
-            } else if(isInput(input)) {
+            } else if(isDecimal(input)) {
+                NumericInput decimalNumber;
+                if(!inputs.isEmpty()) {
+                        if(inputs.get(inputs.size()-1) instanceof NumericInput) {
+                            decimalNumber = (NumericInput) inputs.get(inputs.size()-1);
+                            inputs.remove(decimalNumber);
+                        }
+                        // Remove Subtraction operator for inputting negative decimals
+                        else if(isInputtingNegativeNumber(inputs)) {
+                            inputs.remove(inputs.size()-1);
+                            decimalNumber = new NumericInput("-0");
+                        } else{
+                            decimalNumber = new NumericInput(0);
+                        }
+                } else {
+                    decimalNumber = new NumericInput(0);
+                }
+                decimalNumber.setValue(decimalNumber.getDisplayString() + input);
+                inputs.add(decimalNumber);
+            } else {
                 inputs.add(inputConverter.convert(input));
             }
         }
 
         return inputs;
+    }
+
+    private boolean isDecimal(String input) {
+        return input.equals(".");
     }
 
     private boolean isNumeric(String input) {
@@ -138,6 +170,16 @@ public class ExpressionConverter {
         }
         return true;
     }
+
+    private boolean containsDigitsOrDecimalOnly(List<String>inputs, int startIndex) {
+        for(int i = startIndex; i < inputs.size(); i++) {
+            if(!isNumeric(inputs.get(i)) && !isDecimal(inputs.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     private boolean isOperator(String input) {
         return !(operatorConverter.convert(input) instanceof NoOpOperator);

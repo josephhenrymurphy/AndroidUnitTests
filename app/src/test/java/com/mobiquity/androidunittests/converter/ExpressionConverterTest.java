@@ -115,6 +115,19 @@ public class ExpressionConverterTest {
     }
 
     @Test
+    public void testNormalize_DontAllowMultipleDecimalPointsPerNumber() {
+        List<String> originalInput = Arrays.asList("3", ".", ".");
+        List<String> expectedNormalizedInput = Arrays.asList("3",".");
+        List<String> normalizedInput = expressionConverter.normalize(originalInput);
+        assertThat(normalizedInput).containsExactlyElementsIn(expectedNormalizedInput);
+
+        originalInput = Arrays.asList(".", "3", ".");
+        expectedNormalizedInput = Arrays.asList(".","3");
+        normalizedInput = expressionConverter.normalize(originalInput);
+        assertThat(normalizedInput).containsExactlyElementsIn(expectedNormalizedInput);
+    }
+
+    @Test
     public void testConvert_SingleDigitNumber() {
         List<String> normalizedInput = Arrays.asList("3");
         List<Input> expectedConvertedInput = Arrays.asList(new NumericInput(3));
@@ -226,6 +239,50 @@ public class ExpressionConverterTest {
 
         List<Input> convertedInput = expressionConverter.convert(normalizedInput);
 
+        assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
+    }
+
+    @Test
+    public void testConvert_DecimalNumber_LeadingNumber() {
+        List<String> normalizedInput = Arrays.asList("3", ".", "5");
+        List<Input> expectedConvertedInput = Arrays.asList(
+            new NumericInput(3.5)
+        );
+
+        List<Input> convertedInput = expressionConverter.convert(normalizedInput);
+        assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
+    }
+
+    @Test
+    public void testConvert_DecimalNumber_LeadingNumber_Negative() {
+        List<String> normalizedInput = Arrays.asList("-", "3", ".", "5");
+        List<Input> expectedConvertedInput = Arrays.asList(
+                new NumericInput(-3.5)
+        );
+
+        List<Input> convertedInput = expressionConverter.convert(normalizedInput);
+        assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
+    }
+
+    @Test
+    public void testConvert_DecimalNumber_NoLeadingNumber() {
+        List<String> normalizedInput = Arrays.asList(".", "5");
+        List<Input> expectedConvertedInput = Arrays.asList(
+                new NumericInput(0.5)
+        );
+
+        List<Input> convertedInput = expressionConverter.convert(normalizedInput);
+        assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
+    }
+
+    @Test
+    public void testConvert_DecimalNumber_NoLeadingNumber_Negative() {
+        List<String> normalizedInput = Arrays.asList("-", ".", "5");
+        List<Input> expectedConvertedInput = Arrays.asList(
+                new NumericInput(-0.5)
+        );
+
+        List<Input> convertedInput = expressionConverter.convert(normalizedInput);
         assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
     }
 
