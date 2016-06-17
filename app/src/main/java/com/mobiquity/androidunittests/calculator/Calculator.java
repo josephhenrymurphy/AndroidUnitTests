@@ -63,7 +63,7 @@ public class Calculator {
 
             // prevents calculator from returning -0
             return stack.pop() + 0.0;
-        } catch (EmptyStackException | InfixInputParser.InputParserException e) {
+        } catch (EmptyStackException | InfixInputParser.InputParserException | NumberFormatException e) {
             throw new CalculatorEvaluationException("Invalid Expression");
         }
     }

@@ -48,6 +48,7 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     public void handleSymbol(String symbol) {
         expression.add(symbol);
+        expression = expressionConverter.normalize(expression);
         view().updateDisplayText(getDisplayString());
         evaluate(false);
     }
