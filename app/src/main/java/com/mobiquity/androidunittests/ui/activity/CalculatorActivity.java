@@ -69,9 +69,8 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        calculatorComponent = prepareComponent();
         calculatorComponent.inject(this);
-        setContentView(viewWrapper.wrap(getLayoutInflater().inflate(R.layout.activity_calculator, null)));
+        setContentView(R.layout.activity_calculator, true);
         ButterKnife.bind(this);
 
         numericPad.addOnNumberClickedListener(number -> presenter.handleNumber(number));
@@ -91,10 +90,13 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     }
 
     @Override
-    protected CalculatorComponent prepareComponent() {
-        return DaggerCalculatorComponent.builder()
-                .appComponent(CalculatorApplication.getAppComponent(this))
-                .build();
+    protected CalculatorComponent getComponent() {
+        if(calculatorComponent == null) {
+            calculatorComponent = DaggerCalculatorComponent.builder()
+                    .appComponent(CalculatorApplication.getAppComponent(this))
+                    .build();
+        }
+        return calculatorComponent;
     }
 
     @Override

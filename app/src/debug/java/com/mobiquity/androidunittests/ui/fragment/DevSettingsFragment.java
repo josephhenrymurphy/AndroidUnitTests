@@ -48,11 +48,22 @@ public class DevSettingsFragment extends Fragment implements DevView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        presenter.bind(this);
 
         buildFlavorText.setText(BuildConfig.FLAVOR);
         buildVersionCodeText.setText(String.valueOf(BuildConfig.VERSION_CODE));
         buildVersionNameText.setText(BuildConfig.VERSION_NAME);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.bind(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unbind();
     }
 
     @OnCheckedChanged(R.id.leak_canary_switch)
@@ -75,9 +86,4 @@ public class DevSettingsFragment extends Fragment implements DevView {
         Toast.makeText(getContext(), R.string.app_restart_message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        presenter.unbind();
-    }
 }

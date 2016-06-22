@@ -13,6 +13,7 @@ import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.di.components.DaggerWolframComponent;
 import com.mobiquity.androidunittests.di.components.WolframComponent;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
+import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.adapter.WolframPodAdapter;
 import com.mobiquity.androidunittests.ui.mvpview.WolframView;
 import com.mobiquity.androidunittests.ui.presenter.WolframPresenter;
@@ -41,9 +42,8 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wolframComponent = prepareComponent();
         wolframComponent.inject(this);
-        setContentView(R.layout.activity_wolfram);
+        setContentView(R.layout.activity_wolfram, true);
         ButterKnife.bind(this);
 
         podList.setLayoutManager(new LinearLayoutManager(this));
@@ -52,10 +52,13 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     }
 
     @Override
-    protected WolframComponent prepareComponent() {
-        return DaggerWolframComponent.builder()
-                .appComponent(CalculatorApplication.getAppComponent(this))
-                .build();
+    protected WolframComponent getComponent() {
+        if(wolframComponent == null) {
+            wolframComponent =  DaggerWolframComponent.builder()
+                    .appComponent(CalculatorApplication.getAppComponent(this))
+                    .build();
+        }
+        return wolframComponent;
     }
 
     @Override
