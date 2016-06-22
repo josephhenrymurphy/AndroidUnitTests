@@ -43,6 +43,7 @@ public class AdditionOperatorTest {
     public void testGetType_IsAnOperator() {
         assertThat(additionOperator.getType()).isEqualTo(InputType.OPERATOR);
     }
+
     @Test
     public void testGetPrecedence_IsEqualToAdditionPrecedence() {
         assertThat(additionOperator.getPrecedence())
