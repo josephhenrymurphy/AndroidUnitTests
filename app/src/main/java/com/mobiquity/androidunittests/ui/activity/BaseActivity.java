@@ -14,12 +14,15 @@ public abstract class BaseActivity<C extends BaseComponent> extends AppCompatAct
 
     @Inject ViewWrapper viewWrapper;
 
-    abstract protected C getComponent();
+    protected C component;
+    abstract protected C buildComponent();
+    protected void injectDependencies(){}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getComponent();
+        component = (component == null ? buildComponent() : component);
+        injectDependencies();
     }
 
     protected void setContentView(@LayoutRes int layoutResID, boolean showDevDrawer) {
@@ -29,4 +32,6 @@ public abstract class BaseActivity<C extends BaseComponent> extends AppCompatAct
             super.setContentView(layoutResID);
         }
     }
+
+
 }
