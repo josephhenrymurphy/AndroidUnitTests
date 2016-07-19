@@ -7,7 +7,7 @@ An android calculator application that showcases the following:
 * Unit testing with [Robolectric](https://github.com/robolectric/robolectric) and [Mockito](http://mockito.org/)
 * Functional UI tests using Espresso and [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)
 * Code coverage with JaCoCo
-* 
+
 ### Requirements
 
 This project uses retrolambda for those sweet Java 8 lambda functions and method references.  Thus, you will need to have Java 8 installed on your machine. Set the JAVA8_HOME environment variable, and you should be good to go!
