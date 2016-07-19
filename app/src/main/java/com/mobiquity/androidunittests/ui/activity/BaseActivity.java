@@ -17,10 +17,6 @@ public abstract class BaseActivity<C extends BaseComponent> extends AppCompatAct
     protected C component;
     abstract protected C buildComponent();
     protected void injectDependencies(){}
-    protected void setComponent(C component) {
-        this.component = component;
-        injectDependencies();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
