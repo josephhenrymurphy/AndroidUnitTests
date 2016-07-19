@@ -30,8 +30,6 @@ import butterknife.OnEditorAction;
 public class WolframActivity extends BaseActivity<WolframComponent>
     implements WolframView {
 
-    private WolframComponent wolframComponent;
-
     @Bind(R.id.wolfram_input) EditText queryInput;
     @Bind(R.id.wolfram_submit) ImageButton wolframSubmitButton;
     @Bind(R.id.wolfram_pod_list) RecyclerView podList;
@@ -42,7 +40,7 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wolframComponent.inject(this);
+        component.inject(this);
         setContentView(R.layout.activity_wolfram, true);
         ButterKnife.bind(this);
 
@@ -52,13 +50,10 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     }
 
     @Override
-    protected WolframComponent getComponent() {
-        if(wolframComponent == null) {
-            wolframComponent =  DaggerWolframComponent.builder()
+    protected WolframComponent buildComponent() {
+        return DaggerWolframComponent.builder()
                     .appComponent(CalculatorApplication.getAppComponent(this))
                     .build();
-        }
-        return wolframComponent;
     }
 
     @Override

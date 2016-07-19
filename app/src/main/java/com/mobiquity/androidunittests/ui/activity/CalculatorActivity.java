@@ -38,7 +38,6 @@ import butterknife.OnClick;
 public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         implements CalculatorView {
 
-    private CalculatorComponent calculatorComponent;
     private Animator resultAnimator;
 
     @Inject ViewWrapper viewWrapper;
@@ -69,7 +68,7 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        calculatorComponent.inject(this);
+        component.inject(this);
         setContentView(R.layout.activity_calculator, true);
         ButterKnife.bind(this);
 
@@ -90,13 +89,10 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     }
 
     @Override
-    protected CalculatorComponent getComponent() {
-        if(calculatorComponent == null) {
-            calculatorComponent = DaggerCalculatorComponent.builder()
+    protected CalculatorComponent buildComponent() {
+        return DaggerCalculatorComponent.builder()
                     .appComponent(CalculatorApplication.getAppComponent(this))
                     .build();
-        }
-        return calculatorComponent;
     }
 
     @Override
