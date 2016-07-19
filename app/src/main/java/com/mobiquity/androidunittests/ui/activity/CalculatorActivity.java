@@ -68,7 +68,6 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        component.inject(this);
         setContentView(R.layout.activity_calculator, true);
         ButterKnife.bind(this);
 
@@ -93,6 +92,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         return DaggerCalculatorComponent.builder()
                     .appComponent(CalculatorApplication.getAppComponent(this))
                     .build();
+    }
+
+    @Override
+    protected void injectDependencies() {
+        component.inject(this);
     }
 
     @Override

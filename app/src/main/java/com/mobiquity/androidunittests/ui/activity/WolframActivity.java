@@ -40,7 +40,6 @@ public class WolframActivity extends BaseActivity<WolframComponent>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        component.inject(this);
         setContentView(R.layout.activity_wolfram, true);
         ButterKnife.bind(this);
 
@@ -54,6 +53,11 @@ public class WolframActivity extends BaseActivity<WolframComponent>
         return DaggerWolframComponent.builder()
                     .appComponent(CalculatorApplication.getAppComponent(this))
                     .build();
+    }
+
+    @Override
+    protected void injectDependencies() {
+        component.inject(this);
     }
 
     @Override
