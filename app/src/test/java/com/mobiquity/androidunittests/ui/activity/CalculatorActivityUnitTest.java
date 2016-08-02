@@ -2,7 +2,7 @@ package com.mobiquity.androidunittests.ui.activity;
 
 import android.widget.Button;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
+import com.google.common.truth.Truth;
 import com.mobiquity.androidunittests.R;
 
 import org.assertj.android.api.Assertions;
@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowToast;
 import org.robolectric.util.ActivityController;
 
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(CustomGradleRunner.class)
+@RunWith(RobolectricTestRunner.class)
 public class CalculatorActivityUnitTest {
 
     private CalculatorActivity calculatorActivity;
@@ -47,8 +48,8 @@ public class CalculatorActivityUnitTest {
         String expectedDisplayText = "1+1";
         calculatorActivity.updateDisplayText(expectedDisplayText);
 
-        Assertions.assertThat(calculatorActivity.displayInput)
-                .hasText(expectedDisplayText);
+        Truth.assertThat(calculatorActivity.displayInput.getText().toString())
+                .isEqualTo(expectedDisplayText);
     }
 
     @Test
@@ -69,7 +70,8 @@ public class CalculatorActivityUnitTest {
         Assertions.assertThat(calculatorActivity.resultText).hasText(expectedResult);
 
         Robolectric.flushForegroundThreadScheduler();
-        Assertions.assertThat(calculatorActivity.displayInput).hasText(expectedResult);
+        assertThat(calculatorActivity.displayInput.getText().toString())
+                .isEqualTo(expectedResult);
         Assertions.assertThat(calculatorActivity.resultText).isEmpty();
     }
 
@@ -84,12 +86,14 @@ public class CalculatorActivityUnitTest {
     @Test
     public void testOnClickNumber_StartsHandlingNumbers() throws Exception {
         for(Button button : calculatorActivity.numericPad.getNumericButtons()) {
-            ArgumentCaptor<Integer> captor = ArgumentCaptor.forClass(Integer.class);
-            int expectedNumber = Integer.parseInt(button.getText().toString());
-            button.performClick();
-            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleNumber(captor.capture());
+            ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+            String buttonText = button.getText().toString();
+            int expectedNumber = Integer.parseInt(buttonText);
 
-            assertThat(expectedNumber).isEqualTo(captor.getValue());
+            button.performClick();
+            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
+            assertThat(expectedNumber).isEqualTo(Integer.parseInt(captor.getValue()));
+
         }
     }
 
@@ -99,7 +103,7 @@ public class CalculatorActivityUnitTest {
             ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
             String expectedOperator = button.getText().toString();
             button.performClick();
-            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleOperator(captor.capture());
+            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
 
             assertThat(expectedOperator).isEqualTo(captor.getValue());
         }
@@ -111,7 +115,7 @@ public class CalculatorActivityUnitTest {
             ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
             String expectedSymbol = button.getText().toString();
             button.performClick();
-            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleSymbol(captor.capture());
+            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
 
             assertThat(expectedSymbol).isEqualTo(captor.getValue());
         }

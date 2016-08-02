@@ -1,10 +1,10 @@
 package com.mobiquity.androidunittests.ui.presenter;
 
 import com.mobiquity.androidunittests.calculator.Calculator;
+import com.mobiquity.androidunittests.calculator.ExpressionConverter;
 import com.mobiquity.androidunittests.calculator.input.Input;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
-import com.mobiquity.androidunittests.converter.ExpressionConverter;
 import com.mobiquity.androidunittests.testutil.ReflectionUtil;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
@@ -41,7 +41,7 @@ public class CalculatorPresenterTest {
     public void testHandleNumber_UpdatesDisplay() {
         configureExpressionConverterNormalization();
         presenter.bind(mockView);
-        presenter.handleNumber(3);
+        presenter.handleCalculatorButtonPress("3");
 
         Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("3"));
     }
@@ -50,7 +50,7 @@ public class CalculatorPresenterTest {
     public void testHandleOperator_UpdatesDisplay() {
         configureExpressionConverterNormalization();
         presenter.bind(mockView);
-        presenter.handleOperator("-");
+        presenter.handleCalculatorButtonPress("-");
 
         Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("-"));
     }
@@ -59,7 +59,7 @@ public class CalculatorPresenterTest {
     public void testHandleSymbol_UpdatesDisplay() {
         configureExpressionConverterNormalization();
         presenter.bind(mockView);
-        presenter.handleSymbol("(");
+        presenter.handleCalculatorButtonPress("(");
 
         Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("("));
     }
@@ -69,8 +69,8 @@ public class CalculatorPresenterTest {
         configureExpressionConverterNormalization();
 
         presenter.bind(mockView);
-        presenter.handleNumber(3);
-        presenter.handleNumber(4);
+        presenter.handleCalculatorButtonPress("3");
+        presenter.handleCalculatorButtonPress("4");
         Mockito.verify(mockView, onlyLastInvocation()).updateDisplayText(Mockito.eq("34"));
 
         presenter.handleDelete();
@@ -109,18 +109,18 @@ public class CalculatorPresenterTest {
         presenter.bind(mockView);
         Mockito.when(expressionConverter.convert(Mockito.any())).thenReturn(
                 Arrays.asList(new NumericInput(3)));
-        presenter.handleNumber(3);
+        presenter.handleCalculatorButtonPress("3");
 
         Mockito.when(expressionConverter.convert(Mockito.any())).thenReturn(
                 Arrays.asList(new NumericInput(3), new AdditionOperator()));
-        presenter.handleOperator("+");
+        presenter.handleCalculatorButtonPress("+");
 
         // Setup the calculator to return a valid result
         Mockito.reset(calculator);
         Mockito.when(calculator.evaluate(Mockito.any())).thenReturn(7.0);
         Mockito.when(expressionConverter.convert(Mockito.any())).thenReturn(
                 Arrays.asList(new NumericInput(3), new AdditionOperator(), new NumericInput(4)));
-        presenter.handleNumber(4);
+        presenter.handleCalculatorButtonPress("4");
 
         Mockito.verify(mockView).showPassiveCalculation(Mockito.eq("7"));
     }

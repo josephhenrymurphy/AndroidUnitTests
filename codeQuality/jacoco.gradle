@@ -66,6 +66,7 @@ project.afterEvaluate {
                 }
             }
 
+            // task for jacoco coverage report for both connected and unit tests
             if(buildType.isTestCoverageEnabled()) {
                 task "full${testTaskName.capitalize()}Coverage"(type: JacocoReport, dependsOn: ["$functionTestTaskName", "$testTaskName"]) {
                     group = 'Reporting'

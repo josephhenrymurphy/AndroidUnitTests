@@ -82,6 +82,18 @@ public class CalculatorActivityTest {
     }
 
     @Test
+    public void testCalculatorFunction_Division() {
+        onView(withId(R.id.digit_3)).perform(click());
+        onView(withId(R.id.divide_op)).perform(click());
+        onView(withId(R.id.digit_3)).perform(click());
+        onView(withId(R.id.display_input)).check(matches(withText("3/3")));
+
+        onView(withId(R.id.eq)).perform(click());
+        onView(withId(R.id.display_result)).check(matches(withText("1")));
+
+    }
+
+    @Test
     public void shouldEvaluateExpressionsWhileTyping() {
         onView(withId(R.id.digit_1)).perform(click());
         onView(withId(R.id.add_op)).perform(click());

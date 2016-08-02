@@ -2,7 +2,6 @@ package com.mobiquity.androidunittests.ui.activity;
 
 import android.view.inputmethod.EditorInfo;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
 import com.mobiquity.androidunittests.testutil.TestFileUtil;
@@ -13,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowToast;
 import org.robolectric.util.ActivityController;
 import org.simpleframework.xml.core.Persister;
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(CustomGradleRunner.class)
+@RunWith(RobolectricTestRunner.class)
 public class WolframActivityUnitTest {
 
     private WolframActivity wolframActivity;

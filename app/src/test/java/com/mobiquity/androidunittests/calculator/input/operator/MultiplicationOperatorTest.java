@@ -32,7 +32,7 @@ public class MultiplicationOperatorTest {
     public void testNotEquals() {
         MultiplicationOperator operator1 = new MultiplicationOperator();
         assertAbout(input()).that(operator1).valueNotEqualTo(null);
-        assertAbout(input()).that(operator1).valueNotEqualTo(new Input("dummy", InputType.FUNCTION){});
+        assertAbout(input()).that(operator1).valueNotEqualTo(new Input(InputType.DEFAULT){});
     }
 
     @Test

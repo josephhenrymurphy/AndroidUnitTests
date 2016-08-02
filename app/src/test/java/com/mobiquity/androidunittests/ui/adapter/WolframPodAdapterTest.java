@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
 import com.mobiquity.androidunittests.testutil.TestFileUtil;
 
@@ -15,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.simpleframework.xml.core.Persister;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(CustomGradleRunner.class)
+@RunWith(RobolectricTestRunner.class)
 public class WolframPodAdapterTest {
 
     private WolframPodAdapter adapter;

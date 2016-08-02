@@ -3,6 +3,7 @@ package com.mobiquity.androidunittests.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +14,21 @@ import android.widget.Toast;
 import com.mobiquity.androidunittests.BuildConfig;
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
-import com.mobiquity.androidunittests.ui.presenter.DevSettingsPresenter;
 import com.mobiquity.androidunittests.ui.mvpview.DevView;
+import com.mobiquity.androidunittests.ui.presenter.DevSettingsPresenter;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 
 public class DevSettingsFragment extends Fragment implements DevView {
 
-    @Bind(R.id.build_flavor) TextView buildFlavorText;
-    @Bind(R.id.build_version_code) TextView buildVersionCodeText;
-    @Bind(R.id.build_version_name) TextView buildVersionNameText;
-    @Bind(R.id.leak_canary_switch) Switch leakCanarySwitch;
+    @BindView(R.id.build_flavor) TextView buildFlavorText;
+    @BindView(R.id.build_version_code) TextView buildVersionCodeText;
+    @BindView(R.id.build_version_name) TextView buildVersionNameText;
+    @BindView(R.id.leak_canary_switch) Switch leakCanarySwitch;
 
     @Inject DevSettingsPresenter presenter;
 
@@ -49,7 +50,7 @@ public class DevSettingsFragment extends Fragment implements DevView {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        buildFlavorText.setText(BuildConfig.FLAVOR);
+        buildFlavorText.setText(TextUtils.isEmpty(BuildConfig.FLAVOR) ? "N/A" : BuildConfig.FLAVOR);
         buildVersionCodeText.setText(String.valueOf(BuildConfig.VERSION_CODE));
         buildVersionNameText.setText(BuildConfig.VERSION_NAME);
     }

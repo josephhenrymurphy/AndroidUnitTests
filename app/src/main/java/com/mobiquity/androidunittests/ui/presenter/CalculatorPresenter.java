@@ -3,7 +3,7 @@ package com.mobiquity.androidunittests.ui.presenter;
 import com.mobiquity.androidunittests.calculator.Calculator;
 import com.mobiquity.androidunittests.calculator.CalculatorConstants;
 import com.mobiquity.androidunittests.calculator.input.Input;
-import com.mobiquity.androidunittests.converter.ExpressionConverter;
+import com.mobiquity.androidunittests.calculator.ExpressionConverter;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 
 import java.text.DecimalFormat;
@@ -32,22 +32,8 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         evaluate(false);
     }
 
-    public void handleNumber(int number) {
-        expression.add(Integer.toString(number));
-        expression = expressionConverter.normalize(expression);
-        view().updateDisplayText(getDisplayString());
-        evaluate(false);
-    }
-
-    public void handleOperator(String operator) {
-        expression.add(operator);
-        expression = expressionConverter.normalize(expression);
-        view().updateDisplayText(getDisplayString());
-        evaluate(false);
-    }
-
-    public void handleSymbol(String symbol) {
-        expression.add(symbol);
+    public void handleCalculatorButtonPress(String displayText) {
+        expression.add(displayText);
         expression = expressionConverter.normalize(expression);
         view().updateDisplayText(getDisplayString());
         evaluate(false);

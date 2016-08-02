@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.di.components.CalculatorComponent;
 import com.mobiquity.androidunittests.di.components.DaggerCalculatorComponent;
-import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.mvpview.CalculatorView;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;
 import com.mobiquity.androidunittests.ui.view.CalculatorEditText;
@@ -31,7 +29,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -40,29 +39,28 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
 
     private Animator resultAnimator;
 
-    @Inject ViewWrapper viewWrapper;
     @Inject CalculatorPresenter presenter;
 
-    @Bind(R.id.numeric_pad) NumericPad numericPad;
-    @Bind(R.id.display_input) CalculatorEditText displayInput;
-    @Bind(R.id.display_result) TextView resultText;
-    @Bind(R.id.sliding_panel) SlidingUpPanelLayout slidingPanel;
+    @BindView(R.id.numeric_pad) NumericPad numericPad;
+    @BindView(R.id.display_input) CalculatorEditText displayInput;
+    @BindView(R.id.display_result) TextView resultText;
+    @BindView(R.id.sliding_panel) SlidingUpPanelLayout slidingPanel;
 
-    @Bind(value = {
+    @BindViews(value = {
             R.id.add_op,
             R.id.subtract_op,
-            R.id.multiply_op
+            R.id.multiply_op,
+            R.id.divide_op
     }) List<Button> operatorButtons;
 
-    @Bind(value = {
+    @BindViews(value = {
             R.id.left_paren,
             R.id.right_paren,
             R.id.decimal
     }) List<Button> symbolButtons;
 
-    @Bind(value = {
+    @BindViews(value = {
             R.id.function_arg_separator,
-            R.id.divide_op
     }) List<View> notImplementedButtons;
 
     @Override
@@ -71,15 +69,15 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         setContentView(R.layout.activity_calculator, true);
         ButterKnife.bind(this);
 
-        numericPad.addOnNumberClickedListener(number -> presenter.handleNumber(number));
+        numericPad.addOnNumberClickedListener(number -> presenter.handleCalculatorButtonPress(Integer.toString(number)));
         ButterKnife.apply(operatorButtons, (button, index) -> {
             String operator = button.getText().toString();
-            button.setOnClickListener(v -> presenter.handleOperator(operator));
+            button.setOnClickListener(v -> presenter.handleCalculatorButtonPress(operator));
         });
 
         ButterKnife.apply(symbolButtons, (button, index) -> {
             String symbol = button.getText().toString();
-            button.setOnClickListener(v -> presenter.handleSymbol(symbol));
+            button.setOnClickListener(v -> presenter.handleCalculatorButtonPress(symbol));
         });
 
         ButterKnife.apply(notImplementedButtons, (button, index) -> {

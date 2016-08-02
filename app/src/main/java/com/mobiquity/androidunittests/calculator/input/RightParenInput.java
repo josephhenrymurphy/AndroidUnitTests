@@ -1,8 +1,14 @@
 package com.mobiquity.androidunittests.calculator.input;
 
-public class RightParenInput extends Input {
+import com.mobiquity.androidunittests.R;
+import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 
+import java.util.List;
+
+public class RightParenInput extends Input {
     public RightParenInput() {
-        super(")", InputType.RIGHT_PAREN);
+        super(R.string.right_paren, InputType.RIGHT_PAREN);
     }
+
 }

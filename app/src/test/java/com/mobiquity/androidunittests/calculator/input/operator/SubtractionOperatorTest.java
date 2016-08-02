@@ -32,7 +32,7 @@ public class SubtractionOperatorTest {
     public void testNotEquals() {
         SubtractionOperator operator1 = new SubtractionOperator();
         assertAbout(input()).that(operator1).valueNotEqualTo(null);
-        assertAbout(input()).that(operator1).valueNotEqualTo(new Input("dummy", InputType.FUNCTION){});
+        assertAbout(input()).that(operator1).valueNotEqualTo(new Input(InputType.FUNCTION){});
     }
 
     @Test

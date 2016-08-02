@@ -2,7 +2,7 @@ package com.mobiquity.androidunittests;
 
 import com.frogermcs.androiddevmetrics.aspect.ActivityLifecycleAnalyzer;
 import com.mobiquity.androidunittests.calculator.Calculator;
-import com.mobiquity.androidunittests.converter.ExpressionConverter;
+import com.mobiquity.androidunittests.calculator.ExpressionConverter;
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.di.components.DaggerAppComponent;
 import com.mobiquity.androidunittests.di.modules.AppModule;

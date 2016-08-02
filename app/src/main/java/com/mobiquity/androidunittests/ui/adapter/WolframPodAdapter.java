@@ -10,11 +10,10 @@ import android.widget.TextView;
 import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WolframPodAdapter extends RecyclerView.Adapter<WolframPodAdapter.ViewHolder> {
@@ -50,8 +49,8 @@ public class WolframPodAdapter extends RecyclerView.Adapter<WolframPodAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private LayoutInflater inflater;
-        @Bind(R.id.pod_title) TextView podTitle;
-        @Bind(R.id.pod_content) LinearLayout podContent;
+        @BindView(R.id.pod_title) TextView podTitle;
+        @BindView(R.id.pod_content) LinearLayout podContent;
 
         public ViewHolder(View itemView, LayoutInflater inflater) {
             super(itemView);

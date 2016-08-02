@@ -6,8 +6,9 @@ import com.mobiquity.androidunittests.calculator.input.InputType;
  * A dummy operator that just returns the value of the first parameter
  */
 public class NoOpOperator extends Operator {
+
     public NoOpOperator() {
-        super("", InputType.OPERATOR);
+        super(-1);
     }
 
     @Override

@@ -51,8 +51,11 @@ dependencies {
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
+
+    compile "com.jakewharton:butterknife:$versions.butterKnife"
+    apt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+
     compile libraries.okhttp3_LoggingInterceptor
-    compile libraries.butterKnife
     compile libraries.timber
     compile libraries.dagger
     provided libraries.javaxAnnotations

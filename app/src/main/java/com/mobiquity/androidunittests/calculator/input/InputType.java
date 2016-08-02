@@ -1,6 +1,7 @@
 package com.mobiquity.androidunittests.calculator.input;
 
 public enum InputType {
+    DEFAULT,
     NUMBER,
     OPERATOR,
     FUNCTION,

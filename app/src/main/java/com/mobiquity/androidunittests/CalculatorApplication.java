@@ -2,6 +2,8 @@ package com.mobiquity.androidunittests;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
+import android.support.annotation.StringRes;
 
 import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
 import com.mobiquity.androidunittests.devsettings.DevSettingsWrapper;
@@ -16,6 +18,8 @@ import timber.log.Timber;
 
 public class CalculatorApplication extends Application {
 
+    private static Resources resources;
+
     protected AppComponent appComponent;
     @Inject Lazy<DevSettingsWrapper> devSettingsWrapper;
     @Inject Lazy<AndroidDevMetricsWrapper> androidDevMetricsWrapper;
@@ -25,9 +29,14 @@ public class CalculatorApplication extends Application {
                 .getAppComponent();
     }
 
+    public static String getStringFromRes(@StringRes int resId) {
+        return resources.getString(resId);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        resources = getResources();
         appComponent = prepareAppComponent().build();
         appComponent.inject(this);
 

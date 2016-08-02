@@ -1,11 +1,11 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
-import com.mobiquity.androidunittests.calculator.input.InputType;
+import com.mobiquity.androidunittests.R;
 
 public class MultiplicationOperator extends Operator {
 
     public MultiplicationOperator() {
-        super("*", InputType.OPERATOR);
+        super(R.string.multiply_op);
     }
 
     @Override
