@@ -83,6 +83,7 @@ dependencies {
     }
 
     debugCompile devLibraries.leakCanary
+    debugCompile 'com.squareup.haha:haha:2.0.3'
     releaseCompile devLibraries.leakCanaryNoOp
     testCompile devLibraries.leakCanaryNoOp
 }
