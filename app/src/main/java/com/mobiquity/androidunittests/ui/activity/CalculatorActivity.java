@@ -50,6 +50,9 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
             R.id.add_op,
             R.id.subtract_op,
             R.id.multiply_op,
+            R.id.left_paren,
+            R.id.right_paren,
+            R.id.decimal
     }) List<Button> calculatorButtons;
 
     @BindViews(value = {

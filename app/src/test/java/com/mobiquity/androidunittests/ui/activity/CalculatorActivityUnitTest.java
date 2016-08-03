@@ -1,5 +1,6 @@
 package com.mobiquity.androidunittests.ui.activity;
 
+import android.support.annotation.IdRes;
 import android.widget.Button;
 
 import com.google.common.truth.Truth;
@@ -98,15 +99,33 @@ public class CalculatorActivityUnitTest {
     }
 
     @Test
-    public void testOnClickCalculatorButtons_StartsHandling() {
-        for(Button button : calculatorActivity.calculatorButtons) {
-            ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-            String expectedOperator = button.getText().toString();
-            button.performClick();
-            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
+    public void testOnClickPlusButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.add_op);
+    }
 
-            assertThat(expectedOperator).isEqualTo(captor.getValue());
-        }
+    @Test
+    public void testOnClickMinusButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.subtract_op);
+    }
+
+    @Test
+    public void testOnClickMultiplyButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.multiply_op);
+    }
+
+    @Test
+    public void testOnClickLeftParenButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.left_paren);
+    }
+
+    @Test
+    public void testOnClickRightParenButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.right_paren);
+    }
+
+    @Test
+    public void testOnClickDecimalButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.decimal);
     }
 
     @Test
@@ -121,4 +140,13 @@ public class CalculatorActivityUnitTest {
         Mockito.verify(calculatorActivity.presenter).handleDelete();
     }
 
+    private void checkCalculatorButtonRegistered(@IdRes int buttonId) {
+        Button button = ButterKnife.findById(calculatorActivity, buttonId);
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        String expectedSymbol = button.getText().toString();
+        button.performClick();
+        Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
+
+        assertThat(expectedSymbol).isEqualTo(captor.getValue());
+    }
 }
