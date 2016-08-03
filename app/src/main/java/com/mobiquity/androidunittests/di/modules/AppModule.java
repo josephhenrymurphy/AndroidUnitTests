@@ -3,12 +3,9 @@ package com.mobiquity.androidunittests.di.modules;
 import android.app.Application;
 import android.content.Context;
 
-import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
 import com.mobiquity.androidunittests.CalculatorApplication;
 import com.mobiquity.androidunittests.calculator.Calculator;
-import com.mobiquity.androidunittests.converter.ExpressionConverter;
-import com.mobiquity.androidunittests.converter.SymbolToOperatorConverter;
-import com.mobiquity.androidunittests.devsettings.AndroidDevMetricsWrapper;
+import com.mobiquity.androidunittests.calculator.ExpressionConverter;
 import com.mobiquity.androidunittests.di.scopes.AppScope;
 import com.mobiquity.androidunittests.net.services.WolframService;
 import com.mobiquity.androidunittests.ui.presenter.CalculatorPresenter;

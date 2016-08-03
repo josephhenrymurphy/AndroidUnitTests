@@ -3,17 +3,15 @@ package com.mobiquity.androidunittests.devsettings;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.mobiquity.androidunittests.CustomGradleRunner;
-import com.mobiquity.androidunittests.devsettings.DevSettings;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(CustomGradleRunner.class)
+@RunWith(RobolectricTestRunner.class)
 public class DevSettingsTest {
 
     private DevSettings devSettings;

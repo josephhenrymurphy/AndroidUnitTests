@@ -31,7 +31,7 @@ public class AdditionOperatorTest {
     public void testNotEquals() {
         AdditionOperator operator1 = new AdditionOperator();
         assertAbout(input()).that(operator1).valueNotEqualTo(null);
-        assertAbout(input()).that(operator1).valueNotEqualTo(new Input("dummy", InputType.FUNCTION){});
+        assertAbout(input()).that(operator1).valueNotEqualTo(new Input(InputType.DEFAULT){});
     }
 
     @Test

@@ -1,8 +1,6 @@
 package com.mobiquity.androidunittests.functionaltests.rules;
 
-import android.content.Context;
 import android.os.IBinder;
-import android.support.test.espresso.Espresso;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;

@@ -1,11 +1,19 @@
 package com.mobiquity.androidunittests.calculator.input.operator;
 
-import com.mobiquity.androidunittests.calculator.input.InputType;
+import android.support.annotation.StringRes;
+
+import com.mobiquity.androidunittests.R;
+import com.mobiquity.androidunittests.calculator.ExpressionConverter;
+import com.mobiquity.androidunittests.calculator.input.Input;
+import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
+
+import java.util.List;
+import java.util.Map;
 
 public class AdditionOperator extends Operator {
 
     public AdditionOperator() {
-        super("+", InputType.OPERATOR);
+        super(R.string.add_op);
     }
 
     @Override
@@ -26,5 +34,4 @@ public class AdditionOperator extends Operator {
     private double add(double firstAddend, double secondAddend) {
         return firstAddend + secondAddend;
     }
-
 }

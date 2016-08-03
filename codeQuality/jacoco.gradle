@@ -1,5 +1,15 @@
 apply plugin: 'jacoco'
 
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+}
+
 // Enables code coverage for JVM tests.
 // Android Gradle Plugin out of the box supports only code coverage for instrumentation tests.
 project.afterEvaluate {
@@ -30,8 +40,8 @@ project.afterEvaluate {
                                '**/R$*.class',
                                'android/databinding/**/*.class',
                                'com/android/databinding/**/*.class',
-                               '**/*$ViewInjector*.*',
-                               '**/*$ViewBinder*.*',
+                               '**/*_ViewBinding*.*',
+                               '**/*_ViewBinder*.*',
                                '**/BuildConfig.*',
                                '**/Manifest*.*',
                                '**/*$Lambda$*.*',
@@ -66,6 +76,7 @@ project.afterEvaluate {
                 }
             }
 
+            // task for jacoco coverage report for both connected and unit tests
             if(buildType.isTestCoverageEnabled()) {
                 task "full${testTaskName.capitalize()}Coverage"(type: JacocoReport, dependsOn: ["$functionTestTaskName", "$testTaskName"]) {
                     group = 'Reporting'

@@ -13,7 +13,6 @@ import com.mobiquity.androidunittests.R;
 import com.mobiquity.androidunittests.di.components.DaggerWolframComponent;
 import com.mobiquity.androidunittests.di.components.WolframComponent;
 import com.mobiquity.androidunittests.net.models.WolframResponse;
-import com.mobiquity.androidunittests.ui.ViewWrapper;
 import com.mobiquity.androidunittests.ui.adapter.WolframPodAdapter;
 import com.mobiquity.androidunittests.ui.mvpview.WolframView;
 import com.mobiquity.androidunittests.ui.presenter.WolframPresenter;
@@ -22,7 +21,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
@@ -30,9 +29,9 @@ import butterknife.OnEditorAction;
 public class WolframActivity extends BaseActivity<WolframComponent>
     implements WolframView {
 
-    @Bind(R.id.wolfram_input) EditText queryInput;
-    @Bind(R.id.wolfram_submit) ImageButton wolframSubmitButton;
-    @Bind(R.id.wolfram_pod_list) RecyclerView podList;
+    @BindView(R.id.wolfram_input) EditText queryInput;
+    @BindView(R.id.wolfram_submit) ImageButton wolframSubmitButton;
+    @BindView(R.id.wolfram_pod_list) RecyclerView podList;
 
     @Inject WolframPresenter presenter;
     WolframPodAdapter wolframAdapter;

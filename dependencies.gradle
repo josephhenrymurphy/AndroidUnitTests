@@ -1,30 +1,25 @@
 apply from: 'versioning.gradle'
 ext.versions = [
-        minSdk: 16,
-        targetSdk: 23,
-        compileSdk: 23,
-        buildTools: "23.0.3",
+        minSdk: 19,
+        targetSdk: 24,
+        compileSdk: 24,
+        buildTools: "24.0.1",
         name: buildVersionName,
         code: buildVersionCode(),
 
-        // Gradle buildscript plugins
-        aptGradlePlugin: '1.8',
-        retrolambdaGradlePlugin: '3.3.0-beta4',
-        androidDevMetricsGradlePlugin: '0.4',
-
         // Libraries
-        androidSupport: '23.3.0',
+        androidSupport: '24.1.1',
         timber: '4.1.2',
-        dagger: '2.2',
+        dagger: '2.6',
         javaxAnnotations: '1.0',
-        butterKnife: '7.0.1',
-        retrofit2: '2.0.2',
-        okhttp3: '3.2.0',
+        butterKnife: '8.2.1',
+        retrofit2: '2.1.0',
+        okhttp3: '3.4.1',
 
         // Testing libraries
         junit: '4.12',
         assertjAndroid: '1.1.1',
-        robolectric: '3.0',
+        robolectric: '3.1.2',
         mockito: '1.10.19',
         truth: '0.28',
         powermock: '1.6.4',
@@ -35,49 +30,5 @@ ext.versions = [
         leakCanary: '1.4-beta2'
 ]
 
-ext.gradlePlugins = [
-        apt: "com.neenbedankt.gradle.plugins:android-apt:$versions.aptGradlePlugin",
-        retrolambda: "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
-        androidDevMetrics: "com.frogermcs.androiddevmetrics:androiddevmetrics-plugin:$versions.androidDevMetricsGradlePlugin"
-]
 
-ext.libraries = [
-        ui: [
-            slidingUpPanel: "com.sothree.slidinguppanel:library:3.3.0"
-        ],
-        timber: "com.jakewharton.timber:timber:$versions.timber",
-        dagger: "com.google.dagger:dagger:$versions.dagger",
-        daggerCompiler: "com.google.dagger:dagger-compiler:$versions.dagger",
-        javaxAnnotations: "javax.annotation:jsr250-api:$versions.javaxAnnotations",
-        butterKnife: "com.jakewharton:butterknife:$versions.butterKnife",
-        retrofit2: "com.squareup.retrofit2:retrofit:$versions.retrofit2",
-        retrofit2_XmlConverter: "com.squareup.retrofit2:converter-simplexml:$versions.retrofit2",
-        okhttp3_LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
-]
-
-ext.testLibraries = [
-        junit: "junit:junit:$versions.junit",
-        robolectric: "org.robolectric:robolectric:$versions.robolectric",
-        robolectricV4Shadows: "org.robolectric:shadows-support-v4:$versions.robolectric",
-        mockito: "org.mockito:mockito-core:$versions.mockito",
-        truth: "com.google.truth:truth:$versions.truth",
-        powermockMockito: "org.powermock:powermock-api-mockito:$versions.powermock",
-        powermockJunit: "org.powermock:powermock-module-junit4:$versions.powermock",
-        assertjAndroid: "com.squareup.assertj:assertj-android:$versions.assertjAndroid",
-        okhttp3_MockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
-]
-
-ext.androidTestLibraries = [
-        espressoCore: "com.android.support.test.espresso:espresso-core:$versions.espresso",
-        espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
-        espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-        supportTestRunner : "com.android.support.test:runner:$versions.supportTestRunner",
-        supportTestRules : "com.android.support.test:rules:$versions.supportTestRunner"
-]
-
-ext.devLibraries = [
-        leakCanary: "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
-        leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary",
-        devMetricsNoOp: "com.frogermcs.androiddevmetrics:androiddevmetrics-runtime-noop:$versions.androidDevMetricsGradlePlugin"
-]
 

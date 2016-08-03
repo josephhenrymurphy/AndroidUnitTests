@@ -22,12 +22,6 @@ public class RightParenInputTest {
     }
 
     @Test
-    public void testRightParen_Value() {
-        assertThat(rightParenInput.value).isEqualTo(")");
-    }
-
-
-    @Test
     public void testEqual() {
         assertAbout(input()).that(rightParenInput)
                 .valueEqualTo(new RightParenInput());
@@ -36,7 +30,7 @@ public class RightParenInputTest {
     @Test
     public void testNotEqual() {
         assertAbout(input()).that(rightParenInput)
-                .valueNotEqualTo(new Input("dummy", InputType.FUNCTION) {});
+                .valueNotEqualTo(new Input(InputType.DEFAULT) {});
     }
 
 }

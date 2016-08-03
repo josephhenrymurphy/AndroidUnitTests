@@ -44,7 +44,7 @@ public class Calculator {
                 switch (input.getType()) {
                     case NUMBER:
                         NumericInput numericInput = (NumericInput) input;
-                        stack.push(numericInput.getValue());
+                        stack.push(numericInput.getValueAsDouble());
                         break;
                     case OPERATOR:
                         Operator operator = (Operator) input;
@@ -63,8 +63,8 @@ public class Calculator {
 
             // prevents calculator from returning -0
             return stack.pop() + 0.0;
-        } catch (EmptyStackException | InfixInputParser.InputParserException | NumberFormatException e) {
-            throw new CalculatorEvaluationException("Invalid Expression");
+        } catch (EmptyStackException | InfixInputParser.InputParserException | NumberFormatException | ArithmeticException e) {
+            throw new CalculatorEvaluationException("Invalid Expression: " + e.getMessage());
         }
     }
 }

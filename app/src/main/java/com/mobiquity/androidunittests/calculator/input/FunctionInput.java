@@ -4,8 +4,8 @@ public class FunctionInput extends Input {
 
     private int numExpectedParams;
 
-    public FunctionInput(String functionName, int numExpectedParams) {
-        super(functionName, InputType.FUNCTION);
+    public FunctionInput(int numExpectedParams) {
+        super(InputType.FUNCTION);
         this.numExpectedParams = numExpectedParams;
     }
 
@@ -16,7 +16,6 @@ public class FunctionInput extends Input {
     @Override
     public boolean valueEquals(Input input) {
         return super.valueEquals(input) &&
-                ((FunctionInput)input).value.equals(this.value) &&
                 ((FunctionInput)input).numExpectedParams == numExpectedParams;
     }
 }

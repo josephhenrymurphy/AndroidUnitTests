@@ -24,7 +24,7 @@ public class NumericInputTest {
 
     @Test
     public void testNumeric_Value() {
-        assertThat(numericInput.getValue()).isWithin(NUMERIC_INPUT_VALUE);
+        assertThat(numericInput.getValueAsDouble()).isWithin(NUMERIC_INPUT_VALUE);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class NumericInputTest {
     public void testNotEqual() {
         NumericInput first = new NumericInput(1);
         NumericInput second = new NumericInput(2);
-        Input dummyInput = new Input("dummy", InputType.FUNCTION){};
+        Input dummyInput = new Input(InputType.DEFAULT){};
 
         assertAbout(input()).that(first).valueNotEqualTo(null);
         assertAbout(input()).that(first).valueNotEqualTo(second);
