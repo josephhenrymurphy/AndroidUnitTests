@@ -37,16 +37,32 @@ android {
 
 }
 
+ext.androidTestLibraries = [
+        espressoCore: "",
+        espressoContrib: "",
+        espressoIntents: "",
+        supportTestRunner : "",
+        supportTestRules : ""
+]
+
+ext.devLibraries = [
+        leakCanary: "",
+        leakCanaryNoOp: "",
+        devMetricsNoOp: ""
+]
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$versions.androidSupport"
     compile "com.android.support:gridlayout-v7:$versions.androidSupport"
     compile "com.android.support:cardview-v7:$versions.androidSupport"
     compile "com.android.support:percent:$versions.androidSupport"
-    compile libraries.ui.slidingUpPanel
+    compile "com.sothree.slidinguppanel:library:3.3.0"
 
-    compile libraries.retrofit2
-    compile (libraries.retrofit2_XmlConverter) {
+    compile "com.jakewharton.timber:timber:$versions.timber"
+    compile "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofit2"
+    compile ("com.squareup.retrofit2:converter-simplexml:$versions.retrofit2") {
         exclude module: 'stax'
         exclude module: 'stax-api'
         exclude module: 'xpp3'
@@ -55,37 +71,41 @@ dependencies {
     compile "com.jakewharton:butterknife:$versions.butterKnife"
     apt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 
-    compile libraries.okhttp3_LoggingInterceptor
-    compile libraries.timber
-    compile libraries.dagger
-    provided libraries.javaxAnnotations
-    apt libraries.daggerCompiler
+    compile "com.google.dagger:dagger:$versions.dagger"
+    provided "javax.annotation:jsr250-api:$versions.javaxAnnotations"
+    apt "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    testCompile testLibraries.junit
-    testCompile testLibraries.truth
-    testCompile testLibraries.assertjAndroid
-    testCompile testLibraries.robolectric
-    testCompile testLibraries.robolectricV4Shadows
-    testCompile testLibraries.mockito
-    testCompile testLibraries.powermockMockito
-    testCompile testLibraries.powermockJunit
+    // Test Dependencies
+    testCompile "junit:junit:$versions.junit"
+    testCompile "com.google.truth:truth:$versions.truth"
+    testCompile "com.squareup.assertj:assertj-android:$versions.assertjAndroid"
+    testCompile "org.robolectric:robolectric:$versions.robolectric"
+    testCompile "org.robolectric:shadows-support-v4:$versions.robolectric"
+    testCompile "org.mockito:mockito-core:$versions.mockito"
+    testCompile "org.powermock:powermock-api-mockito:$versions.powermock"
+    testCompile "org.powermock:powermock-module-junit4:$versions.powermock"
 
-    androidTestCompile testLibraries.okhttp3_MockWebServer
-    androidTestCompile androidTestLibraries.supportTestRunner
-    androidTestCompile androidTestLibraries.supportTestRules
-    androidTestCompile androidTestLibraries.espressoCore
-    androidTestCompile androidTestLibraries.espressoIntents
-    androidTestCompile (androidTestLibraries.espressoContrib) {
+
+    // Android Test Dependencies
+    androidTestCompile "com.android.support.test:runner:$versions.supportTestRunner"
+    androidTestCompile "com.android.support.test:rules:$versions.supportTestRunner"
+
+    androidTestCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
+
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espresso"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$versions.espresso") {
         exclude module: 'support-annotations'
         exclude module: 'gridlayout-v7'
         exclude module: 'recyclerview-v7'
         exclude module: 'support-v4'
     }
 
-    debugCompile devLibraries.leakCanary
+    // Dev Dependencies
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
     debugCompile 'com.squareup.haha:haha:2.0.3'
-    releaseCompile devLibraries.leakCanaryNoOp
-    testCompile devLibraries.leakCanaryNoOp
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary"
+    testCompile "com.frogermcs.androiddevmetrics:androiddevmetrics-runtime-noop:0.4"
 }
 
 apply from: '../codeQuality/espresso.gradle'

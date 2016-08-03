@@ -30,42 +30,5 @@ ext.versions = [
         leakCanary: '1.4-beta2'
 ]
 
-ext.libraries = [
-        ui: [
-            slidingUpPanel: "com.sothree.slidinguppanel:library:3.3.0"
-        ],
-        timber: "com.jakewharton.timber:timber:$versions.timber",
-        dagger: "com.google.dagger:dagger:$versions.dagger",
-        daggerCompiler: "com.google.dagger:dagger-compiler:$versions.dagger",
-        javaxAnnotations: "javax.annotation:jsr250-api:$versions.javaxAnnotations",
-        retrofit2: "com.squareup.retrofit2:retrofit:$versions.retrofit2",
-        retrofit2_XmlConverter: "com.squareup.retrofit2:converter-simplexml:$versions.retrofit2",
-        okhttp3_LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
-]
 
-ext.testLibraries = [
-        junit: "junit:junit:$versions.junit",
-        robolectric: "org.robolectric:robolectric:$versions.robolectric",
-        robolectricV4Shadows: "org.robolectric:shadows-support-v4:$versions.robolectric",
-        mockito: "org.mockito:mockito-core:$versions.mockito",
-        truth: "com.google.truth:truth:$versions.truth",
-        powermockMockito: "org.powermock:powermock-api-mockito:$versions.powermock",
-        powermockJunit: "org.powermock:powermock-module-junit4:$versions.powermock",
-        assertjAndroid: "com.squareup.assertj:assertj-android:$versions.assertjAndroid",
-        okhttp3_MockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
-]
-
-ext.androidTestLibraries = [
-        espressoCore: "com.android.support.test.espresso:espresso-core:$versions.espresso",
-        espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
-        espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-        supportTestRunner : "com.android.support.test:runner:$versions.supportTestRunner",
-        supportTestRules : "com.android.support.test:rules:$versions.supportTestRunner"
-]
-
-ext.devLibraries = [
-        leakCanary: "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
-        leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary",
-        devMetricsNoOp: "com.frogermcs.androiddevmetrics:androiddevmetrics-runtime-noop:$versions.androidDevMetricsGradlePlugin"
-]
 

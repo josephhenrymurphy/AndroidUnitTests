@@ -50,17 +50,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
             R.id.add_op,
             R.id.subtract_op,
             R.id.multiply_op,
-            R.id.divide_op
-    }) List<Button> operatorButtons;
+    }) List<Button> calculatorButtons;
 
     @BindViews(value = {
-            R.id.left_paren,
-            R.id.right_paren,
-            R.id.decimal
-    }) List<Button> symbolButtons;
-
-    @BindViews(value = {
-            R.id.function_arg_separator,
+            R.id.divide_op,
+            R.id.function_arg_separator
     }) List<View> notImplementedButtons;
 
     @Override
@@ -70,14 +64,9 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         ButterKnife.bind(this);
 
         numericPad.addOnNumberClickedListener(number -> presenter.handleCalculatorButtonPress(Integer.toString(number)));
-        ButterKnife.apply(operatorButtons, (button, index) -> {
+        ButterKnife.apply(calculatorButtons, (button, index) -> {
             String operator = button.getText().toString();
             button.setOnClickListener(v -> presenter.handleCalculatorButtonPress(operator));
-        });
-
-        ButterKnife.apply(symbolButtons, (button, index) -> {
-            String symbol = button.getText().toString();
-            button.setOnClickListener(v -> presenter.handleCalculatorButtonPress(symbol));
         });
 
         ButterKnife.apply(notImplementedButtons, (button, index) -> {

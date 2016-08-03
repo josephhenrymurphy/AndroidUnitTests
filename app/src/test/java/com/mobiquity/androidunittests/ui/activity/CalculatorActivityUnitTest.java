@@ -98,26 +98,14 @@ public class CalculatorActivityUnitTest {
     }
 
     @Test
-    public void testOnClickOperatorButtons_StartsHandlingOperators() {
-        for(Button button : calculatorActivity.operatorButtons) {
+    public void testOnClickCalculatorButtons_StartsHandling() {
+        for(Button button : calculatorActivity.calculatorButtons) {
             ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
             String expectedOperator = button.getText().toString();
             button.performClick();
             Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
 
             assertThat(expectedOperator).isEqualTo(captor.getValue());
-        }
-    }
-
-    @Test
-    public void testOnClickSymbolButtons_StartsHandlingSymbols() {
-        for(Button button : calculatorActivity.symbolButtons) {
-            ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-            String expectedSymbol = button.getText().toString();
-            button.performClick();
-            Mockito.verify(calculatorActivity.presenter, Mockito.atLeastOnce()).handleCalculatorButtonPress(captor.capture());
-
-            assertThat(expectedSymbol).isEqualTo(captor.getValue());
         }
     }
 

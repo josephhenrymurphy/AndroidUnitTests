@@ -120,21 +120,4 @@ public class ExpressionNormalizationTest {
         assertThat(normalizedInput).containsExactlyElementsIn(expectedNormalizedInput);
     }
 
-    @Test
-    public void testNormalize_AllowValidDivisionOperation() {
-        List<String> originalInput = Arrays.asList("3", "/");
-        List<String> expectedNormalizedInput = Arrays.asList("3","/");
-        List<String> normalizedInput = expressionConverter.normalize(originalInput);
-
-        assertThat(normalizedInput).containsExactlyElementsIn(expectedNormalizedInput);
-    }
-
-    @Test
-    public void testNormalize_DontAllowLeadingDivisionOperation() {
-        List<String> originalInput = Arrays.asList("/", "3");
-        List<String> expectedNormalizedInput = Arrays.asList("3");
-        List<String> normalizedInput = expressionConverter.normalize(originalInput);
-
-        assertThat(normalizedInput).containsExactlyElementsIn(expectedNormalizedInput);
-    }
 }

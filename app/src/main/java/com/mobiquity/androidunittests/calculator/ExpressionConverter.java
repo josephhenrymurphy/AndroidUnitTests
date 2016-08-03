@@ -9,7 +9,6 @@ import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.RightParenInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
-import com.mobiquity.androidunittests.calculator.input.operator.DivisionOperation;
 import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
@@ -29,17 +28,14 @@ import javax.inject.Inject;
  */
 public class ExpressionConverter {
 
-    private Context context;
     private final Map<String, Input> expressionInputMap;
 
     @Inject
     public ExpressionConverter(Context context) {
-        this.context = context;
         expressionInputMap = new HashMap<String, Input>() {{
             put(context.getString(R.string.add_op), new AdditionOperator());
             put(context.getString(R.string.substract_op), new SubtractionOperator());
             put(context.getString(R.string.multiply_op), new MultiplicationOperator());
-            put(context.getString(R.string.divide_op), new DivisionOperation());
             put(context.getString(R.string.left_paren), new LeftParenInput());
             put(context.getString(R.string.right_paren), new RightParenInput());
             put(context.getString(R.string.decimal_symbol), new DecimalInput());
