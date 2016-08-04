@@ -1,6 +1,7 @@
 package com.mobiquity.androidunittests.calculator.input;
 
 import com.mobiquity.androidunittests.calculator.CalculatorConstants;
+import com.mobiquity.androidunittests.calculator.input.operator.Operator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
 
 import java.util.List;
@@ -51,8 +52,12 @@ public class NumericInput extends Input {
 
             // Handle inputting negative numbers
             else if(lastInput instanceof SubtractionOperator) {
+                int index = calculatorExpression.size()-2;
                 boolean isInputtingNegativeNumber = calculatorExpression.size() <= 1 ||
-                        !(calculatorExpression.get(calculatorExpression.size() - 2) instanceof NumericInput);
+                        !(
+                                calculatorExpression.get(index) instanceof NumericInput ||
+                                        calculatorExpression.get(index) instanceof RightParenInput
+                        );
 
                 if(isInputtingNegativeNumber) {
                     int lastItemIndex = calculatorExpression.size()-1;

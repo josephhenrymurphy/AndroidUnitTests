@@ -218,4 +218,20 @@ public class ExpressionConverterTest {
         assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
     }
 
+    @Test
+    public void testConvertSubtractionAfterParens() {
+        List<String> normalizedInput = Arrays.asList("(", "3", "+", "4", ")", "-", "7");
+        List<Input> expectedConvertedInput = Arrays.asList(
+                new LeftParenInput(),
+                new NumericInput(3),
+                new AdditionOperator(),
+                new NumericInput(4),
+                new RightParenInput(),
+                new SubtractionOperator(),
+                new NumericInput(7)
+        );
+        List<Input> convertedInput = expressionConverter.convert(normalizedInput);
+        assertAbout(inputList()).that(convertedInput).containsExactlyInputValuesIn(expectedConvertedInput);
+    }
+
 }
