@@ -13,3 +13,9 @@
 *.jks
 .DS_Store
 /captures
+
+# Created by https://www.gitignore.io/api/sonar
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
