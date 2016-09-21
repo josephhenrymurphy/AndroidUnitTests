@@ -13,6 +13,8 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static android.R.attr.x;
+
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     private Calculator calculator;
@@ -76,7 +78,11 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     private String getDisplayString() {
         String displayString = "";
         for(String item : expression) {
-            displayString += item;
+            if (item.equals("^")) {
+                displayString += "^";
+            } else {
+                displayString += item;
+            }
         }
         return displayString;
     }
