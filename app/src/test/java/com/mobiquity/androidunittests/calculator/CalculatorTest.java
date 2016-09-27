@@ -108,7 +108,7 @@ public class CalculatorTest {
 
     @Test
     public void testEvaluate_Exponent() throws Exception {
-        //Test: 1 + 2 * 3 = 7
+        // Test: 2 ^ 3 = 8
 
         Input input[] = new Input[]{
                 new NumericInput(2),

@@ -56,7 +56,7 @@ public class ExponentOperatorTest {
     }
 
     @Test
-    public void testExecute_ShouldMultiplyOperands() {
+    public void testExecute_ShouldExponentOperands() {
         assertThat(exponentOperator.execute(2,3)).isWithin(8);
         assertThat(exponentOperator.execute(10,0)).isWithin(1);
         assertThat(exponentOperator.execute(10,-2)).isWithin(.01);

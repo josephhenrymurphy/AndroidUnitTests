@@ -78,11 +78,7 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     private String getDisplayString() {
         String displayString = "";
         for(String item : expression) {
-            if (item.equals("^")) {
-                displayString += "^";
-            } else {
-                displayString += item;
-            }
+            displayString += item;
         }
         return displayString;
     }

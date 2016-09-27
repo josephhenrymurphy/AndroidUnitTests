@@ -147,8 +147,8 @@ public class InfixInputParserTest {
     }
 
     /**
-     * Before: 3 * 4
-     * After: 3 4 *
+     * Before: 3 ^ 4
+     * After: 3 4 ^
      */
     @Test
     public void testToPostfix_SimpleExponent() {
@@ -263,8 +263,8 @@ public class InfixInputParserTest {
     }
 
     /**
-     * Before: 3 * (4 + 5)
-     * After: 3 4 5 + *
+     * Before: 3 * (4 ^ 5)
+     * After: 3 4 5 ^ *
      */
     @Test
     public void testToPostfix_Multiplication_ParenExponent() {
