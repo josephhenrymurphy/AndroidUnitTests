@@ -5,6 +5,7 @@ import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.RightParenInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.DivisionOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.ExponentOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.SubtractionOperator;
@@ -29,6 +30,7 @@ public class InfixInputParserTest {
     private SubtractionOperator minus= new SubtractionOperator();
     private MultiplicationOperator times = new MultiplicationOperator();
     private ExponentOperator exp = new ExponentOperator();
+    private DivisionOperator division = new DivisionOperator();
 
     private LeftParenInput leftParen = new LeftParenInput();
     private RightParenInput rightParen = new RightParenInput();
@@ -179,6 +181,23 @@ public class InfixInputParserTest {
 
         Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
         assertThat(postfixOutput).containsExactly(three, four, times, five, plus)
+                .inOrder();
+    }
+
+    /**
+     * Before: 3 / 4
+     * After: 3 4 /
+     */
+    @Test
+    public void testToPostfix_SimpleDivision() {
+        Input[] inputs = new Input[] {
+                three,
+                division,
+                four
+        };
+
+        Queue<Input> postfixOutput = infixInputParser.toPostfix(inputs);
+        assertThat(postfixOutput).containsExactly(three, four, division)
                 .inOrder();
     }
 

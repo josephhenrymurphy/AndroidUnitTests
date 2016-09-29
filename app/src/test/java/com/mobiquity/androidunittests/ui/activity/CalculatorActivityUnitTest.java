@@ -76,7 +76,7 @@ public class CalculatorActivityUnitTest {
         Assertions.assertThat(calculatorActivity.resultText).isEmpty();
     }
 
-        @Test
+    @Test
     public void testShowResultError_ShouldDisplayErrorMessage() {
         calculatorActivity.showResultError();
         String latestToast = ShadowToast.getTextOfLatestToast();
@@ -86,7 +86,7 @@ public class CalculatorActivityUnitTest {
 
     @Test
     public void testOnClickNumber_StartsHandlingNumbers() throws Exception {
-        for(Button button : calculatorActivity.numericPad.getNumericButtons()) {
+        for (Button button : calculatorActivity.numericPad.getNumericButtons()) {
             ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
             String buttonText = button.getText().toString();
             int expectedNumber = Integer.parseInt(buttonText);
@@ -111,6 +111,11 @@ public class CalculatorActivityUnitTest {
     @Test
     public void testOnClickMultiplyButton_StartsHandling() {
         checkCalculatorButtonRegistered(R.id.multiply_op);
+    }
+
+    @Test
+    public void testOnClickDivideButton_StartsHandling() {
+        checkCalculatorButtonRegistered(R.id.divide_op);
     }
 
     @Test

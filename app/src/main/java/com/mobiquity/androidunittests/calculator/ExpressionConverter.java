@@ -9,6 +9,7 @@ import com.mobiquity.androidunittests.calculator.input.LeftParenInput;
 import com.mobiquity.androidunittests.calculator.input.NumericInput;
 import com.mobiquity.androidunittests.calculator.input.RightParenInput;
 import com.mobiquity.androidunittests.calculator.input.operator.AdditionOperator;
+import com.mobiquity.androidunittests.calculator.input.operator.DivisionOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.ExponentOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.MultiplicationOperator;
 import com.mobiquity.androidunittests.calculator.input.operator.Operator;
@@ -37,6 +38,7 @@ public class ExpressionConverter {
             put(context.getString(R.string.add_op), new AdditionOperator());
             put(context.getString(R.string.substract_op), new SubtractionOperator());
             put(context.getString(R.string.multiply_op), new MultiplicationOperator());
+            put(context.getString(R.string.divide_op), new DivisionOperator());
             put(context.getString(R.string.left_paren), new LeftParenInput());
             put(context.getString(R.string.right_paren), new RightParenInput());
             put(context.getString(R.string.decimal_symbol), new DecimalInput());
@@ -51,12 +53,12 @@ public class ExpressionConverter {
 
     public List<String> normalize(List<String> expression) {
         List<String> normalizedExpression = new ArrayList<>();
-        for(int i = 0; i < expression.size(); i++) {
+        for (int i = 0; i < expression.size(); i++) {
             String expressionItem = expression.get(i);
 
-            if(isInputAllowed(expressionItem)) {
+            if (isInputAllowed(expressionItem)) {
                 Input.NormalizeRule normalizeExpressionRule = Input.NormalizeRule.ADD;
-                if(expressionInputMap.containsKey(expressionItem)) {
+                if (expressionInputMap.containsKey(expressionItem)) {
                     Input calculatorInput = expressionInputMap.get(expressionItem);
                     normalizeExpressionRule = calculatorInput.getNormalizeExpressionRule(expressionInputMap, normalizedExpression);
                 }
@@ -66,8 +68,8 @@ public class ExpressionConverter {
                         normalizedExpression.add(expressionItem);
                         break;
                     case REPLACE:
-                        int lastItemIndex = normalizedExpression.size()-1;
-                        if(lastItemIndex > -1) {
+                        int lastItemIndex = normalizedExpression.size() - 1;
+                        if (lastItemIndex > -1) {
                             normalizedExpression.remove(lastItemIndex);
                             normalizedExpression.add(expressionItem);
                         }
@@ -81,11 +83,11 @@ public class ExpressionConverter {
 
     public List<Input> convert(List<String> expression) {
         List<Input> calculatorInputs = new ArrayList<>();
-        for(String textInput : expression) {
+        for (String textInput : expression) {
             Input calculatorInput;
-            if(ExpressionUtil.isNumeric(textInput)) {
+            if (ExpressionUtil.isNumeric(textInput)) {
                 calculatorInput = new NumericInput(Double.parseDouble(textInput));
-            } else if(expressionInputMap.containsKey(textInput)){
+            } else if (expressionInputMap.containsKey(textInput)) {
                 calculatorInput = expressionInputMap.get(textInput);
             } else {
                 continue;
@@ -93,8 +95,8 @@ public class ExpressionConverter {
 
             // Add * after ) if input is not an operator
             // Ex: (5+3)2 -> (5+3)*2
-            if(!(calculatorInput instanceof Operator)) {
-                if(!calculatorInputs.isEmpty() && calculatorInputs.get(calculatorInputs.size()-1) instanceof RightParenInput) {
+            if (!(calculatorInput instanceof Operator)) {
+                if (!calculatorInputs.isEmpty() && calculatorInputs.get(calculatorInputs.size() - 1) instanceof RightParenInput) {
                     calculatorInputs.add(new MultiplicationOperator());
                 }
             }

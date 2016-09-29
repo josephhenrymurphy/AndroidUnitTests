@@ -11,8 +11,6 @@ import java.util.Stack;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 @AppScope
 public class Calculator {
 
