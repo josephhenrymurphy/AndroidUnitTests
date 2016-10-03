@@ -49,6 +49,14 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
         }
     }
 
+    public void handleClear() {
+        if(!expression.isEmpty()) {
+            expression.clear();
+            view().updateDisplayText(getDisplayString());
+            evaluate(false);
+        }
+    }
+
     public void handleEvaluate() {
         evaluate(true);
     }

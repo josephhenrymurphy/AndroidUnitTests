@@ -14,6 +14,7 @@
     <string name="divide_op">/</string>
     <string name="exponent_op">^</string>
     <string name="exponent_op_value">^</string>
+    <string name="clear">C</string>
 
     <string name="invalid_expression">Invalid Expression</string>
 

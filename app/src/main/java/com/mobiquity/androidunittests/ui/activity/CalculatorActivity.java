@@ -115,6 +115,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
         presenter.handleDelete();
     }
 
+    @OnClick(R.id.clear_op)
+    void onClickClearButton() {
+        presenter.handleClear();
+    }
+
     @OnClick(R.id.eq)
     void onClickEqualsButton() {
         presenter.handleEvaluate();
