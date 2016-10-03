@@ -6,7 +6,7 @@
     android:background="@color/padExtraBackgroundColor"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <GridLayout
         android:id="@+id/extra_buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +21,16 @@
             android:gravity="center_horizontal|top"
             android:text="@string/wolfram_abbrev"/>
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/extra_button_divide_pi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PadButtonStyle"
+            android:drawableBottom="@drawable/ic_divide_pi"
+            android:gravity="center_horizontal|top"
+            android:text="@string/divide_pi_label"/>
+
+    </GridLayout>
 
     <LinearLayout
         android:id="@+id/handle"

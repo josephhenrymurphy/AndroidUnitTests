@@ -26,6 +26,7 @@ import com.mobiquity.androidunittests.ui.view.NumericPad;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -53,11 +54,11 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
             R.id.left_paren,
             R.id.right_paren,
             R.id.decimal,
-            R.id.exponent_op
+            R.id.exponent_op,
+            R.id.divide_op
     }) List<Button> calculatorButtons;
 
     @BindViews(value = {
-            R.id.divide_op,
             R.id.function_arg_separator
     }) List<View> notImplementedButtons;
 
@@ -118,6 +119,12 @@ public class CalculatorActivity extends BaseActivity<CalculatorComponent>
     @OnClick(R.id.eq)
     void onClickEqualsButton() {
         presenter.handleEvaluate();
+    }
+
+    @OnClick(R.id.extra_button_divide_pi)
+    void onClickDividePi() {
+        presenter.handleCalculatorButtonPress("/");
+        presenter.handleCalculatorButtonPress(String.format(Locale.getDefault(), "%.4f", Math.PI));
     }
 
     @OnClick(R.id.extra_button_wolfram)
