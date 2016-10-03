@@ -104,6 +104,17 @@ public class CalculatorActivityTest {
     }
 
     @Test
+    public void testClickClearButton_shouldClearItemsInDisplay() {
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.add_op)).perform(click());
+        onView(withId(R.id.digit_1)).perform(click());
+        onView(withId(R.id.display_input)).check(matches(withText("1+1")));
+
+        onView(withId(R.id.clear_op)).perform(click());
+        onView(withId(R.id.display_input)).check(matches(withText("")));
+    }
+
+    @Test
     public void testClickWolframButton_ShouldStartWolframMode() {
         Intents.init();
         onView(withId(R.id.handle)).perform(click());
